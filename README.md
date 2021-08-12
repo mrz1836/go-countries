@@ -18,6 +18,7 @@
 - [Benchmarks](#benchmarks)
 - [Code Standards](#code-standards)
 - [Usage](#usage)
+- [Credits](#credits)
 - [Maintainers](#maintainers)
 - [Contributing](#contributing)
 - [License](#license)
@@ -134,6 +135,7 @@ Read more about this Go project's [code standards](CODE_STANDARDS.md).
 
 ## Credits
 Used: [ISO-3166-Countries-with-Regional-Codes](https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes)     
+Used: [List of Countries & Currencies](https://gist.github.com/tiagodealmeida/0b97ccf117252d742dddf098bc6cc58a)     
 
 <br/>
 
