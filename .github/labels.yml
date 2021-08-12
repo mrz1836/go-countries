@@ -35,7 +35,7 @@
   description: "Simple dependency updates or version bumps"
   name: "chore"
 - color: 006b75
-  description: "General updates"
+  description: "Any general updates"
   name: "update"
 - color: FFA500
   description: "Any significant refactoring"
