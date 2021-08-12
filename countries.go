@@ -7,10 +7,11 @@
 package countries
 
 import (
-	"encoding/json"
-	"log"
 	"strings"
 )
+
+// Generate the structs from JSON
+//go:generate go run generate/generate.go
 
 // CountryList is a list of country structs
 type CountryList []*Country
@@ -29,9 +30,6 @@ type Country struct {
 	SubRegion              string `json:"sub-region"`
 	SubRegionCode          string `json:"sub-region-code"`
 }
-
-// countries is the active list of countries
-var countries CountryList
 
 // GetByName will return a country by a given name
 // Forces the case to lowercase for comparison
@@ -89,11 +87,4 @@ func GetByISO31662(iso string) *Country {
 		}
 	}
 	return nil
-}
-
-// Loads all the countries from JSON into memory on init
-func init() {
-	if err := json.Unmarshal([]byte(countryData), &countries); err != nil {
-		log.Panic("failed to load countries", err.Error())
-	}
 }

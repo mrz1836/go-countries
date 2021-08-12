@@ -1,4 +1,4 @@
-package countries
+package data
 
 // EXAMPLE DATA
 /*
@@ -17,8 +17,8 @@ package countries
   }
 */
 
-// countryData is the raw JSON for all countries (ISO-3166)
-const countryData = `[
+// CountryJSONData is the raw JSON for all countries (ISO-3166)
+const CountryJSONData = `[
 {"name":"Afghanistan","alpha-2":"AF","alpha-3":"AFG","country-code":"004","iso_3166-2":"ISO 3166-2:AF","region":"Asia","sub-region":"Southern Asia","intermediate-region":"","region-code":"142","sub-region-code":"034","intermediate-region-code":""},
 {"name":"Åland Islands","alpha-2":"AX","alpha-3":"ALA","country-code":"248","iso_3166-2":"ISO 3166-2:AX","region":"Europe","sub-region":"Northern Europe","intermediate-region":"","region-code":"150","sub-region-code":"154","intermediate-region-code":""},
 {"name":"Albania","alpha-2":"AL","alpha-3":"ALB","country-code":"008","iso_3166-2":"ISO 3166-2:AL","region":"Europe","sub-region":"Southern Europe","intermediate-region":"","region-code":"150","sub-region-code":"039","intermediate-region-code":""},

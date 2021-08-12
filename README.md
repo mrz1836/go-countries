@@ -40,6 +40,8 @@ View the generated [documentation](https://pkg.go.dev/github.com/mrz1836/go-coun
  
 ### Features
 - All countries in a friendly Go slice
+- JSON is still [available](json.go)
+- No `init()` method required for using `countries`
 - `GetByName("Nigeria")` will return the country by its [proper name](https://en.wikipedia.org/wiki/ISO_3166)
 - `GetByAlpha2("NG")` will return the country by its [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2)
 - `GetByAlpha3("NGA")` will return the country by its [ISO 3166-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3)
@@ -72,6 +74,7 @@ all                  Runs multiple commands
 clean                Remove previous builds and any test cache data
 clean-mods           Remove all the Go mod cache
 coverage             Shows the test coverage
+generate             Runs the go generate command in the base of the repo
 godocs               Sync the latest tag with GoDocs
 help                 Show this help message
 install              Install the application
