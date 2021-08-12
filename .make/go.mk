@@ -27,6 +27,9 @@ clean-mods: ## Remove all the Go mod cache
 coverage: ## Shows the test coverage
 	@go test -coverprofile=coverage.out ./... && go tool cover -func=coverage.out
 
+generate: ## Runs the go generate command in the base of the repo
+	@go generate -v
+
 godocs: ## Sync the latest tag with GoDocs
 	@test $(GIT_DOMAIN)
 	@test $(REPO_OWNER)
