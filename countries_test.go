@@ -12,12 +12,34 @@ const (
 	testCountryAlpha2 = "US"
 	testCountryAlpha3 = "USA"
 	testCountryCode   = "840"
-	testCountryIso    = "ISO 3166-2:US"
+	testCountryISO    = "ISO 3166-2:US"
 )
 
 // TestCountries will test our pre-loaded countries
 func TestCountries(t *testing.T) {
+
+	// Make sure all countries are there
 	assert.Equal(t, 249, len(countries))
+
+	// Spot check a country
+	usa := GetByAlpha2(testCountryAlpha2)
+	assert.NotNil(t, usa)
+
+	// All fields (USA only)
+	assert.Equal(t, testCountryAlpha2, usa.Alpha2)
+	assert.Equal(t, testCountryAlpha3, usa.Alpha3)
+	assert.Equal(t, "Washington", usa.Capital)
+	assert.Equal(t, "North America", usa.ContinentName)
+	assert.Equal(t, testCountryCode, usa.CountryCode)
+	assert.Equal(t, "USD", usa.CurrencyCode)
+	assert.Equal(t, "", usa.IntermediateRegion)
+	assert.Equal(t, "", usa.IntermediateRegionCode)
+	assert.Equal(t, testCountryISO, usa.ISO31662)
+	assert.Equal(t, "United States of America", usa.Name)
+	assert.Equal(t, "Americas", usa.Region)
+	assert.Equal(t, "019", usa.RegionCode)
+	assert.Equal(t, "Northern America", usa.SubRegion)
+	assert.Equal(t, "021", usa.SubRegionCode)
 }
 
 // TestGetByName will test the method GetByName()
@@ -68,7 +90,7 @@ func ExampleGetByName() {
 func ExampleGetByName_showAll() {
 	country := GetByName(testCountry)
 	fmt.Printf("%+v\n", country)
-	// Output:&{Alpha2:US Alpha3:USA CountryCode:840 IntermediateRegion: IntermediateRegionCode: ISO31662:ISO 3166-2:US Name:United States of America Region:Americas RegionCode:019 SubRegion:Northern America SubRegionCode:021}
+	// Output:&{Alpha2:US Alpha3:USA Capital:Washington ContinentName:North America CountryCode:840 CurrencyCode:USD IntermediateRegion: IntermediateRegionCode: ISO31662:ISO 3166-2:US Name:United States of America Region:Americas RegionCode:019 SubRegion:Northern America SubRegionCode:021}
 }
 
 // BenchmarkGetByName benchmarks the method GetByName()
@@ -219,9 +241,9 @@ func TestGetByISO31662(t *testing.T) {
 	t.Parallel()
 
 	t.Run("Valid codes", func(t *testing.T) {
-		country := GetByISO31662(testCountryIso)
+		country := GetByISO31662(testCountryISO)
 		assert.NotNil(t, country)
-		assert.Equal(t, testCountryIso, country.ISO31662)
+		assert.Equal(t, testCountryISO, country.ISO31662)
 	})
 
 	t.Run("Invalid codes", func(t *testing.T) {
@@ -235,7 +257,7 @@ func TestGetByISO31662(t *testing.T) {
 
 // ExampleGetByISO31662 is an example of GetByISO31662()
 func ExampleGetByISO31662() {
-	country := GetByISO31662(testCountryIso)
+	country := GetByISO31662(testCountryISO)
 	fmt.Printf(
 		"country: %s alpha2: %s alpha3: %s code: %s",
 		country.Name, country.Alpha2, country.Alpha3, country.CountryCode,
@@ -246,6 +268,31 @@ func ExampleGetByISO31662() {
 // BenchmarkGetByISO31662 benchmarks the method GetByISO31662()
 func BenchmarkGetByISO31662(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		_ = GetByISO31662(testCountryIso)
+		_ = GetByISO31662(testCountryISO)
+	}
+}
+
+// TestGetAll will test the method GetAll()
+func TestGetAll(t *testing.T) {
+	t.Parallel()
+
+	t.Run("valid countries", func(t *testing.T) {
+		c := GetAll()
+		assert.NotNil(t, c)
+		assert.Equal(t, 249, len(c))
+	})
+}
+
+// ExampleGetAll is an example of GetAll()
+func ExampleGetAll() {
+	all := GetAll()
+	fmt.Printf("countries found: %d", len(all))
+	// Output:countries found: 249
+}
+
+// BenchmarkGetAll benchmarks the method GetAll()
+func BenchmarkGetAll(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		_ = GetAll()
 	}
 }

@@ -20,7 +20,10 @@ type CountryList []*Country
 type Country struct {
 	Alpha2                 string `json:"alpha-2"`
 	Alpha3                 string `json:"alpha-3"`
+	Capital                string `json:"capital"`
+	ContinentName          string `json:"continent_name"`
 	CountryCode            string `json:"country-code"`
+	CurrencyCode           string `json:"currency_code"`
 	IntermediateRegion     string `json:"intermediate-region"`
 	IntermediateRegionCode string `json:"intermediate-region-code"`
 	ISO31662               string `json:"iso_3166-2"`
@@ -87,4 +90,9 @@ func GetByISO31662(iso string) *Country {
 		}
 	}
 	return nil
+}
+
+// GetAll will return all the countries
+func GetAll() CountryList {
+	return countries
 }

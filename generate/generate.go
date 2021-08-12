@@ -16,12 +16,45 @@ import (
 	"github.com/mrz1836/go-countries/data"
 )
 
+// CountriesWithCurrencies is a shim for parsing
+type countriesWithCurrencies []*alternateCountryData
+
+// currencyObject is country object which contains the currency
+type alternateCountryData struct {
+	Capital       string `json:"capital"`
+	ContinentName string `json:"continentName"`
+	CountryCode   string `json:"countryCode"`
+	CountryName   string `json:"countryName"`
+	CurrencyCode  string `json:"currencyCode"`
+	Population    string `json:"population"`
+}
+
+// Main runs the generator code to parse all JSON -> structs
 func main() {
 
 	// Unmarshall the countries
 	var c countries.CountryList
-	if err := json.Unmarshal([]byte(data.CountryJSONData), &c); err != nil {
+	if err := json.Unmarshal([]byte(data.ISO3166JSONData), &c); err != nil {
 		log.Panic("failed to load countries", err.Error())
+	}
+
+	// Unmarshall the temporary data
+	var ca countriesWithCurrencies
+	if err := json.Unmarshal([]byte(data.CountryCurrencyJSONData), &ca); err != nil {
+		log.Panic("failed to load alternate country data", err.Error())
+	}
+
+	// Loop and combine the data
+	for index, country := range c {
+
+		// Loop alternate data
+		for _, altCountry := range ca {
+			if country.Alpha2 == altCountry.CountryCode {
+				c[index].Capital = altCountry.Capital
+				c[index].ContinentName = altCountry.ContinentName
+				c[index].CurrencyCode = altCountry.CurrencyCode
+			}
+		}
 	}
 
 	// Repo URL
@@ -64,7 +97,10 @@ var (
 		{
 			Alpha2:                 {{ printf "%q" .Alpha2 }},
 			Alpha3:                 {{ printf "%q" .Alpha3 }},
+			Capital:            	{{ printf "%q" .Capital }},
+			ContinentName:          {{ printf "%q" .ContinentName }},
 			CountryCode:            {{ printf "%q" .CountryCode }},
+			CurrencyCode:           {{ printf "%q" .CurrencyCode }},
 			IntermediateRegion:     {{ printf "%q" .IntermediateRegion }},
 			IntermediateRegionCode: {{ printf "%q" .IntermediateRegionCode }},
 			ISO31662:               {{ printf "%q" .ISO31662 }},

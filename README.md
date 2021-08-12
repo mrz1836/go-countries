@@ -40,7 +40,7 @@ View the generated [documentation](https://pkg.go.dev/github.com/mrz1836/go-coun
  
 ### Features
 - All countries in a friendly Go slice
-- JSON is still [available](json.go)
+- All JSON is still [available](data)
 - No `init()` method required for using `countries`
 - `GetByName("Nigeria")` will return the country by its [proper name](https://en.wikipedia.org/wiki/ISO_3166)
 - `GetByAlpha2("NG")` will return the country by its [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2)
