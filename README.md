@@ -40,14 +40,15 @@ View the generated [documentation](https://pkg.go.dev/github.com/mrz1836/go-coun
 [![GoDoc](https://godoc.org/github.com/mrz1836/go-countries?status.svg&style=flat)](https://pkg.go.dev/github.com/mrz1836/go-countries?tab=doc)
  
 ### Features
-- All countries in a friendly Go slice
-- All JSON is still [available](data)
-- No `init()` method required for using `countries`
+- All known countries in a friendly Go slice of structs
+- All JSON is still available in the [data package](data)
+- No `init()` method required for using the `countries` package
+- `GetAll()` will return the entire slice of all known countries
 - `GetByName("Nigeria")` will return the country by its [proper name](https://en.wikipedia.org/wiki/ISO_3166)
 - `GetByAlpha2("NG")` will return the country by its [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2)
 - `GetByAlpha3("NGA")` will return the country by its [ISO 3166-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3)
 - `GetByCountryCode("566")` will return the country by its [ISO 3166 country code](https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes)
-- `GetByISO31662("ISO 3166-2:NG")` will return the country by its I[ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2)
+- `GetByISO31662("ISO 3166-2:NG")` will return the country by its [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2)
 
 <details>
 <summary><strong><code>Library Deployment</code></strong></summary>
@@ -130,6 +131,7 @@ Read more about this Go project's [code standards](CODE_STANDARDS.md).
 - View the [examples](examples)
 - View the [benchmarks](countries_test.go)
 - View the [tests](countries_test.go)
+- View the [generator](generate)
 
 <br/>
 
