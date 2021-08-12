@@ -40,11 +40,11 @@ View the generated [documentation](https://pkg.go.dev/github.com/mrz1836/go-coun
  
 ### Features
 - All countries in a friendly Go slice
-- `GetByName("Nigeria")` will return the country by its proper name
-- `GetByAlpha2("NG")` will return the country by its ISO 3166-2
-- `GetByAlpha3("NGA")` will return the country by its ISO 3166-3
-- `GetByCountryCode("NGA")` will return the country by its ISO 3166 country code
-- `GetByISO31662("ISO 3166-2:NG")` will return the country by its ISO 3166-2
+- `GetByName("Nigeria")` will return the country by its [proper name](https://en.wikipedia.org/wiki/ISO_3166)
+- `GetByAlpha2("NG")` will return the country by its [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2)
+- `GetByAlpha3("NGA")` will return the country by its [ISO 3166-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3)
+- `GetByCountryCode("566")` will return the country by its [ISO 3166 country code](https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes)
+- `GetByISO31662("ISO 3166-2:NG")` will return the country by its I[ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2)
 
 <details>
 <summary><strong><code>Library Deployment</code></strong></summary>
