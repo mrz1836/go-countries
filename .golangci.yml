@@ -337,6 +337,7 @@ linters:
     - unconvert
     - dupl
     - misspell
+    - ineffassign
     - dogsled
     - prealloc
     - exportloopref

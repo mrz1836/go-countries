@@ -19,6 +19,7 @@ const (
 func TestCountries(t *testing.T) {
 
 	// Make sure all countries are there
+	assert.NotNil(t, countries)
 	assert.Equal(t, 249, len(countries))
 
 	// Spot check a country
