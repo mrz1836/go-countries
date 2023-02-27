@@ -1,3 +1,4 @@
+// Package data contains the data for the currencies
 package data
 
 // CountryCurrencyJSONData is a JSON glob of countries and currencies
