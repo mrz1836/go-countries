@@ -20,7 +20,7 @@ func TestCountries(t *testing.T) {
 
 	// Make sure all countries are there
 	assert.NotNil(t, countries)
-	assert.Equal(t, 249, len(countries))
+	assert.Len(t, countries, 249)
 
 	// Spot check a country
 	usa := GetByAlpha2(testCountryAlpha2)
@@ -280,7 +280,7 @@ func TestGetAll(t *testing.T) {
 	t.Run("valid countries", func(t *testing.T) {
 		c := GetAll()
 		assert.NotNil(t, c)
-		assert.Equal(t, 249, len(c))
+		assert.Len(t, c, 249)
 	})
 }
 
