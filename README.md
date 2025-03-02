@@ -39,6 +39,22 @@ View the generated [documentation](https://pkg.go.dev/github.com/mrz1836/go-coun
 
 [![GoDoc](https://godoc.org/github.com/mrz1836/go-countries?status.svg&style=flat)](https://pkg.go.dev/github.com/mrz1836/go-countries?tab=doc)
  
+### Code Generation
+
+To generate the Go code for the countries data, follow these steps:
+
+1. **Navigate to the project root directory**:
+   ```shell
+   cd /path/to/your/project
+   ```
+
+2. **Run the `go generate` command**:
+   ```shell
+   go generate ./generate/...
+   ```
+
+This command will execute the code generation logic defined in the `generate.go` file located in the `/generate/` directory. The generated code will be written to `countries_data.go` in the project directory.
+
 ### Features
 - All known countries in a friendly Go slice of structs
 - All JSON is still available in the [data package](data)
