@@ -1,4 +1,11 @@
-// Package countries is a complete go-ready list of countries in all standardized formats
+// Package countries is a complete go-ready list of countries in all standardized formats.
+//
+// This package provides functionalities to retrieve country information based on various identifiers
+// such as name, alpha-2 code, alpha-3 code, country code, and ISO 3166-2 code. It includes methods
+// to get a country by these identifiers and to retrieve the entire list of countries.
+//
+// The package is designed to be easy to use and integrate into Go projects, making it simple to
+// work with country data in a standardized way.
 //
 // If you have any suggestions or comments, please feel free to open an issue on
 // this GitHub repository!
@@ -34,8 +41,10 @@ type Country struct {
 	SubRegionCode          string `json:"sub-region-code"`
 }
 
-// GetByName will return a country by a given name
-// Forces the case to lowercase for comparison
+// GetByName will return a country by a given name.
+// The comparison is case-insensitive, as the input name is converted to lowercase.
+// If a country with the specified name is found, it returns a pointer to the Country struct.
+// If no country is found, it returns nil.
 func GetByName(name string) *Country {
 	name = strings.ToLower(name)
 	for _, country := range countries {
@@ -46,8 +55,10 @@ func GetByName(name string) *Country {
 	return nil
 }
 
-// GetByAlpha2 will return a country by a given alpha-2
-// Forces the case to uppercase for comparison
+// GetByAlpha2 will return a country by a given alpha-2 code.
+// The comparison is case-insensitive, as the input alpha-2 code is converted to uppercase.
+// If a country with the specified alpha-2 code is found, it returns a pointer to the Country struct.
+// If no country is found, it returns nil.
 func GetByAlpha2(alpha2 string) *Country {
 	alpha2 = strings.ToUpper(alpha2)
 	for _, country := range countries {
@@ -58,8 +69,10 @@ func GetByAlpha2(alpha2 string) *Country {
 	return nil
 }
 
-// GetByAlpha3 will return a country by a given alpha-3
-// Forces the case to uppercase for comparison
+// GetByAlpha3 will return a country by a given alpha-3 code.
+// The comparison is case-insensitive, as the input alpha-3 code is converted to uppercase.
+// If a country with the specified alpha-3 code is found, it returns a pointer to the Country struct.
+// If no country is found, it returns nil.
 func GetByAlpha3(alpha3 string) *Country {
 	alpha3 = strings.ToUpper(alpha3)
 	for _, country := range countries {
@@ -70,7 +83,10 @@ func GetByAlpha3(alpha3 string) *Country {
 	return nil
 }
 
-// GetByCountryCode will return a country by a given country-code
+// GetByCountryCode will return a country by a given country code.
+// The comparison is case-sensitive, as the input country code is used as-is.
+// If a country with the specified country code is found, it returns a pointer to the Country struct.
+// If no country is found, it returns nil.
 func GetByCountryCode(code string) *Country {
 	for _, country := range countries {
 		if country.CountryCode == code {
@@ -80,8 +96,10 @@ func GetByCountryCode(code string) *Country {
 	return nil
 }
 
-// GetByISO31662 will return a country by a ISO31662 number
-// Forces the case to uppercase for comparison
+// GetByISO31662 will return a country by a given ISO 3166-2 code.
+// The comparison is case-insensitive, as the input ISO 3166-2 code is converted to uppercase.
+// If a country with the specified ISO 3166-2 code is found, it returns a pointer to the Country struct.
+// If no country is found, it returns nil.
 func GetByISO31662(iso string) *Country {
 	iso = strings.ToUpper(iso)
 	for _, country := range countries {
@@ -92,7 +110,10 @@ func GetByISO31662(iso string) *Country {
 	return nil
 }
 
-// GetAll will return all the countries
+// GetAll will return all the countries in the list.
+// It returns a CountryList, which is a slice of pointers to Country structs.
+// This method is useful for retrieving the entire dataset of countries
+// and can be used for operations that require access to all country information.
 func GetAll() CountryList {
 	return countries
 }

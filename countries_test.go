@@ -15,7 +15,7 @@ const (
 	testCountryISO    = "ISO 3166-2:US"
 )
 
-// TestCountries will test our pre-loaded countries
+// TestCountries will test our preloaded countries
 func TestCountries(t *testing.T) {
 
 	// Make sure all countries are there
