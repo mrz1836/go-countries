@@ -1,3 +1,4 @@
+// Package main provides an example of how to use the go-countries package.
 package main
 
 import (
