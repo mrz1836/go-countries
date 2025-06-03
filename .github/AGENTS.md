@@ -23,16 +23,14 @@ Additional `AGENTS.md` files **may exist in subdirectories** to provide more con
 ---
 
 ## 📁 Directory Structure
-
-| Directory   | Description                                                         |
-|-------------|---------------------------------------------------------------------|
-| `data/`     | Raw JSON datasets used for code generation                          |
-| `generate/` | Code generation utility that produces `countries_data.go`           |
-| `examples/` | Example program demonstrating package usage                         |
-| `.github/`  | Issue templates, workflows, and community documentation             |
-| `.make/`    | Shared Makefile targets used by `Makefile`                          |
-| `.` (root)  | Source files, tests, and generated code for the `countries` package |
-
+| Directory   | Description
+|-------------|-------------------------------------------------------------------------
+| `data/`     | Raw JSON datasets used for code generation
+| `generate/` | Code generation utility that produces `countries_data.go`
+| `examples/` | Example program demonstrating package usage
+| `.github/`  | Issue templates, workflows, and community documentation
+| `.make/`    | Shared Makefile targets used by `Makefile`
+| `.` (root)  | Source files, tests, and generated code for the `countries` package
 ---
 
 ### 📚 Related Governance Documents
@@ -421,8 +419,6 @@ Failing PRs will be blocked. AI agents should iterate until CI passes.
 
 ---
 
-Here’s an enhanced and more professional version of your **🔐 Dependency Management** section, aligned with modern Go practices and your AGENTS.md voice:
-
 ---
 
 ## 🔐 Dependency Management
@@ -467,7 +463,6 @@ Dependency hygiene is critical for security, reproducibility, and developer expe
 
 > Changes to dependencies must be explained in the PR description and ideally linked to the reason (e.g., bug fix, security advisory, feature requirement).
 
-Here’s a professional and clean section you can place at the end of your `AGENTS.md` file to track update history, authorship, and rationale:
 
 ---
 
