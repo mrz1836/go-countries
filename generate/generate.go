@@ -72,15 +72,17 @@ func main() {
 	}()
 
 	// Execute the template
-	packageTemplate.Execute(f, struct {
-		Timestamp time.Time
-		URL       string
-		Countries countries.CountryList
+	if err := packageTemplate.Execute(f, struct {
+	Timestamp time.Time
+	URL       string
+	Countries countries.CountryList
 	}{
-		Timestamp: time.Now(),
-		URL:       url,
-		Countries: c,
-	})
+	Timestamp: time.Now(),
+	URL:       url,
+	Countries: c,
+	}); err != nil {
+		log.Fatalf("package template execution failed: %v", err)
+	}
 }
 
 // Template for the generated code
