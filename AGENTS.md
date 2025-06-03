@@ -42,3 +42,21 @@ AI agents must adhere to the instructions herein when reading, writing, testing,
 
 ---
 
+## 🛠 Makefile Overview
+
+The repository's `Makefile` includes reusable targets from `.make/common.mk` and
+`.make/go.mk`. The root file exposes a few high-level commands while the files
+under `.make` contain the bulk of the build logic.
+
+`common.mk` provides utility tasks for releasing with GoReleaser, tagging
+releases, and updating the releaser tool. It also offers the `diff` and `help`
+commands used across projects.
+
+`go.mk` supplies Go-specific helpers for linting, testing, generating code,
+building binaries, and updating dependencies. Targets such as `lint`, `test`,
+`test-ci`, and `coverage` are defined here and invoked by the root `Makefile`.
+
+Use `make help` to view the full list of supported commands.
+
+---
+
