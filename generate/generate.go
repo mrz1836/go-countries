@@ -71,16 +71,18 @@ func main() {
 		_ = f.Close()
 	}()
 
-	// Execute the template
-	packageTemplate.Execute(f, struct {
-		Timestamp time.Time
-		URL       string
-		Countries countries.CountryList
-	}{
-		Timestamp: time.Now(),
-		URL:       url,
-		Countries: c,
-	})
+        // Execute the template
+        if err := packageTemplate.Execute(f, struct {
+                Timestamp time.Time
+                URL       string
+                Countries countries.CountryList
+        }{
+                Timestamp: time.Now(),
+                URL:       url,
+                Countries: c,
+        }); err != nil {
+                log.Fatal(err)
+        }
 }
 
 // Template for the generated code
