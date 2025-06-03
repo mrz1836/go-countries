@@ -23,14 +23,15 @@ Additional `AGENTS.md` files **may exist in subdirectories** to provide more con
 ---
 
 ## 📁 Directory Structure
-| Directory   | Description
-|-------------|-------------------------------------------------------------------------
-| `data/`     | Raw JSON datasets used for code generation
-| `generate/` | Code generation utility that produces `countries_data.go`
-| `examples/` | Example program demonstrating package usage
-| `.github/`  | Issue templates, workflows, and community documentation
-| `.make/`    | Shared Makefile targets used by `Makefile`
-| `.` (root)  | Source files, tests, and generated code for the `countries` package
+| Directory   | Description                                                         |
+|-------------|---------------------------------------------------------------------|
+| `data/`     | Raw JSON datasets used for code generation                          |
+| `generate/` | Code generation utility that produces `countries_data.go`           |
+| `examples/` | Example program demonstrating package usage                         |
+| `.github/`  | Issue templates, workflows, and community documentation             |
+| `.make/`    | Shared Makefile targets used by `Makefile`                          |
+| `.` (root)  | Source files, tests, and generated code for the `countries` package |
+
 ---
 
 ### 📚 Related Governance Documents
@@ -43,17 +44,6 @@ For more detailed guidance and supporting documentation, refer to the following 
 * `CONTRIBUTING.md` — Guidelines for contributing code, issues, and ideas
 * `README.md` — Project overview, goals, and setup instructions
 * `SECURITY.md` — Vulnerability reporting and security process
-
----
-
-## 🤖 AI Specific Ruleset
-
-* **Do not** use `fmt.Errorf`; prefer `errors.New()`
-* **Must** pass all tests and linting checks before proposing code
-* **Must** adhere to naming and formatting conventions
-* **Must not** use `t.Parallel()` unless testing concurrency explicitly
-* **Must** provide a descriptive commit message and PR title
-* **Should** summarize what was changed and why
 
 ---
 
@@ -253,6 +243,19 @@ If you're an AI contributing code:
 
 ---
 
+## 📝 Modifying Markdown Documents
+
+Markdown files (e.g., `README.md`, `AGENTS.md`, `CONTRIBUTING.md`) are first-class citizens in this repository. Edits must follow these best practices:
+
+* **Write with intent** — Be concise, clear, and audience-aware. Each section should serve a purpose.
+* **Use proper structure** — Maintain consistent heading levels, spacing, and bullet/number list formatting.
+* **Full Table Borders** — Use full borders for tables to ensure readability across different renderers.
+* **Preserve voice and tone** — Match the professional tone and style used across the project documentation.
+* **Preview before committing** — Always verify rendered output locally or in a PR to avoid broken formatting.
+* **Update references** — When renaming files or sections, update internal links and the table of contents if present.
+
+> Markdown updates should be treated with the same care as code—clean, purposeful, and reviewed.
+
 ---
 
 ## 🚨 Error Handling
@@ -416,8 +419,6 @@ CI automatically runs on every PR to verify:
 * This codebase uses GitHub actions, and test workflows are in `.github/workflows/run-tests.yml`
 
 Failing PRs will be blocked. AI agents should iterate until CI passes.
-
----
 
 ---
 
