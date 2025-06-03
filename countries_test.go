@@ -17,6 +17,7 @@ const (
 
 // TestCountries will test our preloaded countries
 func TestCountries(t *testing.T) {
+	t.Parallel()
 
 	// Make sure all countries are there
 	assert.NotNil(t, countries)
@@ -193,7 +194,7 @@ func ExampleGetByAlpha3() {
 // BenchmarkGetByAlpha3 benchmarks the method GetByAlpha3()
 func BenchmarkGetByAlpha3(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		_ = GetByAlpha3(testCountryAlpha2)
+		_ = GetByAlpha3(testCountryAlpha3)
 	}
 }
 
