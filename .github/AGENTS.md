@@ -18,7 +18,7 @@ Additional `AGENTS.md` files **may exist in subdirectories** to provide more con
 
 * Country data lives under `data/` and is transformed into Go structs by running `go generate ./generate/...`.
 * The core package lives in the repository root (`countries.go`, `countries_data.go`).
-* Examples and tests help the source to demonstrate usage and maintain correctness.
+* Examples and tests accompany the source code, demonstrating usage and maintain correctness.
 
 ---
 
@@ -77,6 +77,7 @@ Code must be cleanly formatted and pass all linters before being committed.
 go fmt ./...
 goimports -w .
 golangci-lint run
+go vet ./...
 ```
 
 > Refer to `.golangci.json` for the full set of enabled linters.
@@ -167,7 +168,7 @@ Great engineers write great comments. You’re not here to state the obvious—y
 
 * **Don’t comment on broken code—fix or delete it**
 
-  > Dead or disabled code with TODOs is bad signals. If it’s not worth fixing now, delete it and add an issue instead.
+  > Dead or disabled code with TODOs are bad signals. If it’s not worth fixing now, delete it and add an issue instead.
 
 * **Your comments are part of the product**
 
@@ -203,7 +204,7 @@ Every exported function **must** include a Go-style comment that:
 
 Use inline comments **strategically**, not excessively.
 
-* Use them to explain “weird” logic, workarounds, or business rules.
+* Use them to explain “weird" logic, workarounds, or business rules.
 * Prefer **block comments (`//`)** on their own line over trailing comments.
 * Avoid obvious noise:
 
@@ -216,7 +217,7 @@ Use inline comments **strategically**, not excessively.
 
 * Use **complete sentences** with punctuation.
 * Keep your tone **precise, confident, and modern**—you're not writing a novel, but you're also not writing legacy COBOL.
-* Avoid filler like “simple function” or “just does X”.
+* Avoid filler like “simple function" or “just does X".
 * Don’t leave TODOs unless:
     * They are immediately actionable
     * (or) they reference an issue
@@ -231,7 +232,7 @@ If you're an AI contributing code:
 * Treat your comments like commit messages—**use active voice, be declarative**
 * Use comments to **make intent explicit**, especially for generated or AI-authored sections
 * Avoid hallucinating context—if you're unsure, omit or tag with `// AI: review this logic`
-* Flag areas of uncertainty or external dependency (e.g., “// AI: relies on external config structure”)
+* Flag areas of uncertainty or external dependency (e.g., “// AI: relies on external config structure")
 
 ---
 
@@ -258,7 +259,7 @@ Markdown files (e.g., `README.md`, `AGENTS.md`, `CONTRIBUTING.md`) are first-cla
 
 ---
 
-## 🚨 Error Handling
+## 🚨 Error Handling (Go)
 
 * Always check errors
 
@@ -271,6 +272,54 @@ if err != nil {
 * Prefer `errors.New()` over `fmt.Errorf`
 * Use custom error types sparingly
 * Avoid returning ambiguous errors; provide context
+
+---
+
+## 🔀 Commit & Branch Naming Conventions
+
+Clear history ⇒ easy maintenance. Follow these rules for every commit and branch.
+
+### 📌 Commit Message Format
+
+```
+<type>(<scope>): <imperative short description>
+
+<body>  # optional, wrap at 72 chars
+```
+
+* **`<type>`** — `feat`, `fix`, `docs`, `test`, `refactor`, `chore`, `build`, `ci`
+* **`<scope>`** — Affected subsystem or package (e.g., `api`, `countries`, `deps`). Omit if global.
+* **Short description** — ≤ 50 chars, imperative mood ("add pagination", "fix panic")
+* **Body** (optional) — What & why, links to issues (`Closes #123`), and breaking‑change note (`BREAKING CHANGE:`)
+
+**Examples**
+
+```
+feat(countries): add Alpha-3 lookup by numeric code
+fix(generator): handle malformed JSON input gracefully
+docs(README): improve installation instructions
+```
+
+> Commits that only tweak whitespace, comments, or docs inside a PR may be squashed; otherwise preserve granular commits.
+
+### 🌱 Branch Naming
+
+| Purpose            | Prefix      | Example                            |
+|--------------------|-------------|------------------------------------|
+| Feature            | `feat/`     | `feat/pagination-api`              |
+| Bug Fix            | `fix/`      | `fix/country-code-off-by-one`      |
+| Documentation      | `docs/`     | `docs/agents-commenting-standards` |
+| Refactor / Cleanup | `refactor/` | `refactor/remove-dead-code`        |
+| Tests              | `test/`     | `test/generator-edge-cases`        |
+| Chore / Meta       | `chore/`    | `chore/upgrade-go-1.23`            |
+| Hotfix (prod)      | `hotfix/`   | `hotfix/rollback-broken-deploy`    |
+| Prototype / Spike  | `proto/`    | `proto/iso3166-expansion`          |
+
+* Use **kebab‑case** after the prefix.
+* Keep branch names concise yet descriptive.
+* PR titles should mirror the branch’s purpose (see [✅ Pull Request Conventions](#-pull-request-conventions)).
+
+> Mergify and CI rely on these prefixes for auto‑labeling and workflow routing—stick to them.
 
 ---
 
@@ -290,7 +339,7 @@ Examples:
 * `[DB] Migrate legacy rate table schema`
 * `[CI] Remove deprecated GitHub Action for testing`
 
-> Use the imperative mood ("Add", "Fix," "Update") to match the style of commit messages and changelogs.
+> Use the imperative mood ("Add", "Fix", "Update") to match the style of commit messages and changelogs.
 
 ---
 
@@ -300,7 +349,7 @@ Every PR must include the following **four** sections in the description:
 
 #### 1. **What Changed**
 
-> A clear, bullet-pointed or paragraph-level summary of the technical changes.
+> A clear, bullet‑pointed or paragraph‑level summary of the technical changes.
 
 #### 2. **Why It Was Needed**
 
@@ -312,7 +361,7 @@ Every PR must include the following **four** sections in the description:
 >
 > * Test suites run (e.g., `TestCreateOriginationAccount`)
 > * Edge cases covered
-> * Manual steps took (if any)
+> * Manual steps that were taken (if any)
 
 #### 4. **Impact / Risk**
 
@@ -329,9 +378,43 @@ Every PR must include the following **four** sections in the description:
 
 * Link related issues with keywords like `Closes #123` or `Fixes #456`.
 * Keep PRs focused and minimal. Prefer multiple small PRs over large ones when possible.
-* Use draft PRs early for feedback on in-progress work.
-* Releases are deployed using `goreleaser`
-* Rules for the release build is located in `.goreleaser.yml` and executed via `.github/workflows/release.yml`
+* Use draft PRs early for feedback on in‑progress work.
+* Releases are deployed using **goreleaser**.
+* Rules for the release build are located in `.goreleaser.yml` and executed via `.github/workflows/release.yml`.
+
+---
+
+## 🚀 Release Workflow & Versioning
+
+We follow **Semantic Versioning (✧ SemVer)**:  
+`MAJOR.MINOR.PATCH` → `1.2.3`
+
+| Segment   | Bumps When …                          | Examples        |
+|-----------|---------------------------------------|-----------------|
+| **MAJOR** | Breaking API change                   | `1.0.0 → 2.0.0` |
+| **MINOR** | Back‑compatible feature / enhancement | `1.2.0 → 1.3.0` |
+| **PATCH** | Back‑compatible bug fix / docs        | `1.2.3 → 1.2.4` |
+
+### 📦 Tooling
+
+* Releases are driven by **[goreleaser]** and configured in `.goreleaser.yml`.
+* Install locally with Homebrew (Mac):  
+```bash
+  brew install goreleaser
+````
+
+### 🔄 Workflow (Codeowner‑only)
+
+| Step | Command                         | Purpose                                                                                            |
+|------|---------------------------------|----------------------------------------------------------------------------------------------------|
+| 1    | `make release-snap`             | Build & upload a **snapshot** (pre‑release) for quick CI validation.                               |
+| 2    | `make tag version=X.Y.Z`        | Create and push a signed Git tag. Triggers GitHub Actions.                                         |
+| 3    | GitHub Actions                  | CI runs `goreleaser release` on the tag; artifacts and changelog are published to GitHub Releases. |
+| 4    | `make release` (optional local) | Manually invoke the production release if needed.                                                  |
+
+> **Note for AI Agents:** Do not create or push tags automatically. Only the repository [codeowners](CODEOWNERS) are authorized to tag and publish official releases.
+
+[goreleaser]: https://github.com/goreleaser/goreleaser
 
 ---
 
@@ -416,7 +499,7 @@ CI automatically runs on every PR to verify:
 * Formatting (`go fmt` and `goimports`)
 * Linting (`golangci-lint run`)
 * Tests (`go test ./...`)
-* This codebase uses GitHub actions, and test workflows are in `.github/workflows/run-tests.yml`
+* This codebase uses GitHub Actions; test workflows reside in `.github/workflows/run-tests.yml`
 
 Failing PRs will be blocked. AI agents should iterate until CI passes.
 
@@ -462,8 +545,23 @@ Dependency hygiene is critical for security, reproducibility, and developer expe
 * Do not vendor dependencies; we rely on modules for reproducibility
 * Lockstep upgrades across repos (when applicable) should be coordinated and noted in PRs
 
-> Changes to dependencies must be explained in the PR description and ideally linked to the reason (e.g., bug fix, security advisory, feature requirement).
+> Changes to dependencies should be explained in the PR description and ideally linked to the reason (e.g., bug fix, security advisory, feature requirement).
 
+---
+
+## 🛡️Security Considerations & Vulnerability Reporting
+
+Security is a first-class requirement. If you discover a vulnerability—no matter how small—follow our responsible disclosure process:
+
+* **Do not** open a public issue or pull request.
+* Follow the instructions in [`SECURITY.md`](SECURITY.md).
+* Include:
+  * A clear, reproducible description of the issue
+  * Proof‑of‑concept code or steps (if possible)
+  * Any known mitigations or workarounds
+* You will receive an acknowledgment within **72 hours** and status updates until the issue is resolved.
+
+> For general hardening guidance (e.g., `govulncheck`, dependency pinning), see the [🔐Dependency Management](#-dependency-management) section.
 
 ---
 
