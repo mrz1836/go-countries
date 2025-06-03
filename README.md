@@ -6,6 +6,7 @@
 [![Report](https://goreportcard.com/badge/github.com/mrz1836/go-countries?style=flat)](https://goreportcard.com/report/github.com/mrz1836/go-countries)
 [![codecov](https://codecov.io/gh/mrz1836/go-countries/branch/master/graph/badge.svg)](https://codecov.io/gh/mrz1836/go-countries)
 [![Go](https://img.shields.io/github/go-mod/go-version/mrz1836/go-countries)](https://golang.org/)
+[![AI-Agent-Compliant](https://img.shields.io/badge/AGENTS.md-Found-40b814?style=flat&logo=openai)](.github/AGENTS.md)
 [![Sponsor](https://img.shields.io/badge/sponsor-MrZ-181717.svg?logo=github&style=flat&v=3)](https://github.com/sponsors/mrz1836)
 [![Donate](https://img.shields.io/badge/donate-bitcoin-ff9900.svg?logo=bitcoin&style=flat)](https://mrz1818.com/?tab=tips&utm_source=github&utm_medium=sponsor-link&utm_campaign=go-countries&utm_term=go-countries&utm_content=go-countries)
 
