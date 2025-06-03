@@ -98,7 +98,7 @@ help                 Show this help message
 install              Install the application
 install-go           Install the application (Using Native Go)
 lint                 Run the golangci-lint application (install if not found)
-release              Full production release (creates release in Github)
+release              Full production release (creates release in GitHub)
 release              Runs common.release then runs godocs
 release-snap         Test the full release (build binaries)
 release-test         Full production test release (everything except deploy)
