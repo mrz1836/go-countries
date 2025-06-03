@@ -146,8 +146,7 @@ Read more about this Go project's [code standards](.github/CODE_STANDARDS.md).
 <br/>
 
 ## AGENTS.md
-The [.github/AGENTS.md](.github/AGENTS.md) file explains repository conventions for automated contributors.
-It covers directory layout, required commands like `make lint` and `make test`, and notes that pull requests must be assigned to **mrz1836**.
+The [.github/AGENTS.md](.github/AGENTS.md) file explains repository conventions for automated contributors like Codex, Claude, GPT etc.
 
 To update these guidelines, edit `.github/AGENTS.md` and include the changes in a pull request alongside any relevant documentation updates.
 
