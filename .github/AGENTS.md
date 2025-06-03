@@ -88,9 +88,9 @@ We use the `testify` suite for unit tests. All tests must follow these conventio
 * Name tests using the pattern: `TestFunctionName_ScenarioDescription`
 * Use `testify/assert` for general assertions
 * Use `testify/require` for:
-
     * All error or nil checks
     * Any test where failure should halt execution
+    * Any test where a pointer or complex structure is required to be used after the check
 * Use `require.InDelta` or `require.InEpsilon` for floating-point comparisons
 * Prefer **table-driven tests** for clarity and reusability
 * Use subtests (`t.Run`) to isolate and describe scenarios
@@ -452,7 +452,7 @@ Dependency hygiene is critical for security, reproducibility, and developer expe
   govulncheck ./...
   ```
 
-* Address critical advisories before merging changes into `main`
+* Address critical advisories before merging changes into `master`
 
 * Document any intentionally ignored vulnerabilities with clear justification and issue tracking
 
