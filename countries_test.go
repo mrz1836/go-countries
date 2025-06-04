@@ -46,35 +46,31 @@ func TestCountries_Loaded(t *testing.T) {
 
 // TestGetByName_VariousFormats tests GetByName with different input cases
 func TestGetByName_VariousFormats(t *testing.T) {
+	tests := []struct {
+		name         string
+		input        string
+		expectedName string
+		expectNil    bool
+	}{
+		{name: "Lower to capital", input: testCountry, expectedName: "United States of America"},
+		{name: "Format to lower, mixed caps", input: "AfghanistaN", expectedName: "Afghanistan"},
+		{name: "Symbol detection", input: "Åland Islands", expectedName: "Åland Islands"},
+		{name: "All caps", input: "ALBANIA", expectedName: "Albania"},
+		{name: "no country found", input: "no-country", expectNil: true},
+	}
 
-	t.Run("Lower to capital", func(t *testing.T) {
-		country := GetByName(testCountry)
-		require.NotNil(t, country)
-		assert.Equal(t, "United States of America", country.Name)
-	})
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			country := GetByName(tt.input)
+			if tt.expectNil {
+				require.Nil(t, country)
+				return
+			}
 
-	t.Run("Format to lower, mixed caps", func(t *testing.T) {
-		country := GetByName("AfghanistaN")
-		require.NotNil(t, country)
-		assert.Equal(t, "Afghanistan", country.Name)
-	})
-
-	t.Run("Symbol detection", func(t *testing.T) {
-		country := GetByName("Åland Islands")
-		require.NotNil(t, country)
-		assert.Equal(t, "Åland Islands", country.Name)
-	})
-
-	t.Run("All caps", func(t *testing.T) {
-		country := GetByName("ALBANIA")
-		require.NotNil(t, country)
-		assert.Equal(t, "Albania", country.Name)
-	})
-
-	t.Run("no country found", func(t *testing.T) {
-		country := GetByName("no-country")
-		require.Nil(t, country)
-	})
+			require.NotNil(t, country)
+			assert.Equal(t, tt.expectedName, country.Name)
+		})
+	}
 }
 
 // ExampleGetByName is an example of GetByName()
@@ -103,32 +99,31 @@ func BenchmarkGetByName(b *testing.B) {
 
 // TestGetByAlpha2 will test the method GetByAlpha2()
 func TestGetByAlpha2_VariousFormats(t *testing.T) {
+	tests := []struct {
+		name      string
+		input     string
+		expected  string
+		expectNil bool
+	}{
+		{name: "All caps", input: "AF", expected: "AF"},
+		{name: "Lowercase", input: "ax", expected: "AX"},
+		{name: "Valid case", input: testCountryAlpha2, expected: testCountryAlpha2},
+		{name: "Invalid country", input: "NANA", expectNil: true},
+		{name: "Invalid short", input: "N", expectNil: true},
+	}
 
-	t.Run("All caps", func(t *testing.T) {
-		country := GetByAlpha2("AF")
-		require.NotNil(t, country)
-		assert.Equal(t, "AF", country.Alpha2)
-	})
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			country := GetByAlpha2(tt.input)
+			if tt.expectNil {
+				require.Nil(t, country)
+				return
+			}
 
-	t.Run("Lowercase", func(t *testing.T) {
-		country := GetByAlpha2("ax")
-		require.NotNil(t, country)
-		assert.Equal(t, "AX", country.Alpha2)
-	})
-
-	t.Run("Valid case", func(t *testing.T) {
-		country := GetByAlpha2(testCountryAlpha2)
-		require.NotNil(t, country)
-		assert.Equal(t, testCountryAlpha2, country.Alpha2)
-	})
-
-	t.Run("Invalid country", func(t *testing.T) {
-		country := GetByAlpha2("NANA")
-		require.Nil(t, country)
-
-		country = GetByAlpha2("N")
-		require.Nil(t, country)
-	})
+			require.NotNil(t, country)
+			assert.Equal(t, tt.expected, country.Alpha2)
+		})
+	}
 }
 
 // ExampleGetByAlpha2 is an example of GetByAlpha2()
@@ -150,32 +145,31 @@ func BenchmarkGetByAlpha2(b *testing.B) {
 
 // TestGetByAlpha3 will test the method GetByAlpha3()
 func TestGetByAlpha3_VariousFormats(t *testing.T) {
+	tests := []struct {
+		name      string
+		input     string
+		expected  string
+		expectNil bool
+	}{
+		{name: "All caps", input: "AFG", expected: "AFG"},
+		{name: "Lowercase", input: "ala", expected: "ALA"},
+		{name: "Valid case", input: testCountryAlpha3, expected: testCountryAlpha3},
+		{name: "Invalid country", input: "NANA", expectNil: true},
+		{name: "Invalid short", input: "N", expectNil: true},
+	}
 
-	t.Run("All caps", func(t *testing.T) {
-		country := GetByAlpha3("AFG")
-		require.NotNil(t, country)
-		assert.Equal(t, "AFG", country.Alpha3)
-	})
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			country := GetByAlpha3(tt.input)
+			if tt.expectNil {
+				require.Nil(t, country)
+				return
+			}
 
-	t.Run("Lowercase", func(t *testing.T) {
-		country := GetByAlpha3("ala")
-		require.NotNil(t, country)
-		assert.Equal(t, "ALA", country.Alpha3)
-	})
-
-	t.Run("Valid case", func(t *testing.T) {
-		country := GetByAlpha3(testCountryAlpha3)
-		require.NotNil(t, country)
-		assert.Equal(t, testCountryAlpha3, country.Alpha3)
-	})
-
-	t.Run("Invalid country", func(t *testing.T) {
-		country := GetByAlpha3("NANA")
-		require.Nil(t, country)
-
-		country = GetByAlpha3("N")
-		require.Nil(t, country)
-	})
+			require.NotNil(t, country)
+			assert.Equal(t, tt.expected, country.Alpha3)
+		})
+	}
 }
 
 // ExampleGetByAlpha3 is an example of GetByAlpha3()
@@ -197,24 +191,30 @@ func BenchmarkGetByAlpha3(b *testing.B) {
 
 // TestGetByCountryCode will test the method GetByCountryCode()
 func TestGetByCountryCode_ValidInvalid(t *testing.T) {
+	tests := []struct {
+		name      string
+		input     string
+		expected  string
+		expectNil bool
+	}{
+		{name: "Valid code 1", input: testCountryCode, expected: testCountryCode},
+		{name: "Valid code 2", input: "248", expected: "248"},
+		{name: "Invalid zero", input: "0", expectNil: true},
+		{name: "Invalid long", input: "12345", expectNil: true},
+	}
 
-	t.Run("Valid codes", func(t *testing.T) {
-		country := GetByCountryCode(testCountryCode)
-		require.NotNil(t, country)
-		assert.Equal(t, testCountryCode, country.CountryCode)
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			country := GetByCountryCode(tt.input)
+			if tt.expectNil {
+				require.Nil(t, country)
+				return
+			}
 
-		country = GetByCountryCode("248")
-		require.NotNil(t, country)
-		assert.Equal(t, "248", country.CountryCode)
-	})
-
-	t.Run("Invalid codes", func(t *testing.T) {
-		country := GetByCountryCode("0")
-		require.Nil(t, country)
-
-		country = GetByCountryCode("12345")
-		require.Nil(t, country)
-	})
+			require.NotNil(t, country)
+			assert.Equal(t, tt.expected, country.CountryCode)
+		})
+	}
 }
 
 // ExampleGetByCountryCode is an example of GetByCountryCode()
@@ -236,20 +236,29 @@ func BenchmarkGetByCountryCode(b *testing.B) {
 
 // TestGetByISO31662 will test the method GetByISO31662()
 func TestGetByISO31662_ValidInvalid(t *testing.T) {
+	tests := []struct {
+		name      string
+		input     string
+		expected  string
+		expectNil bool
+	}{
+		{name: "Valid code", input: testCountryISO, expected: testCountryISO},
+		{name: "Invalid zero", input: "0", expectNil: true},
+		{name: "Invalid long", input: "12345", expectNil: true},
+	}
 
-	t.Run("Valid codes", func(t *testing.T) {
-		country := GetByISO31662(testCountryISO)
-		require.NotNil(t, country)
-		assert.Equal(t, testCountryISO, country.ISO31662)
-	})
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			country := GetByISO31662(tt.input)
+			if tt.expectNil {
+				require.Nil(t, country)
+				return
+			}
 
-	t.Run("Invalid codes", func(t *testing.T) {
-		country := GetByISO31662("0")
-		require.Nil(t, country)
-
-		country = GetByISO31662("12345")
-		require.Nil(t, country)
-	})
+			require.NotNil(t, country)
+			assert.Equal(t, tt.expected, country.ISO31662)
+		})
+	}
 }
 
 // ExampleGetByISO31662 is an example of GetByISO31662()
@@ -271,29 +280,42 @@ func BenchmarkGetByISO31662(b *testing.B) {
 
 // TestGetAll will test the method GetAll()
 func TestGetAll_Basic(t *testing.T) {
+	tests := []struct {
+		name string
+		test func(t *testing.T)
+	}{
+		{
+			name: "valid countries",
+			test: func(t *testing.T) {
+				c := GetAll()
+				require.NotNil(t, c)
+				assert.Len(t, c, 249)
+			},
+		},
+		{
+			name: "returns a copy",
+			test: func(t *testing.T) {
+				c1 := GetAll()
+				require.NotNil(t, c1)
 
-	t.Run("valid countries", func(t *testing.T) {
-		c := GetAll()
-		require.NotNil(t, c)
-		assert.Len(t, c, 249)
-	})
+				c2 := GetAll()
+				require.NotNil(t, c2)
 
-	t.Run("returns a copy", func(t *testing.T) {
-		c1 := GetAll()
-		require.NotNil(t, c1)
+				// Modify the first slice
+				c1[0] = &Country{Alpha2: "XX"}
+				c1 = append(c1, &Country{Alpha2: "YY"})
 
-		c2 := GetAll()
-		require.NotNil(t, c2)
+				// Verify the second slice remains unchanged
+				assert.NotSame(t, c1[0], c2[0])
+				assert.Len(t, c1, 250)
+				assert.Len(t, c2, 249)
+			},
+		},
+	}
 
-		// Modify the first slice
-		c1[0] = &Country{Alpha2: "XX"}
-		c1 = append(c1, &Country{Alpha2: "YY"})
-
-		// Verify the second slice remains unchanged
-		assert.NotSame(t, c1[0], c2[0])
-		assert.Len(t, c1, 250)
-		assert.Len(t, c2, 249)
-	})
+	for _, tt := range tests {
+		t.Run(tt.name, tt.test)
+	}
 }
 
 // ExampleGetAll is an example of GetAll()
