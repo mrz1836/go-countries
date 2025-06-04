@@ -158,6 +158,7 @@ This project documents expectations for AI assistants using a few dedicated file
 - [AGENTS.md](.github/AGENTS.md) — canonical rules for coding style, workflows, and pull requests.
 - [CLAUDE.md](.github/CLAUDE.md) — quick checklist for the Claude agent.
 - [.cursorrules](.cursorrules) — machine-readable subset of the policies for Cursor and similar tools.
+- [sweep.yaml](.github/sweep.yaml) — rules for Sweep AI, a tool for code review and pull request management.
 
 Edit `AGENTS.md` first when adjusting these policies, and keep the other files in sync within the same pull request.
 

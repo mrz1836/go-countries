@@ -38,14 +38,14 @@ Additional `AGENTS.md` files **may exist in subdirectories** to provide more con
 
 For more detailed guidance and supporting documentation, refer to the following project-level resources:
 
+* `CITATION.cff` — Metadata for citing this project; GitHub uses it to render citation information
+* `CODEOWNERS` - Ownership of the repository and various directories
 * `CODE_OF_CONDUCT.md` — Expected behavior and enforcement
 * `CODE_STANDARDS.md` — Style guides and best practices
-* `CODEOWNERS` - Ownership of the repository and various directories
 * `CONTRIBUTING.md` — Guidelines for contributing code, issues, and ideas
 * `README.md` — Project overview, goals, and setup instructions
 * `SECURITY.md` — Vulnerability reporting and security process
 * `SUPPORT.md` — How to get help or request new features
-* `CITATION.cff` — Metadata for citing this project; GitHub uses it to render citation information
 
 ---
 
