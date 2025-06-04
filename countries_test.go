@@ -97,7 +97,7 @@ func BenchmarkGetByName(b *testing.B) {
 	}
 }
 
-// TestGetByAlpha2 will test the method GetByAlpha2()
+// TestGetByAlpha2 tests the GetByAlpha2 function.
 func TestGetByAlpha2_VariousFormats(t *testing.T) {
 	tests := []struct {
 		name      string
@@ -143,7 +143,7 @@ func BenchmarkGetByAlpha2(b *testing.B) {
 	}
 }
 
-// TestGetByAlpha3 will test the method GetByAlpha3()
+// TestGetByAlpha3 tests the GetByAlpha3 function.
 func TestGetByAlpha3_VariousFormats(t *testing.T) {
 	tests := []struct {
 		name      string
@@ -189,7 +189,7 @@ func BenchmarkGetByAlpha3(b *testing.B) {
 	}
 }
 
-// TestGetByCountryCode will test the method GetByCountryCode()
+// TestGetByCountryCode tests the GetByCountryCode function.
 func TestGetByCountryCode_ValidInvalid(t *testing.T) {
 	tests := []struct {
 		name      string
@@ -234,7 +234,7 @@ func BenchmarkGetByCountryCode(b *testing.B) {
 	}
 }
 
-// TestGetByISO31662 will test the method GetByISO31662()
+// TestGetByISO31662 tests the GetByISO31662 function.
 func TestGetByISO31662_ValidInvalid(t *testing.T) {
 	tests := []struct {
 		name      string
@@ -278,7 +278,7 @@ func BenchmarkGetByISO31662(b *testing.B) {
 	}
 }
 
-// TestGetAll will test the method GetAll()
+// TestGetAll tests the GetAll function.
 func TestGetAll_Basic(t *testing.T) {
 	tests := []struct {
 		name string

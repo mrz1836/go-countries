@@ -71,19 +71,19 @@ To generate the Go code for the country data, follow these steps:
    go generate ./generate/...
    ```
 
-This command will execute the code generation logic defined in the `generate.go` file located in the `/generate/` directory. 
-The generated code will be written to `countries_data.go` in the project directory.
+This command executes the code generation logic defined in the `generate.go` file located in the `/generate/` directory.
+The generated code is written to `countries_data.go` in the project directory.
 
 ### Features
 - All known countries in a friendly Go slice of structs
 - All JSON is still available in the [data package](data)
 - No `init()` method required for using the `countries` package
-- `GetAll()` will return the entire slice of all known countries
-- `GetByName("Nigeria")` will return the country by its [proper name](https://en.wikipedia.org/wiki/ISO_3166)
-- `GetByAlpha2("NG")` will return the country by its [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2)
-- `GetByAlpha3("NGA")` will return the country by its [ISO 3166-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3)
-- `GetByCountryCode("566")` will return the country by its [ISO 3166 country code](https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes)
-- `GetByISO31662("ISO 3166-2:NG")` will return the country by its [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2)
+- `GetAll()` returns the entire slice of all known countries
+- `GetByName("Nigeria")` returns the country by its [proper name](https://en.wikipedia.org/wiki/ISO_3166)
+- `GetByAlpha2("NG")` returns the country by its [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2)
+- `GetByAlpha3("NGA")` returns the country by its [ISO 3166-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3)
+- `GetByCountryCode("566")` returns the country by its [ISO 3166 country code](https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes)
+- `GetByISO31662("ISO 3166-2:NG")` returns the country by its [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2)
 
 <details>
 <summary><strong><code>Library Deployment</code></strong></summary>
