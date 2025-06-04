@@ -210,7 +210,7 @@ Every exported function **must** include a Go-style comment that:
 
 Use inline comments **strategically**, not excessively.
 
-* Use them to explain “weird" logic, workarounds, or business rules.
+* Use them to explain "weird" logic, workarounds, or business rules.
 * Prefer **block comments (`//`)** on their own line over trailing comments.
 * Avoid obvious noise:
 
@@ -223,7 +223,7 @@ Use inline comments **strategically**, not excessively.
 
 * Use **complete sentences** with punctuation.
 * Keep your tone **precise, confident, and modern**—you're not writing a novel, but you're also not writing legacy COBOL.
-* Avoid filler like “simple function" or “just does X".
+* Avoid filler like "simple function" or "just does X".
 * Don’t leave TODOs unless:
     * They are immediately actionable
     * (or) they reference an issue
@@ -238,7 +238,7 @@ If you're an AI contributing code:
 * Treat your comments like commit messages—**use active voice, be declarative**
 * Use comments to **make intent explicit**, especially for generated or AI-authored sections
 * Avoid hallucinating context—if you're unsure, omit or tag with `// AI: review this logic`
-* Flag areas of uncertainty or external dependency (e.g., “// AI: relies on external config structure")
+* Flag areas of uncertainty or external dependency (e.g., "// AI: relies on external config structure")
 
 ---
 
@@ -257,6 +257,7 @@ Markdown files (e.g., `README.md`, `AGENTS.md`, `CONTRIBUTING.md`) are first-cla
 * **Write with intent** — Be concise, clear, and audience-aware. Each section should serve a purpose.
 * **Use proper structure** — Maintain consistent heading levels, spacing, and bullet/number list formatting.
 * **Full Table Borders** — Use full borders for tables to ensure readability across different renderers.
+* **Table Border Spacing** — Make sure tables have appropriate spacing for clarity.
 * **Preserve voice and tone** — Match the professional tone and style used across the project documentation.
 * **Preview before committing** — Always verify rendered output locally or in a PR to avoid broken formatting.
 * **Update references** — When renaming files or sections, update internal links and the table of contents if present.
@@ -384,7 +385,7 @@ Every PR must include the following **four** sections in the description:
 
 * Link related issues with keywords like `Closes #123` or `Fixes #456` if there is a known issue.
 * Keep PRs focused and minimal. Prefer multiple small PRs over large ones when possible.
-* Use draft PRs early for feedback on in‑progress work.
+* Use draft PRs early for feedback on in progress work.
 * Releases are deployed using **goreleaser**.
 * Rules for the release build are located in `.goreleaser.yml` and executed via `.github/workflows/release.yml`.
 
@@ -409,7 +410,7 @@ We follow **Semantic Versioning (✧ SemVer)**:
   brew install goreleaser
 ````
 
-### 🔄 Workflow (Codeowner‑only)
+### 🔄 Workflow
 
 | Step | Command                         | Purpose                                                                                            |
 |------|---------------------------------|----------------------------------------------------------------------------------------------------|
@@ -585,6 +586,6 @@ All contributors are expected to append entries here when making meaningful chan
 | 2025-06-03 | @mrz1836 | Major rewrite: clarified commenting standards and merged scope/purpose         |
 | 2025-06-03 | @mrz1836 | Combined testing and development sections; improved formatting & test guidance |
 | 2025-06-03 | @mrz1836 | Enhanced dependency management practices and security scanning advice          |
-| 2025-06-04 | @mrz1836 | Documented citation and configuration files for contributors |
+| 2025-06-04 | @mrz1836 | Documented citation and configuration files for contributors                   |
 
 > For minor edits (typos, formatting), this log update is optional. For all behavioral or structural changes, log entries are **required**.
