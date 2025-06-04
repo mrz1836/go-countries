@@ -1,0 +1,8 @@
+cff-version: 1.2.0
+message: "If you use this library, please cite it using the following metadata."
+title: "go-countries"
+version: "0.2.0"
+url: "https://github.com/mrz1836/go-countries"
+date-released: 2025-06-04
+authors:
+  - name: "mrz1836"
