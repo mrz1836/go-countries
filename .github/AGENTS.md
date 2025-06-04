@@ -196,7 +196,7 @@ Every exported function **must** include a Go-style comment that:
   * **Notes**: Include any assumptions, constraints, or important context that the caller should know.
 
 
-Here is an example:
+Here is a template for function comments that is recommended to use:
 
 ```go
 // FunctionName does [what this function does] in [brief context].
@@ -234,6 +234,33 @@ Here is an example:
     * The package purpose
     * High-level API boundaries
     * Expected use-cases and design notes
+
+Here is a template for package comments that is recommended to use:
+
+```go
+// Package PackageName provides [brief description of the package's purpose].
+//
+// This package implements [high-level functionality or API] and is designed to [describe intended use cases].
+//
+// Key features include: [if applicable, list key features or components]
+// - [Feature 1: brief description of what it does]
+// - [Feature 2: brief description of what it does]
+// - [Feature 3: brief description of what it does]
+//
+// The package is structured to [explain any architectural decisions, e.g., modularity, separation of concerns].
+// It relies on [mention any key dependencies or external systems].
+//
+// Usage examples:
+// [Provide a simple example of how to use the package, if applicable]
+//
+// Important notes:
+// - [Any important assumptions or constraints, e.g., concurrency model, state management]
+// - [Any known limitations or edge cases]
+// - [Any specific configuration or initialization steps required]
+//
+// This package is part of the larger [Project Name] ecosystem and interacts with [mention related packages or systems].
+package PackageName
+```
 
 ---
 
