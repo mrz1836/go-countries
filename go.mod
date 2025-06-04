@@ -1,6 +1,6 @@
 module github.com/mrz1836/go-countries
 
-go 1.17
+go 1.22
 
 require github.com/stretchr/testify v1.10.0
 
