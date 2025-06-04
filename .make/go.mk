@@ -154,5 +154,15 @@ update-linter: ## Update the golangci-lint package (macOS only)
 
 .PHONY: vet
 vet: ## Run the Go vet application
-	@echo "running go vet..."
-	@go vet -v ./... $(TAGS)
+        @echo "running go vet..."
+        @go vet -v ./... $(TAGS)
+
+.PHONY: govulncheck-install
+govulncheck-install: ## Install govulncheck for vulnerability scanning
+        @echo "installing govulncheck..."
+        @go install golang.org/x/vuln/cmd/govulncheck@latest
+
+.PHONY: govulncheck
+govulncheck: ## Scan modules for vulnerabilities using govulncheck
+        @echo "running govulncheck..."
+        @govulncheck ./...
