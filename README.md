@@ -15,7 +15,8 @@
 
 [![AGENTS.md](https://img.shields.io/badge/AGENTS.md-Found-40b814?style=flat&logo=openai)](.github/AGENTS.md)
 [![Security Policy](https://img.shields.io/badge/security-policy-blue?style=flat)](.github/SECURITY.md)
-[![Dependabot Enabled](https://img.shields.io/badge/dependencies-auto--updated-blue?logo=dependabot&style=flat)](.github/dependabot.yml)
+[![Mergify](https://img.shields.io/endpoint.svg?url=https://api.mergify.com/v1/badges/mrz1836/go-countries&style=flat)](.github/mergify.yml)
+[![Dependabot](https://img.shields.io/badge/dependencies-auto--updated-blue?logo=dependabot&style=flat)](.github/dependabot.yml)
 
 [![Contributors](https://img.shields.io/github/contributors/mrz1836/go-countries?style=flat)](https://github.com/mrz1836/go-countries/graphs/contributors)
 [![Sponsor](https://img.shields.io/badge/sponsor-MrZ-181717.svg?logo=github&style=flat)](https://github.com/sponsors/mrz1836)
