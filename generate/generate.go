@@ -1,12 +1,15 @@
 // The following directive is necessary to make the package coherent:
 
+//go:build ignore
 // +build ignore
 
 // This program generates the structs from JSON
 package main
 
 import (
+	"bytes"
 	"encoding/json"
+	"go/format"
 	"log"
 	"os"
 	"text/template"
@@ -71,17 +74,29 @@ func main() {
 		_ = f.Close()
 	}()
 
-	// Execute the template
-	if err := packageTemplate.Execute(f, struct {
-	Timestamp time.Time
-	URL       string
-	Countries countries.CountryList
+	// Execute the template into a buffer
+	var buf bytes.Buffer
+	if err := packageTemplate.Execute(&buf, struct {
+		Timestamp time.Time
+		URL       string
+		Countries countries.CountryList
 	}{
-	Timestamp: time.Now(),
-	URL:       url,
-	Countries: c,
+		Timestamp: time.Now(),
+		URL:       url,
+		Countries: c,
 	}); err != nil {
 		log.Fatalf("package template execution failed: %v", err)
+	}
+
+	// Format the generated source
+	formatted, err := format.Source(buf.Bytes())
+	if err != nil {
+		log.Fatalf("failed to format generated source: %v", err)
+	}
+
+	// Write the formatted source to the file
+	if _, err = f.Write(formatted); err != nil {
+		log.Fatalf("failed to write formatted source: %v", err)
 	}
 }
 
