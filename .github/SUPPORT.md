@@ -17,5 +17,4 @@ This document explains how to get help with **go-countries**.
 ## Direct Contact
 For private inquiries, reach the maintainers at [mrz1818@pm.me](mailto:mrz1818@pm.me).
 
-We appreciate your interest and will do our best to assist you.
-
+We appreciate your interest and will do our best to help you.

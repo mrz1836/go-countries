@@ -376,7 +376,7 @@ Every PR must include the following **four** sections in the description:
 
 ### 💡 Additional PR Guidelines
 
-* Link related issues with keywords like `Closes #123` or `Fixes #456`.
+* Link related issues with keywords like `Closes #123` or `Fixes #456` if there is a known issue.
 * Keep PRs focused and minimal. Prefer multiple small PRs over large ones when possible.
 * Use draft PRs early for feedback on in‑progress work.
 * Releases are deployed using **goreleaser**.
