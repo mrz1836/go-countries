@@ -193,6 +193,34 @@ Every exported function **must** include a Go-style comment that:
     * **Return values** (if ambiguous)
     * **Side effects** (e.g., I/O, mutation, DB writes)
 
+Here is an example:
+
+```go
+// FunctionName does [what this function does] in [brief context].
+//
+// This function performs the following steps: [if applicable, describe the main steps in a bullet list]
+// - [First major action or check performed]
+// - [Second action or branching logic explained, if relevant]
+//    - [Details about possible outcomes or internal branching]
+// - [Additional steps with sub-bullets as needed]
+// - [Final steps and cleanup, if applicable]
+//
+// Parameters:
+// - ctx: [Purpose of context in this function]
+// - paramName: [Explanation of each parameter and what it controls or affects]
+//
+// Returns:
+// - [What is returned; error behavior if any]
+//
+// Side Effects:
+// - [Any side effects, such as modifying global state, writing to disk, etc.]
+//
+// Notes:
+// - [Caveats, assumptions, or recommendations—e.g., transaction usage, concurrency, etc.]
+// - [Any implicit contracts with the caller or system constraints]
+// - [Mention if this function is part of a larger workflow or job system]
+```
+
 ---
 
 ### 📦 Package-Level Comments
