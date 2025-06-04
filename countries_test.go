@@ -5,6 +5,7 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 )
 
 const (
@@ -280,8 +281,23 @@ func TestGetAll(t *testing.T) {
 
 	t.Run("valid countries", func(t *testing.T) {
 		c := GetAll()
-		assert.NotNil(t, c)
+		require.NotNil(t, c)
 		assert.Len(t, c, 249)
+	})
+
+	t.Run("returns a copy", func(t *testing.T) {
+		c := GetAll()
+		require.NotNil(t, c)
+
+		original := countries[0]
+		c[0] = &Country{Alpha2: "XX"}
+
+		assert.Same(t, original, countries[0])
+		assert.NotSame(t, original, c[0])
+
+		c = append(c, &Country{Alpha2: "YY"})
+		assert.Len(t, c, 250)
+		assert.Len(t, countries, 249)
 	})
 }
 

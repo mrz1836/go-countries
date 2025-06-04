@@ -110,10 +110,11 @@ func GetByISO31662(iso string) *Country {
 	return nil
 }
 
-// GetAll will return all the countries in the list.
-// It returns a CountryList, which is a slice of pointers to Country structs.
-// This method is useful for retrieving the entire dataset of countries
-// and can be used for operations that require access to all country information.
+// GetAll returns a copy of all countries in the list.
+// The returned slice has its own backing array so callers can modify the slice
+// without affecting the package data. The country structs themselves are not
+// copied.
 func GetAll() CountryList {
-	return countries
+	clone := append(CountryList(nil), countries...)
+	return clone
 }
