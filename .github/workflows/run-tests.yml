@@ -103,7 +103,13 @@ jobs:
         run: make test-ci          # assumes this target runs golangci-lint + tests
 
       # ————————————————————————————————————————————————————————————————
-      # 7. Upload coverage to Codecov
+      # 7. Scan for vulnerabilities with govulncheck
+      # ————————————————————————————————————————————————————————————————
+      - name: Run govulncheck
+        run: make govulncheck
+
+      # ————————————————————————————————————————————————————————————————
+      # 8. Upload coverage to Codecov
       # ————————————————————————————————————————————————————————————————
       - name: Upload code coverage
         uses: codecov/codecov-action@v5.4.3
