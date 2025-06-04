@@ -1,4 +1,4 @@
-	## Default to the repo name if empty
+## Default to the repo name if empty
 ifndef BINARY_NAME
 	override BINARY_NAME=app
 endif
@@ -163,6 +163,6 @@ govulncheck-install: ## Install govulncheck for vulnerability scanning
 	@go install golang.org/x/vuln/cmd/govulncheck@latest
 
 .PHONY: govulncheck
-govulncheck: ## Scan modules for vulnerabilities using govulncheck
+govulncheck: govulncheck-install ## Scan modules for vulnerabilities using govulncheck
 	@echo "running govulncheck..."
 	@govulncheck ./...
