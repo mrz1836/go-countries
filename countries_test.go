@@ -277,6 +277,23 @@ func TestGetAll_Basic(t *testing.T) {
 		require.NotNil(t, c)
 		assert.Len(t, c, 249)
 	})
+
+	t.Run("returns a copy", func(t *testing.T) {
+		c1 := GetAll()
+		require.NotNil(t, c1)
+
+		c2 := GetAll()
+		require.NotNil(t, c2)
+
+		// Modify the first slice
+		c1[0] = &Country{Alpha2: "XX"}
+		c1 = append(c1, &Country{Alpha2: "YY"})
+
+		// Verify the second slice remains unchanged
+		assert.NotSame(t, c1[0], c2[0])
+		assert.Len(t, c1, 250)
+		assert.Len(t, c2, 249)
+	})
 }
 
 // ExampleGetAll is an example of GetAll()
