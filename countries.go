@@ -4,10 +4,10 @@
 // such as name, alpha-2 code, alpha-3 code, country code, and ISO 3166-2 code. It includes methods
 // to get a country by these identifiers and to retrieve the entire list of countries.
 //
-// The package is designed to be easy to use and integrate into Go projects, making it simple to
+// The package is designed to be straightforward to use and integrate into Go projects, making it simple to
 // work with country data in a standardized way.
 //
-// If you have any suggestions or comments, please feel free to open an issue on
+// If you have any suggestions or comments, please feel free to open an issue in
 // this GitHub repository!
 //
 // By @MrZ1836
@@ -111,7 +111,7 @@ func GetByISO31662(iso string) *Country {
 }
 
 // GetAll returns a copy of all countries in the list.
-// The returned slice has its own backing array so callers can modify the slice
+// The returned slice has its own backing array, so callers can modify the slice
 // without affecting the package data. The country structs themselves are not
 // copied.
 func GetAll() CountryList {
