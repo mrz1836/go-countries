@@ -189,9 +189,12 @@ Every exported function **must** include a Go-style comment that:
 * Starts with the function name
 * States its purpose clearly
 * Documents:
-    * **Parameters** (when not obvious)
-    * **Return values** (if ambiguous)
-    * **Side effects** (e.g., I/O, mutation, DB writes)
+  * **Steps**: Include if the function performs a non-obvious sequence of operations.
+  * **Parameters**: Always describe all parameters when present.
+  * **Return values**: Document return types and their meaning if not trivially understood.
+  * **Side effects**: Note any I/O, database writes, external calls, or mutations that aren't local to the function.
+  * **Notes**: Include any assumptions, constraints, or important context that the caller should know.
+
 
 Here is an example:
 
