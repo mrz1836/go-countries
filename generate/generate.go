@@ -32,7 +32,12 @@ type alternateCountryData struct {
 	Population    string `json:"population"`
 }
 
-// Main runs the generator code to parse all JSON -> structs
+// main is the entry point for the code generation tool.
+// It loads country and currency data from embedded JSON sources,
+// merges the datasets to enrich country information with currency and capital details,
+// and then generates a Go source file (`countries_data.go`) containing the combined data as Go structs.
+// The generated file is formatted and ready for use in the main package.
+// This process ensures that the country data remains up-to-date and consistent with the source JSON.
 func main() {
 
 	// Unmarshall the countries
