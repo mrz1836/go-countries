@@ -1,5 +1,5 @@
 // Package main provides examples of how to use the go-countries package.
-// Each public function is demonstrated using mostly USA, Canada and Mexico.
+// Each public function is demonstrated using mostly the USA, Canada and Mexico.
 package main
 
 import (
