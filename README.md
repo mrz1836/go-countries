@@ -153,9 +153,13 @@ Read more about this Go project's [code standards](.github/CODE_STANDARDS.md).
 <br/>
 
 ## AI Compliance
-The [AGENTS.md](.github/AGENTS.md) file explains repository conventions for automated contributors like Codex, Claude, GPT etc.
+This project documents expectations for AI assistants using a few dedicated files:
 
-To update these guidelines, edit `.github/AGENTS.md` and include the changes in a pull request alongside any relevant documentation updates.
+- [AGENTS.md](.github/AGENTS.md) — canonical rules for coding style, workflows, and pull requests.
+- [CLAUDE.md](.github/CLAUDE.md) — quick checklist for the Claude agent.
+- [.cursorrules](.cursorrules) — machine-readable subset of the policies for Cursor and similar tools.
+
+Edit `AGENTS.md` first when adjusting these policies, and keep the other files in sync within the same pull request.
 
 <br/>
 
