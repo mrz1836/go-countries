@@ -19,7 +19,7 @@
 - [Examples & Tests](#examples--tests)
 - [Benchmarks](#benchmarks)
 - [Code Standards](#code-standards)
-- [AGENTS.md](#agentsmd)
+- [AI Compliance](#ai-compliance)
 - [Usage](#usage)
 - [Credits](#credits)
 - [Maintainers](#maintainers)
@@ -152,8 +152,8 @@ Read more about this Go project's [code standards](.github/CODE_STANDARDS.md).
 
 <br/>
 
-## AGENTS.md
-The [.github/AGENTS.md](.github/AGENTS.md) file explains repository conventions for automated contributors like Codex, Claude, GPT etc.
+## AI Compliance
+The [AGENTS.md](.github/AGENTS.md) file explains repository conventions for automated contributors like Codex, Claude, GPT etc.
 
 To update these guidelines, edit `.github/AGENTS.md` and include the changes in a pull request alongside any relevant documentation updates.
 
