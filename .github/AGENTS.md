@@ -44,6 +44,8 @@ For more detailed guidance and supporting documentation, refer to the following 
 * `CONTRIBUTING.md` — Guidelines for contributing code, issues, and ideas
 * `README.md` — Project overview, goals, and setup instructions
 * `SECURITY.md` — Vulnerability reporting and security process
+* `SUPPORT.md` — How to get help or request new features
+* `CITATION.cff` — Metadata for citing this project; GitHub uses it to render citation information
 
 ---
 
@@ -81,6 +83,10 @@ go vet ./...
 ```
 
 > Refer to `.golangci.json` for the full set of enabled linters.
+
+Editors should honor `.editorconfig` for indentation and whitespace rules, and
+Git respects `.gitattributes` to enforce consistent line endings across
+platforms.
 
 ### 🧪 Testing Standards
 
@@ -579,5 +585,6 @@ All contributors are expected to append entries here when making meaningful chan
 | 2025-06-03 | @mrz1836 | Major rewrite: clarified commenting standards and merged scope/purpose         |
 | 2025-06-03 | @mrz1836 | Combined testing and development sections; improved formatting & test guidance |
 | 2025-06-03 | @mrz1836 | Enhanced dependency management practices and security scanning advice          |
+| 2025-06-04 | @mrz1836 | Documented citation and configuration files for contributors |
 
 > For minor edits (typos, formatting), this log update is optional. For all behavioral or structural changes, log entries are **required**.
