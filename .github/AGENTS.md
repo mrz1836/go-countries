@@ -530,10 +530,14 @@ Dependency hygiene is critical for security, reproducibility, and developer expe
 ### 🛡️ Security Scanning
 
 * Use [govulncheck](https://pkg.go.dev/golang.org/x/vuln/cmd/govulncheck) to identify known vulnerabilities:
-
-  ```bash
+```bash
   govulncheck ./...
-  ```
+```
+
+* Run via make command: 
+```bash
+  make govulncheck
+```
 
 * Address critical advisories before merging changes into `master`
 
