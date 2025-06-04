@@ -22,7 +22,7 @@ import (
 // CountriesWithCurrencies is a shim for parsing
 type countriesWithCurrencies []*alternateCountryData
 
-// currencyObject is country object which contains the currency
+// currencyObject is a country object that contains the currency
 type alternateCountryData struct {
 	Capital       string `json:"capital"`
 	ContinentName string `json:"continentName"`
