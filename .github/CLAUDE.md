@@ -7,7 +7,7 @@ This repository uses **`AGENTS.md`** as the single source of truth for:
 * Coding conventions (naming, formatting, commenting, testing)
 * Contribution workflows (branch prefixes, commit message style, PR templates)
 * Release, CI, and dependency‑management policies
-* Security‑reporting and governance links
+* Security reporting and governance links
 
 > **TL;DR:** **Read `AGENTS.md` first.**  
 > All technical or procedural questions are answered there.
