@@ -44,7 +44,7 @@
 ## Installation
 
 **go-countries** requires a [supported release of Go](https://golang.org/doc/devel/release.html#policy).
-```shell script
+```bash script
 go get -u github.com/mrz1836/go-countries
 ```
 
@@ -53,23 +53,26 @@ go get -u github.com/mrz1836/go-countries
 ## Documentation
 View the generated [documentation](https://pkg.go.dev/github.com/mrz1836/go-countries?tab=doc)
 
-[![GoDoc](https://godoc.org/github.com/mrz1836/go-countries?status.svg&style=flat)](https://pkg.go.dev/github.com/mrz1836/go-countries?tab=doc)
  
 ### Code Generation
+
+If you need to update the country data or regenerate the Go code, you can use the `go generate` command. 
+This will read the JSON data files and generate a Go file containing all the country data in a structured format.
 
 To generate the Go code for the country data, follow these steps:
 
 1. **Navigate to the project root directory**:
-   ```shell
+   ```bash
    cd /path/to/your/project
    ```
 
 2. **Run the `go generate` command**:
-   ```shell
+   ```bash
    go generate ./generate/...
    ```
 
-This command will execute the code generation logic defined in the `generate.go` file located in the `/generate/` directory. The generated code will be written to `countries_data.go` in the project directory.
+This command will execute the code generation logic defined in the `generate.go` file located in the `/generate/` directory. 
+The generated code will be written to `countries_data.go` in the project directory.
 
 ### Features
 - All known countries in a friendly Go slice of structs
@@ -121,7 +124,7 @@ This process ensures consistent, repeatable releases with properly versioned art
 <br/>
 
 View all `makefile` commands
-```shell script
+```bash script
 make help
 ```
 
@@ -169,7 +172,7 @@ All unit tests and [examples](examples) run via [GitHub Actions](https://github.
  use [Go version 1.22.x](https://go.dev/doc/go1.22). View the [configuration file](.github/workflows/run-tests.yml).
 
 Run all tests (including any integration tests)
-```shell script
+```bash script
 make test
 ```
 
@@ -177,7 +180,7 @@ make test
 
 ## Benchmarks
 Run the Go [benchmarks](countries_test.go):
-```shell script
+```bash script
 make bench
 ```
 
