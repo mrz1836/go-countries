@@ -17,17 +17,15 @@ to the accrued contribution. Seniority must be earned.
 5. Software is evolutive: the better implementations must supersede lesser
 implementations. Technical advantage is the primary evaluation metric.
 
-6. This is a space for technical prowess; topics outside of the project
+6. This is a space for technical prowess; topics outside the project
 will not be tolerated.
 
-7. Non technical conflicts will be discussed in a separate space. Disruption
+7. Non-technical conflicts will be discussed in a separate space. Disruption
 of the project will not be allowed.
 
-8. Individual characteristics, including but not limited to,
-body, sex, sexual preference, race, language, religion, nationality,
-or political preferences are irrelevant in the scope of the project and
-will not be taken into account concerning your value or that of your contribution
-to the project.
+8. Individual characteristics—such as body, sex, sexual orientation, race, language, religion, nationality, 
+or political views—are irrelevant to this project. 
+They have no bearing on your value or the value of your contributions.
 
 9. Discuss or debate the idea, not the person.
 
@@ -39,12 +37,12 @@ of the originator to provide requested context.
 in the scope of the project. This Code of Merit does not take precedence over
 governing law.
 
-12. This Code of Merit governs the technical procedures of the project not the
-activities outside of it.
+12. This Code of Merit governs the technical procedures of the project, not the
+activities outside it.
 
 13. Participation on the project equates to agreement of this Code of Merit.
 
-14. No objectives beyond the stated objectives of this project are relevant
+14. No goals beyond the stated goals of this project are relevant
 to the project. Any intent to deviate the project from its original purpose
 of existence will constitute grounds for remedial action which may include
 expulsion from the project.
