@@ -44,44 +44,47 @@
   },
   "linters": {
     "disable": [
-      "gochecknoglobals",
       "gocritic",
       "godot"
     ],
     "enable": [
       "asasalint",
       "asciicheck",
-      "err113",
       "bidichk",
       "bodyclose",
       "containedctx",
       "contextcheck",
       "copyloopvar",
       "dogsled",
-      "recvcheck",
-      "godox",
-      "nilnil",
-      "nilnesserr",
-      "gomoddirectives",
       "durationcheck",
+      "err113",
       "errchkjson",
       "errname",
       "errorlint",
       "exhaustive",
       "forbidigo",
       "gocheckcompilerdirectives",
+      "gochecknoglobals",
       "gochecknoinits",
       "gochecksumtype",
+      "godox",
       "goheader",
+      "gomoddirectives",
       "gosec",
       "gosmopolitan",
+      "govet",
+      "grouper",
       "inamedparam",
+      "ineffassign",
       "loggercheck",
       "makezero",
       "mirror",
       "misspell",
       "musttag",
+      "nestif",
       "nilerr",
+      "nilnesserr",
+      "nilnil",
       "noctx",
       "nolintlint",
       "nosprintfhostport",
@@ -89,10 +92,12 @@
       "predeclared",
       "protogetter",
       "reassign",
+      "recvcheck",
       "revive",
       "rowserrcheck",
       "spancheck",
       "sqlclosecheck",
+      "staticcheck",
       "testifylint",
       "unconvert",
       "unparam",
@@ -103,7 +108,6 @@
       "generated": "lax",
       "paths": [
         ".*\\.my\\.go$",
-        "lib/bad.go",
         ".github",
         ".make",
         "dist",
@@ -135,10 +139,6 @@
             "lll"
           ],
           "source": "^//go:generate "
-        },
-        {
-          "path": "(.+)\\.go$",
-          "text": "abcdef"
         }
       ]
     },
@@ -237,11 +237,6 @@
         "range-loops": true,
         "simple": true
       },
-      "rowserrcheck": {
-        "packages": [
-          "github.com/jmoiron/sqlx"
-        ]
-      },
       "testpackage": {
         "skip-regexp": "(export|internal)_test\\.go"
       },
@@ -276,9 +271,6 @@
   },
   "run": {
     "allow-parallel-runners": false,
-    "build-tags": [
-      "mytag"
-    ],
     "concurrency": 4,
     "issues-exit-code": 1,
     "tests": true
