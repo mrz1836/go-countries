@@ -27,3 +27,16 @@ clean: ## Remove previous builds and any test cache data
 .PHONY: release
 release:: ## Runs common.release then runs godocs
 	@$(MAKE) godocs
+
+.PHONY: citation
+citation: ## Update version in CITATION.cff (citation version=X.Y.Z)
+	@echo "updating CITATION.cff version..."
+	@if [ -z "$(version)" ]; then \
+	    echo "Error: 'version' variable is not set. Please set the 'version' variable before running this target."; \
+	    exit 1; \
+	fi
+	@if [ "$(shell uname)" = "Darwin" ]; then \
+	        sed -i '' -e 's/^version: \".*\"/version: \"$(version)\"/' CITATION.cff; \
+	else \
+	        sed -i -e 's/^version: \".*\"/version: \"$(version)\"/' CITATION.cff; \
+	fi
