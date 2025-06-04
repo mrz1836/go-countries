@@ -73,11 +73,34 @@ This command will execute the code generation logic defined in the `generate.go`
 <summary><strong><code>Library Deployment</code></strong></summary>
 <br/>
 
-[goreleaser](https://github.com/goreleaser/goreleaser) for easy binary or library deployment to GitHub and can be installed via: `brew install goreleaser`.
+This project uses [goreleaser](https://github.com/goreleaser/goreleaser) for streamlined binary and library deployment to GitHub. To get started, install it via:
 
-The [.goreleaser.yml](.goreleaser.yml) file is used to configure [goreleaser](https://github.com/goreleaser/goreleaser).
+```bash
+brew install goreleaser
+```
 
-Use `make release-snap` to create a snapshot version of the release, and finally `make release` to ship to production.
+The release process is defined in the [.goreleaser.yml](.goreleaser.yml) configuration file.
+
+To generate a snapshot (non-versioned) release for testing purposes, run:
+
+```bash
+make release-snap
+```
+
+Before tagging a new version, update the release metadata in the `CITATION.cff` file:
+
+```bash
+make citation version=0.2.1
+```
+
+Then create and push a new Git tag using:
+
+```bash
+make tag version=x.y.z
+```
+
+This process ensures consistent, repeatable releases with properly versioned artifacts and citation metadata.
+
 </details>
 
 <details>
@@ -92,13 +115,13 @@ make help
 List of all current commands:
 ```text
 all                      Runs multiple commands
+citation                 Update version in CITATION.cff (citation version=X.Y.Z)
 clean                    Remove previous builds and any test cache data
 clean-mods               Remove all the Go mod cache
 coverage                 Shows the test coverage
 diff                     Show the git diff
 generate                 Runs the go generate command in the base of the repo
 godocs                   Sync the latest tag with GoDocs
-govulncheck              Scan modules for vulnerabilities using govulncheck
 govulncheck-install      Install govulncheck for vulnerability scanning
 help                     Show this help message
 install                  Install the application
