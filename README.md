@@ -75,12 +75,12 @@
 ## 🗂️ Table of Contents
 
 * [Installation](#-installation)
+* [Usage](#-usage)
 * [Documentation](#-documentation)
 * [Examples & Tests](#-examples--tests)
 * [Benchmarks](#-benchmarks)
 * [Code Standards](#-code-standards)
 * [AI Compliance](#-ai-compliance)
-* [Usage](#-usage)
 * [Credits](#-credits)
 * [Maintainers](#-maintainers)
 * [Contributing](#-contributing)
@@ -95,6 +95,34 @@
 ```bash script
 go get -u github.com/mrz1836/go-countries
 ```
+<br/>
+
+## 💡 Usage
+
+Here is a basic example of how to use go-countries in your Go project:
+
+```go
+package main
+
+import (
+    "fmt"
+    "github.com/mrz1836/go-countries"
+)
+
+func main() {
+    country := countries.GetByAlpha2("US")
+    if country != nil {
+        fmt.Printf("Country: %s, Capital: %s\n", country.Name, country.Capital)
+    } else {
+        fmt.Println("Country not found")
+    }
+}
+```
+
+- Explore additional [usage examples](examples) for practical integration patterns
+- Review [benchmark results](countries_test.go) to assess performance characteristics
+- Examine the comprehensive [test suite](countries_test.go) for validation and coverage
+- Inspect the [code generator](generate) for details on data sources and the build process
 
 <br/>
 
@@ -120,7 +148,7 @@ View the generated [documentation](https://pkg.go.dev/github.com/mrz1836/go-coun
 - [`GetAll()`](countries.go): Retrieve the entire slice of all known countries, including metadata such as names, codes, regions, capitals, and currencies
 - [`GetByName("Nigeria")`](countries.go): Lookup a country by its [official name](https://en.wikipedia.org/wiki/ISO_3166), supporting case-insensitive queries
 - [`GetByAlpha2("NG")`](countries.go): Find a country by its [ISO 3166-1 alpha-2 code](https://en.wikipedia.org/wiki/ISO_3166-2), e.g., "US", "GB", "NG"
-- [`GetByAlpha3("NGA")`](countries.go): Retrieve a country by its [ISO 3166-1 alpha-3 code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3), e.g., "USA", "GBR", "NGA"
+- [`GetByAlpha3("NGA")`](countries.go: Retrieve a country by its [ISO 3166-1 alpha-3 code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3), e.g., "USA", "GBR", "NGA"
 - [`GetByCountryCode("566")`](countries.go): Lookup by [ISO 3166 numeric country code](https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes), supporting string or integer input
 - [`GetByISO31662("ISO 3166-2:NG")`](countries.go): Retrieve a country by its [ISO 3166-2 subdivision code](https://en.wikipedia.org/wiki/ISO_3166-2)
 
@@ -320,14 +348,6 @@ This project documents expectations for AI assistants using a few dedicated file
 - [sweep.yaml](.github/sweep.yaml) — rules for Sweep AI, a tool for code review and pull request management.
 
 Edit `AGENTS.md` first when adjusting these policies, and keep the other files in sync within the same pull request.
-
-<br/>
-
-## 💡 Usage
-- View the [examples](examples)
-- View the [benchmarks](countries_test.go)
-- View the [tests](countries_test.go)
-- View the [generator](generate)
 
 <br/>
 
