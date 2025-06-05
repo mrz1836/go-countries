@@ -84,14 +84,6 @@ release-snap: ## Test the full release (build binaries)
 	@echo "creating a release snapshot..."
 	@goreleaser --snapshot --skip-publish --rm-dist
 
-.PHONY: replace-version
-replace-version: ## Replaces the version in HTML/JS (pre-deploy)
-	@echo "replacing version..."
-	@test $(version)
-	@test "$(path)"
-	@find $(path) -name "*.html" -type f -exec sed -i '' -e "s/{{version}}/$(version)/g" {} \;
-	@find $(path) -name "*.js" -type f -exec sed -i '' -e "s/{{version}}/$(version)/g" {} \;
-
 .PHONY: tag
 tag: ## Generate a new tag and push (tag version=0.0.0)
 	@echo "creating new tag..."
