@@ -27,28 +27,28 @@
 		</a>
       </td>
       <td valign="top" align="left">
-        <a href="https://codecov.io/gh/mrz1836/go-countries">
-          <img src="https://codecov.io/gh/mrz1836/go-countries/branch/master/graph/badge.svg?style=flat" alt="Code coverage">
-        </a><br/>
         <a href="https://goreportcard.com/report/github.com/mrz1836/go-countries">
           <img src="https://goreportcard.com/badge/github.com/mrz1836/go-countries?style=flat" alt="Go Report Card">
+        </a><br/>
+		<a href="https://codecov.io/gh/mrz1836/go-countries">
+          <img src="https://codecov.io/gh/mrz1836/go-countries/branch/master/graph/badge.svg?style=flat" alt="Code coverage">
         </a><br/>
         <a href="https://github.com/mrz1836/go-countries/actions">
           <img src="https://github.com/mrz1836/go-countries/actions/workflows/codeql-analysis.yml/badge.svg?style=flat" alt="CodeQL">
         </a><br/>
-        <a href=".github/dependabot.yml">
-          <img src="https://img.shields.io/badge/dependencies-automatic-blue?logo=dependabot&style=flat" alt="Dependabot">
-        </a><br/>
-        <a href=".github/SECURITY.md">
+		<a href=".github/SECURITY.md">
           <img src="https://img.shields.io/badge/security-policy-blue?style=flat&logo=springsecurity&logoColor=white" alt="Security policy">
+        </a><br/>        
+		<a href=".github/dependabot.yml">
+          <img src="https://img.shields.io/badge/dependencies-automatic-blue?logo=dependabot&style=flat" alt="Dependabot">
         </a>
       </td>
       <td valign="top" align="left">
-        <a href="https://pkg.go.dev/github.com/mrz1836/go-countries?tab=doc">
-          <img src="https://pkg.go.dev/badge/github.com/mrz1836/go-countries.svg?style=flat" alt="Go docs">
-        </a><br/>
         <a href="https://golang.org/">
           <img src="https://img.shields.io/github/go-mod/go-version/mrz1836/go-countries?style=flat" alt="Go version">
+        </a><br/>
+		<a href="https://pkg.go.dev/github.com/mrz1836/go-countries?tab=doc">
+          <img src="https://pkg.go.dev/badge/github.com/mrz1836/go-countries.svg?style=flat" alt="Go docs">
         </a><br/>
         <a href=".github/AGENTS.md">
           <img src="https://img.shields.io/badge/AGENTS.md-found-40b814?style=flat&logo=openai" alt="AGENTS.md rules">
