@@ -50,11 +50,21 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const pr = context.payload.pull_request ?? (await github.rest.pulls.get({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              pull_number: context.issue.number,
-            })).data;
+            let pr;
+            try {
+              pr = context.payload.pull_request ?? (await github.rest.pulls.get({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                pull_number: context.issue.number,
+              })).data;
+            } catch (err) {
+              if (err.status === 404) {
+                core.info('PR not found (may be closed or deleted), skipping.');
+                return;
+              } else {
+                throw err;
+              }
+            }
             const prNumber = pr.number;
             const title = pr.title || "";
             const labels = pr.labels.map(l => l.name);
