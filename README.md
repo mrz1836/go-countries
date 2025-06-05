@@ -244,12 +244,13 @@ vet                      Run the Go vet application
 
 | Workflow Name                                                                | Description                                                                                                            |
 |------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------|
+| [codeql-analysis.yml](.github/workflows/codeql-analysis.yml)                 | Analyzes code for security vulnerabilities using GitHub CodeQL.                                                        |
+| [dependabot-merge.yml](.github/workflows/dependabot-automerge.yml)           | Automatically merges Dependabot PRs that meet all requirements.                                                        |
 | [pull-request-management.yml](.github/workflows/pull-request-management.yml) | Labels PRs by branch prefix, assigns a default user if none is assigned, and welcomes new contributors with a comment. |
 | [release.yml](.github/workflows/release.yml)                                 | Builds and publishes releases via GoReleaser when a semver tag is pushed.                                              |
 | [run-tests.yml](.github/workflows/run-tests.yml)                             | Runs all Go tests and dependency checks on every push and pull request.                                                |
 | [stale.yml](.github/workflows/stale.yml)                                     | Warns about (and optionally closes) inactive issues and PRs on a schedule or manual trigger.                           |
 | [sync-labels.yml](.github/workflows/sync-labels.yml)                         | Keeps GitHub labels in sync with the declarative manifest at `.github/labels.yml`.                                     |
-| [codeql-analysis.yml](.github/workflows/codeql-analysis.yml)                 | Analyzes code for security vulnerabilities using GitHub CodeQL.                                                        |
 
 </details>
 
