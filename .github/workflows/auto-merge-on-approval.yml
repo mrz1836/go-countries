@@ -50,7 +50,7 @@ jobs:
             const changesRequested = reviews.filter(r => r.state === 'CHANGES_REQUESTED').length;
 
             const sha = pr.head.sha;
-            const { data: statuses } = await github.rest.repos.listCommitStatusesForRef({
+            const { data: checks } = await github.rest.checks.listForRef({
               owner: context.repo.owner,
               repo: context.repo.repo,
               ref: sha,
