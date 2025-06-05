@@ -58,14 +58,14 @@ help: ## Show this help message
 
 .PHONY: install-releaser
 install-releaser: ## Install the GoReleaser application
-	@echo "installing GoReleaser..."
-	@curl -sfL https://install.goreleaser.com/github.com/goreleaser/goreleaser.sh | sh
+@echo "installing GoReleaser..."
+@curl -sSfL https://install.goreleaser.com/github.com/goreleaser/goreleaser@latest | sh
 
 .PHONY: release
 release:: ## Full production release (creates release in GitHub)
-	@echo "releasing..."
-	@test $(github_token)
-	@export GITHUB_TOKEN=$(github_token) && goreleaser --rm-dist
+@echo "releasing..."
+@test -n "$(github_token)"
+@export GITHUB_TOKEN=$(github_token) && goreleaser --rm-dist
 
 .PHONY: release-test
 release-test: ## Full production test release (everything except deploy)
