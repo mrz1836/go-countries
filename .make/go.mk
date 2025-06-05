@@ -60,7 +60,7 @@ install: ## Install the application
 .PHONY: install-go
 install-go: ## Install the application (Using Native Go)
 	@echo "installing package..."
-	@go install $(GIT_DOMAIN)/$(REPO_OWNER)/$(REPO_NAME)@$(VERSION_SHORT) $(TAGS)
+	@go install $(TAGS) $(GIT_DOMAIN)/$(REPO_OWNER)/$(REPO_NAME)@$(VERSION_SHORT)
 
 .PHONY: lint
 lint: ## Run the golangci-lint application (install if not found)
