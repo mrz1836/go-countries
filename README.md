@@ -253,13 +253,27 @@ vet                      Run the Go vet application
 
 </details>
 
+<details>
+<summary><strong><code>Updating Dependencies</code></strong></summary>
+<br/>
+
+To update all dependencies (Go modules, linters, and related tools), run:
+
+```bash
+make update
+```
+
+This command ensures all dependencies are brought up to date in a single step, including Go modules and any tools managed by the Makefile. It is the recommended way to keep your development environment and CI in sync with the latest versions.
+
+</details>
+
 <br/>
 
 ## 🧪 Examples & Tests
 
 All unit tests and [examples](examples) run via [GitHub Actions](https://github.com/mrz1836/go-countries/actions) and use [Go version 1.22.x](https://go.dev/doc/go1.22). View the [configuration file](.github/workflows/run-tests.yml).
 
-Run all tests (including any integration tests)
+Run all tests:
 
 ```bash script
 make test
