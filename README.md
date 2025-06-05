@@ -1,28 +1,76 @@
-# go-countries
-> Complete go-ready list of countries in all standardized formats 
+# go‑countries
+> Go package providing comprehensive country data in all standard ISO formats
 
-<div align="center">
-
-[![Release](https://img.shields.io/github/release-pre/mrz1836/go-countries.svg?logo=github&style=flat)](https://github.com/mrz1836/go-countries/releases)
-[![Last Commit](https://img.shields.io/github/last-commit/mrz1836/go-countries?style=flat)](https://github.com/mrz1836/go-countries/commits/master)
-[![Go Version](https://img.shields.io/github/go-mod/go-version/mrz1836/go-countries?style=flat)](https://golang.org/)
-[![Docs](https://pkg.go.dev/badge/github.com/mrz1836/go-countries.svg?style=flat)](https://pkg.go.dev/github.com/mrz1836/go-countries?tab=doc)
-
-[![Build Status](https://img.shields.io/github/actions/workflow/status/mrz1836/go-countries/run-tests.yml?branch=master&logo=github&style=flat)](https://github.com/mrz1836/go-countries/actions)
-[![CodeQL](https://github.com/mrz1836/go-countries/actions/workflows/codeql-analysis.yml/badge.svg?style=flat&logoColor=white)](https://github.com/mrz1836/go-countries/actions)
-[![Code Coverage](https://codecov.io/gh/mrz1836/go-countries/branch/master/graph/badge.svg?style=flat)](https://codecov.io/gh/mrz1836/go-countries)
-[![Go Report Card](https://goreportcard.com/badge/github.com/mrz1836/go-countries?style=flat)](https://goreportcard.com/report/github.com/mrz1836/go-countries)
-
-[![AGENTS.md](https://img.shields.io/badge/AGENTS.md-found-40b814?style=flat&logo=openai)](.github/AGENTS.md)
-[![Security Policy](https://img.shields.io/badge/security-policy-blue?style=flat&logo=springsecurity&logoColor=white)](.github/SECURITY.md)
-[![Mergify](https://img.shields.io/endpoint.svg?url=https://api.mergify.com/v1/badges/mrz1836/go-countries?style=flat&logoColor=white)](.github/mergify.yml)
-[![Dependabot](https://img.shields.io/badge/dependencies-auto--updated-blue?logo=dependabot&style=flat)](.github/dependabot.yml)
-
-[![Contributors](https://img.shields.io/github/contributors/mrz1836/go-countries?style=flat&logo=contentful&logoColor=white)](https://github.com/mrz1836/go-countries/graphs/contributors)
-[![Sponsor](https://img.shields.io/badge/sponsor-MrZ-181717.svg?logo=github&style=flat)](https://github.com/sponsors/mrz1836)
-[![Donate Bitcoin](https://img.shields.io/badge/donate-bitcoin-ff9900.svg?logo=bitcoin&style=flat)](https://mrz1818.com/?tab=tips&utm_source=github&utm_medium=sponsor-link&utm_campaign=go-countries&utm_term=go-countries&utm_content=go-countries)
-
-</div>
+<table>
+  <thead>
+    <tr>
+      <th>CI&nbsp;/&nbsp;CD</th>
+      <th>Quality&nbsp;&amp;&nbsp;Security</th>
+      <th>Docs&nbsp;&amp;&nbsp;Meta</th>
+      <th>Community</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td valign="top" align="left">
+        <a href="https://github.com/mrz1836/go-countries/releases">
+          <img src="https://img.shields.io/github/release-pre/mrz1836/go-countries?logo=github&style=flat" alt="Latest release">
+        </a><br/>
+        <a href="https://github.com/mrz1836/go-countries/actions">
+          <img src="https://img.shields.io/github/actions/workflow/status/mrz1836/go-countries/run-tests.yml?branch=master&logo=github&style=flat" alt="Build status">
+        </a><br/>
+		<a href=".github/mergify.yml">
+          <img src="https://img.shields.io/endpoint.svg?url=https://api.mergify.com/v1/badges/mrz1836/go-countries&style=flat" alt="Mergify">
+        </a><br/>
+        <a href="https://github.com/mrz1836/go-countries/commits/master">
+          <img src="https://img.shields.io/github/last-commit/mrz1836/go-countries?style=flat" alt="Last commit">
+        </a>
+      </td>
+      <td valign="top" align="left">
+        <a href="https://codecov.io/gh/mrz1836/go-countries">
+          <img src="https://codecov.io/gh/mrz1836/go-countries/branch/master/graph/badge.svg?style=flat" alt="Code coverage">
+        </a><br/>
+        <a href="https://goreportcard.com/report/github.com/mrz1836/go-countries">
+          <img src="https://goreportcard.com/badge/github.com/mrz1836/go-countries?style=flat" alt="Go Report Card">
+        </a><br/>
+        <a href="https://github.com/mrz1836/go-countries/actions">
+          <img src="https://github.com/mrz1836/go-countries/actions/workflows/codeql-analysis.yml/badge.svg?style=flat" alt="CodeQL">
+        </a><br/>
+        <a href=".github/dependabot.yml">
+          <img src="https://img.shields.io/badge/dependencies-auto--updated-blue?logo=dependabot&style=flat" alt="Dependabot">
+        </a><br/>
+        <a href=".github/SECURITY.md">
+          <img src="https://img.shields.io/badge/security-policy-blue?style=flat&logo=springsecurity&logoColor=white" alt="Security policy">
+        </a>
+      </td>
+      <td valign="top" align="left">
+        <a href="https://pkg.go.dev/github.com/mrz1836/go-countries?tab=doc">
+          <img src="https://pkg.go.dev/badge/github.com/mrz1836/go-countries.svg?style=flat" alt="Go docs">
+        </a><br/>
+        <a href="https://golang.org/">
+          <img src="https://img.shields.io/github/go-mod/go-version/mrz1836/go-countries?style=flat" alt="Go version">
+        </a><br/>
+        <a href=".github/AGENTS.md">
+          <img src="https://img.shields.io/badge/AGENTS.md-found-40b814?style=flat&logo=openai" alt="AGENTS.md rules">
+        </a><br/>
+		<a href="Makefile">
+          <img src="https://img.shields.io/badge/Makefile-Supported%20-brightgreen?=flat&logo=probot&logoColor=white" alt="Makefile Included">
+        </a>
+      </td>
+      <td valign="top" align="left">
+        <a href="https://github.com/mrz1836/go-countries/graphs/contributors">
+          <img src="https://img.shields.io/github/contributors/mrz1836/go-countries?style=flat&logo=contentful&logoColor=white" alt="Contributors">
+        </a><br/>
+        <a href="https://github.com/sponsors/mrz1836">
+          <img src="https://img.shields.io/badge/sponsor-MrZ-181717.svg?logo=github&style=flat" alt="Sponsor">
+        </a><br/>
+        <a href="https://mrz1818.com/?tab=tips&utm_source=github&utm_medium=sponsor-link&utm_campaign=go-countries&utm_term=go-countries&utm_content=go-countries">
+          <img src="https://img.shields.io/badge/donate-bitcoin-ff9900.svg?logo=bitcoin&style=flat" alt="Donate Bitcoin">
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 <br/>
 
