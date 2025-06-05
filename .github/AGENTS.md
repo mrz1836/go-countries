@@ -160,25 +160,25 @@ Follow Go naming idioms and the standards outlined in [Effective Go](https://go.
 
 ## 📘 Commenting Standards
 
-Great engineers write great comments. You’re not here to state the obvious—you’re here to document decisions, highlight edge cases, and make sure the next dev (or AI) doesn’t repeat your mistakes.
+Great engineers write great comments. You're not here to state the obvious—you're here to document decisions, highlight edge cases, and make sure the next dev (or AI) doesn't repeat your mistakes.
 
 ### 🧠 Guiding Principles
 
 * **Comment the "why", not the "what"**
 
-  > The code already tells us *what* it’s doing. Your job is to explain *why* it’s doing it that way—especially if it’s non-obvious, nuanced, or a workaround.
+  > The code already tells us *what* it's doing. Your job is to explain *why* it's doing it that way—especially if it's non-obvious, nuanced, or a workaround.
 
 * **Explain side effects, caveats, and constraints**
 
   > If the function touches global state, writes to disk, mutates shared memory, or makes assumptions—write it down.
 
-* **Don’t comment on broken code—fix or delete it**
+* **Don't comment on broken code—fix or delete it**
 
-  > Dead or disabled code with TODOs are bad signals. If it’s not worth fixing now, delete it and add an issue instead.
+  > Dead or disabled code with TODOs are bad signals. If it's not worth fixing now, delete it and add an issue instead.
 
 * **Your comments are part of the product**
 
-  > Treat them like UX copy. Make them clear, concise, and professional. You’re writing for peers, not compilers.
+  > Treat them like UX copy. Make them clear, concise, and professional. You're writing for peers, not compilers.
 
 ---
 
@@ -282,7 +282,7 @@ Use inline comments **strategically**, not excessively.
 * Use **complete sentences** with punctuation.
 * Keep your tone **precise, confident, and modern**—you're not writing a novel, but you're also not writing legacy COBOL.
 * Avoid filler like "simple function" or "just does X".
-* Don’t leave TODOs unless:
+* Don't leave TODOs unless:
     * They are immediately actionable
     * (or) they reference an issue
     * They include a timestamp or owner
@@ -382,7 +382,7 @@ docs(README): improve installation instructions
 
 * Use **kebab‑case** after the prefix.
 * Keep branch names concise yet descriptive.
-* PR titles should mirror the branch’s purpose (see [✅ Pull Request Conventions](#-pull-request-conventions)).
+* PR titles should mirror the branch's purpose (see [✅ Pull Request Conventions](#-pull-request-conventions)).
 
 > Mergify and CI rely on these prefixes for auto‑labeling and workflow routing—stick to them.
 
@@ -518,7 +518,7 @@ Current labels are located in `.github/labels.yml` and automatically synced into
 * Apply labels at the time of PR/issue creation, or during triage.
 * Use **only one priority label** (`bug-P1`, `P2`, `P3`) per item.
 * Combine labels as needed (e.g., `feature` + `ui-ux` + `test`).
-* Don’t forget to remove outdated labels (e.g., `work-in-progress` → after merge readiness).
+* Don't forget to remove outdated labels (e.g., `work-in-progress` → after merge readiness).
 
 ---
 
