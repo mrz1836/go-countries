@@ -25,6 +25,11 @@ permissions:
   contents: write
   pull-requests: write
 
+# Cancel older runs of the same PR if a new commit is pushed
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 jobs:
   # ------------------------------------------------------------------------------
   # Auto-merge: Dependabot PR Automation
