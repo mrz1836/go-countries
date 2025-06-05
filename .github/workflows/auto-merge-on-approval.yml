@@ -23,6 +23,7 @@ permissions:
 
 jobs:
   automerge:
+    concurrency: pull_request_${{ github.event.pull_request.number }}
     runs-on: ubuntu-latest
     steps:
       - name: Attempt auto-merge
