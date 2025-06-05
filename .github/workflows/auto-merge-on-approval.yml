@@ -32,13 +32,17 @@ on:
     types: [completed]
   status: {}
 
+# Cancel older runs of the same PR if a new commit is pushed
+concurrency:
+    group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+    cancel-in-progress: true
+
 permissions:
   contents: write
   pull-requests: write
 
 jobs:
   automerge:
-    concurrency: pull_request_${{ github.event.pull_request.number }}
     runs-on: ubuntu-latest
     steps:
       - name: Attempt auto-merge
