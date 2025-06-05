@@ -216,7 +216,6 @@ lint                     Run the golangci-lint application (install if not found
 release-snap             Test the full release (build binaries)
 release-test             Full production test release (everything except deploy)
 release                  Full production release (creates release in GitHub)
-release                  Runs common.release then runs godocs
 tag-remove               Remove a tag if found (tag-remove version=0.0.0)
 tag-update               Update an existing tag to current commit (tag-update version=0.0.0)
 tag                      Generate a new tag and push (tag version=0.0.0)

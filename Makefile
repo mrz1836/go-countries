@@ -17,7 +17,3 @@ endif
 .PHONY: all
 all: ## Runs multiple commands
 	@$(MAKE) test
-
-.PHONY: release
-release:: ## Runs common.release then runs godocs
-	@$(MAKE) godocs
