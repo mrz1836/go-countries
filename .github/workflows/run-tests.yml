@@ -1,5 +1,11 @@
-# Workflow Name: run-go-tests
-# See more at: https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions
+# ------------------------------------------------------------------------------------
+#  Run Go Tests Workflow
+#
+#  Purpose   : Run all Go tests and dependency checks on every push and pull request.
+#  Triggers  : On push or pull request to any branch.
+#  Maintainer: @mrz1836
+# ------------------------------------------------------------------------------------
+
 name: run-go-tests
 
 env:
@@ -22,6 +28,14 @@ permissions:
   contents: read
 
 jobs:
+  # ----------------------------------------------------------------------------------
+  # Ask Nancy: Dependency Vulnerability Scanning
+  #
+  # This job uses the Nancy GitHub Action to scan Go module dependencies for known
+  # vulnerabilities. It runs on every push and pull request, and will not fail the
+  # workflow if vulnerabilities are found (continue-on-error: true). Excludes some
+  # specific vulnerabilities by ID.
+  # ----------------------------------------------------------------------------------
   asknancy:
     name: Ask Nancy (check dependencies)
     runs-on: ubuntu-latest
@@ -34,7 +48,7 @@ jobs:
         uses: sonatype-nexus-community/nancy-github-action@v1.0.3
         continue-on-error: true
         with:
-          nancyCommand: sleuth --loud --exclude-vulnerability sonatype-2021-0853,CVE-2022-32149
+          nancyCommand: sleuth --loud --exclude-vulnerability CVE-2022-32149
 
   test:
     needs: [asknancy]

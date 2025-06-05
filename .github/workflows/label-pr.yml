@@ -1,8 +1,20 @@
-name: Label PRs by Branch Prefix
+# ------------------------------------------------------------------------------------
+#  Label PRs by Branch Prefix Workflow
+#
+#  Purpose   : Automatically applies labels to pull requests based on the branch name prefix.
+#  Triggers  : On PR open, synchronize, reopen, or ready for review.
+#  Maintainer: @mrz1836
+# ------------------------------------------------------------------------------------
+
+name: label-prs-by-branch-prefix
 
 on:
   pull_request:
     types: [opened, synchronize, reopened, ready_for_review]
+
+permissions:
+  pull-requests: write
+  issues: write
 
 jobs:
   add-labels:
@@ -13,6 +25,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
+            // Applies labels to PRs based on branch prefix
             const branch = context.payload.pull_request.head.ref;
             const labels = [];
             const labelMap = [
@@ -33,11 +46,29 @@ jobs:
               }
             }
             if (labels.length > 0) {
-              await github.issues.addLabels({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: context.payload.pull_request.number,
-                labels,
-              });
+              try {
+                // Fetch existing labels on the PR
+                const { data: prLabels } = await github.issues.listLabelsOnIssue({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: context.payload.pull_request.number,
+                });
+                const existing = prLabels.map(l => l.name);
+                // Only add labels that are not already present
+                const toAdd = labels.filter(l => !existing.includes(l));
+                if (toAdd.length > 0) {
+                  await github.issues.addLabels({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    issue_number: context.payload.pull_request.number,
+                    labels: toAdd,
+                  });
+                }
+              } catch (error) {
+                if (core && typeof core.setFailed === 'function') {
+                  core.setFailed(`Failed to add labels: ${error.message}`);
+                } else {
+                  console.error('Failed to add labels:', error);
+                }
+              }
             }
-

@@ -7,8 +7,7 @@
 #
 #  Docs      : - Action   → https://github.com/micnncim/action-label-syncer
 #              - Exporter → https://github.com/micnncim/label-exporter
-#  Created   : 2025-04-23
-#  Maintainer: @your-team-alias
+#  Maintainer: @mrz1836
 # ------------------------------------------------------------------------------------
 
 name: sync-labels
