@@ -15,16 +15,23 @@ jobs:
           script: |
             const branch = context.payload.pull_request.head.ref;
             const labels = [];
-            if (/^feat\//i.test(branch)) labels.push('feature');
-            if (/^(bug)?fix\//i.test(branch)) labels.push('bug-P3');
-            if (/^docs\//i.test(branch)) labels.push('documentation');
-            if (/^chore\//i.test(branch)) labels.push('update');
-            if (/^test\//i.test(branch)) labels.push('test');
-            if (/^refactor\//i.test(branch)) labels.push('refactor');
-            if (/^hotfix\//i.test(branch)) labels.push('hot-fix');
-            if (/^proto(type)?\//i.test(branch)) labels.push('prototype');
-            if (/^idea\//i.test(branch)) labels.push('idea');
-            if (/^question\//i.test(branch)) labels.push('question');
+            const labelMap = [
+              { regex: /^feat\//i, label: 'feature' },
+              { regex: /^(bug)?fix\//i, label: 'bug-P3' },
+              { regex: /^docs\//i, label: 'documentation' },
+              { regex: /^chore\//i, label: 'update' },
+              { regex: /^test\//i, label: 'test' },
+              { regex: /^refactor\//i, label: 'refactor' },
+              { regex: /^hotfix\//i, label: 'hot-fix' },
+              { regex: /^proto(type)?\//i, label: 'prototype' },
+              { regex: /^idea\//i, label: 'idea' },
+              { regex: /^question\//i, label: 'question' },
+            ];
+            for (const { regex, label } of labelMap) {
+              if (regex.test(branch)) {
+                labels.push(label);
+              }
+            }
             if (labels.length > 0) {
               await github.issues.addLabels({
                 owner: context.repo.owner,
