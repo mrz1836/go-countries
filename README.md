@@ -201,7 +201,6 @@ List of all current commands:
 ```text
 all                      Runs multiple commands
 citation                 Update version in CITATION.cff (citation version=X.Y.Z)
-clean                    Remove previous builds and any test cache data
 clean-mods               Remove all the Go mod cache
 coverage                 Shows the test coverage
 diff                     Show the git diff
