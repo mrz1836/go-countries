@@ -15,6 +15,6 @@ This document explains how to get help with **go-countries**.
 - Follow the steps in our [security policy](SECURITY.md) instead.
 
 ## Direct Contact
-For private inquiries, reach the maintainers at [mrz1818@pm.me](mailto:mrz1818@pm.me).
+For private inquiries, reach the maintainers at [go-countries@mrz1818.com](mailto:go-countries@mrz1818.com).
 
 We appreciate your interest and will do our best to help you.

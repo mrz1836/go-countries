@@ -2,13 +2,13 @@
 
 ## Supported & Maintained Versions
 
-| Version | Supported |
-| ------- | --------- |
+| Version | Supported          |
+|---------|--------------------|
 | 1.x.x   | :white_check_mark: |
 
 ## Reporting a Vulnerability
 
-Please email the [project maintainers](mailto:mrz1818@pm.me) with a detailed
+Please email the [project maintainers](mailto:go-countries@mrz1818.com) with a detailed
 report. We welcome submissions from independent researchers, industry
 organizations, vendors and customers. Include:
 
