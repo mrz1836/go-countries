@@ -35,7 +35,12 @@ jobs:
             const owner = context.repo.owner;
             const repo = context.repo.repo;
             const branch = context.payload.pull_request.head.ref;
-            const protectedBranches = ['master', 'main'];
+            const { data: repoData } = await github.rest.repos.get({
+              owner,
+              repo,
+            });
+            const defaultBranch = repoData.default_branch;
+            const protectedBranches = ['master', 'main', defaultBranch];
             if (!protectedBranches.includes(branch)) {
               try {
                 await github.rest.git.deleteRef({
