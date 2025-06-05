@@ -236,6 +236,21 @@ vet                      Run the Go vet application
 
 </details>
 
+<details>
+<summary><strong><code>GitHub Workflows</code></strong></summary>
+<br/>
+
+| Workflow Name                                                                | Description                                                                                                            |
+|------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------|
+| [pull-request-management.yml](.github/workflows/pull-request-management.yml) | Labels PRs by branch prefix, assigns a default user if none is assigned, and welcomes new contributors with a comment. |
+| [release.yml](.github/workflows/release.yml)                                 | Builds and publishes releases via GoReleaser when a semver tag is pushed.                                              |
+| [run-tests.yml](.github/workflows/run-tests.yml)                             | Runs all Go tests and dependency checks on every push and pull request.                                                |
+| [stale.yml](.github/workflows/stale.yml)                                     | Warns about (and optionally closes) inactive issues and PRs on a schedule or manual trigger.                           |
+| [sync-labels.yml](.github/workflows/sync-labels.yml)                         | Keeps GitHub labels in sync with the declarative manifest at `.github/labels.yml`.                                     |
+| [codeql-analysis.yml](.github/workflows/codeql-analysis.yml)                 | Analyzes code for security vulnerabilities using GitHub CodeQL.                                                        |
+
+</details>
+
 <br/>
 
 ## 🧪 Examples & Tests
