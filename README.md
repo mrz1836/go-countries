@@ -77,17 +77,17 @@
 
 ## 🗂️ Table of Contents
 
-* [📦 Installation](#-installation)
-* [📚 Documentation](#-documentation)
-* [🧪 Examples & Tests](#-examples--tests)
-* [⚡ Benchmarks](#-benchmarks)
-* [🛠️ Code Standards](#-code-standards)
-* [🤖 AI Compliance](#-ai-compliance)
-* [💡 Usage](#-usage)
-* [🙏 Credits](#-credits)
-* [👥 Maintainers](#-maintainers)
-* [🤝 Contributing](#-contributing)
-* [📝 License](#-license)
+* [Installation](#-installation)
+* [Documentation](#-documentation)
+* [Examples & Tests](#-examples--tests)
+* [Benchmarks](#-benchmarks)
+* [Code Standards](#-code-standards)
+* [AI Compliance](#-ai-compliance)
+* [Usage](#-usage)
+* [Credits](#-credits)
+* [Maintainers](#-maintainers)
+* [Contributing](#-contributing)
+* [License](#-license)
 
 <br/>
 
