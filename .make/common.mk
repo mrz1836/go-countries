@@ -1,33 +1,35 @@
-## Default repository domain name
+# Default repository domain name
 ifndef GIT_DOMAIN
-	override GIT_DOMAIN=github.com
+       override GIT_DOMAIN := github.com
 endif
 
-## Set if defined (alias variable for ease of use)
+# Set if defined (alias variable for ease of use)
 ifdef branch
-	override REPO_BRANCH=$(branch)
-	export REPO_BRANCH
+       override REPO_BRANCH := $(branch)
+       export REPO_BRANCH
 endif
 
-## Do we have git available?
+# Do we have git available?
 HAS_GIT := $(shell command -v git 2> /dev/null)
 
 ifdef HAS_GIT
-	## Do we have a repo?
-	HAS_REPO := $(shell git rev-parse --is-inside-work-tree 2> /dev/null)
-	ifdef HAS_REPO
-		## Automatically detect the repo owner and repo name (for local use with Git)
-		REPO_NAME=$(shell basename "$(shell git rev-parse --show-toplevel 2> /dev/null)")
-		OWNER=$(shell git config --get remote.origin.url | sed 's/git@$(GIT_DOMAIN)://g' | sed 's/\/$(REPO_NAME).git//g')
-		REPO_OWNER=$(shell echo $(OWNER) | tr A-Z a-z)
-		VERSION_SHORT=$(shell git describe --tags --always --abbrev=0)
-		export REPO_NAME, REPO_OWNER, VERSION_SHORT
-	endif
+# Do we have a repo?
+HAS_REPO := $(shell git rev-parse --is-inside-work-tree 2> /dev/null)
+ifdef HAS_REPO
+# Automatically detect the repo owner and repo name (for local use with Git)
+               REPO_NAME := $(shell basename "$(shell git rev-parse --show-toplevel 2> /dev/null)")
+               OWNER := $(shell git config --get remote.origin.url | sed 's/git@$(GIT_DOMAIN)://g' | sed 's/\/$$(REPO_NAME).git//g')
+               REPO_OWNER := $(shell echo $(OWNER) | tr A-Z a-z)
+               VERSION_SHORT := $(shell git describe --tags --always --abbrev=0)
+               export REPO_NAME
+               export REPO_OWNER
+               export VERSION_SHORT
+       endif
 endif
 
-## Set the distribution folder
+# Set the distribution folder
 ifndef DISTRIBUTIONS_DIR
-	override DISTRIBUTIONS_DIR=./dist
+       override DISTRIBUTIONS_DIR := ./dist
 endif
 export DISTRIBUTIONS_DIR
 
@@ -35,13 +37,13 @@ export DISTRIBUTIONS_DIR
 citation: ## Update version in CITATION.cff (citation version=X.Y.Z)
 	@echo "updating CITATION.cff version..."
 	@if [ -z "$(version)" ]; then \
-	    echo "Error: 'version' variable is not set. Please set the 'version' variable before running this target."; \
-	    exit 1; \
+		echo "Error: 'version' variable is not set. Please set the 'version' variable before running this target."; \
+		exit 1; \
 	fi
 	@if [ "$(shell uname)" = "Darwin" ]; then \
-	        sed -i '' -e 's/^version: \".*\"/version: \"$(version)\"/' CITATION.cff; \
+		sed -i '' -e 's/^version: ".*"/version: "$(version)"/' CITATION.cff; \
 	else \
-	        sed -i -e 's/^version: \".*\"/version: \"$(version)\"/' CITATION.cff; \
+		sed -i -e 's/^version: ".*"/version: "$(version)"/' CITATION.cff; \
 	fi
 
 .PHONY: diff
