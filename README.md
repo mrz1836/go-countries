@@ -244,6 +244,7 @@ vet                      Run the Go vet application
 
 | Workflow Name                                                                | Description                                                                                                            |
 |------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------|
+| [auto-merge-on-approval.yml](.github/workflows/auto-merge-on-approval.yml)   | Automatically merges PRs after approval and all required checks, following strict rules.                               |
 | [codeql-analysis.yml](.github/workflows/codeql-analysis.yml)                 | Analyzes code for security vulnerabilities using GitHub CodeQL.                                                        |
 | [dependabot-merge.yml](.github/workflows/dependabot-automerge.yml)           | Automatically merges Dependabot PRs that meet all requirements.                                                        |
 | [pull-request-management.yml](.github/workflows/pull-request-management.yml) | Labels PRs by branch prefix, assigns a default user if none is assigned, and welcomes new contributors with a comment. |
