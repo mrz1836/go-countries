@@ -1,4 +1,5 @@
-# go‑countries
+# 🗺️ go‑countries
+
 > Go package providing comprehensive country data in all standard ISO formats
 
 <table>
@@ -36,10 +37,10 @@
         <a href="https://github.com/mrz1836/go-countries/actions">
           <img src="https://github.com/mrz1836/go-countries/actions/workflows/codeql-analysis.yml/badge.svg?style=flat" alt="CodeQL">
         </a><br/>
-		<a href=".github/SECURITY.md">
+        <a href=".github/SECURITY.md">
           <img src="https://img.shields.io/badge/security-policy-blue?style=flat&logo=springsecurity&logoColor=white" alt="Security policy">
-        </a><br/>        
-		<a href=".github/dependabot.yml">
+        </a><br/>
+        <a href=".github/dependabot.yml">
           <img src="https://img.shields.io/badge/dependencies-automatic-blue?logo=dependabot&style=flat" alt="Dependabot">
         </a>
       </td>
@@ -47,14 +48,14 @@
         <a href="https://golang.org/">
           <img src="https://img.shields.io/github/go-mod/go-version/mrz1836/go-countries?style=flat" alt="Go version">
         </a><br/>
-		<a href="https://pkg.go.dev/github.com/mrz1836/go-countries?tab=doc">
+        <a href="https://pkg.go.dev/github.com/mrz1836/go-countries?tab=doc">
           <img src="https://pkg.go.dev/badge/github.com/mrz1836/go-countries.svg?style=flat" alt="Go docs">
         </a><br/>
         <a href=".github/AGENTS.md">
           <img src="https://img.shields.io/badge/AGENTS.md-found-40b814?style=flat&logo=openai" alt="AGENTS.md rules">
         </a><br/>
-		<a href="Makefile">
-          <img src="https://img.shields.io/badge/Makefile-supported%20-brightgreen?=flat&logo=probot&logoColor=white" alt="Makefile Supported">
+        <a href="Makefile">
+          <img src="https://img.shields.io/badge/Makefile-supported-brightgreen?style=flat&logo=probot&logoColor=white" alt="Makefile Supported">
         </a>
       </td>
       <td valign="top" align="left">
@@ -74,47 +75,53 @@
 
 <br/>
 
-## Table of Contents
-- [Installation](#installation)
-- [Documentation](#documentation)
-- [Examples & Tests](#examples--tests)
-- [Benchmarks](#benchmarks)
-- [Code Standards](#code-standards)
-- [AI Compliance](#ai-compliance)
-- [Usage](#usage)
-- [Credits](#credits)
-- [Maintainers](#maintainers)
-- [Contributing](#contributing)
-- [License](#license)
+## 🗂️ Table of Contents
+
+* [📦 Installation](#-installation)
+* [📚 Documentation](#-documentation)
+* [🧪 Examples & Tests](#-examples--tests)
+* [⚡ Benchmarks](#-benchmarks)
+* [🛠️ Code Standards](#-code-standards)
+* [🤖 AI Compliance](#-ai-compliance)
+* [💡 Usage](#-usage)
+* [🙏 Credits](#-credits)
+* [👥 Maintainers](#-maintainers)
+* [🤝 Contributing](#-contributing)
+* [📝 License](#-license)
 
 <br/>
 
-## Installation
+## 📦 Installation
 
 **go-countries** requires a [supported release of Go](https://golang.org/doc/devel/release.html#policy).
+
 ```bash script
 go get -u github.com/mrz1836/go-countries
 ```
 
 <br/>
 
-## Documentation
+## 📚 Documentation
+
 View the generated [documentation](https://pkg.go.dev/github.com/mrz1836/go-countries?tab=doc)
 
- 
+<br/>
+
 ### Code Generation
 
-If you need to update the country data or regenerate the Go code, you can use the `go generate` command. 
+If you need to update the country data or regenerate the Go code, you can use the `go generate` command.
 This will read the JSON data files and generate a Go file containing all the country data in a structured format.
 
 To generate the Go code for the country data, follow these steps:
 
 1. **Navigate to the project root directory**:
+
    ```bash
    cd /path/to/your/project
    ```
 
 2. **Run the `go generate` command**:
+
    ```bash
    go generate ./generate/...
    ```
@@ -122,7 +129,10 @@ To generate the Go code for the country data, follow these steps:
 This command executes the code generation logic defined in the `generate.go` file located in the `/generate/` directory.
 The generated code is written to `countries_data.go` in the project directory.
 
+<br/>
+
 ### Features
+
 - All known countries in a friendly Go slice of structs
 - All JSON is still available in the [data package](data)
 - No `init()` method required for using the `countries` package
@@ -172,11 +182,13 @@ This process ensures consistent, repeatable releases with properly versioned art
 <br/>
 
 View all `makefile` commands
+
 ```bash script
 make help
 ```
 
 List of all current commands:
+
 ```text
 all                      Runs multiple commands
 citation                 Update version in CITATION.cff (citation version=X.Y.Z)
@@ -211,23 +223,27 @@ uninstall                Uninstall the application (and remove files)
 update-linter            Update the golangci-lint package (macOS only)
 vet                      Run the Go vet application
 ```
+
 </details>
 
 <br/>
 
-## Examples & Tests
-All unit tests and [examples](examples) run via [GitHub Actions](https://github.com/mrz1836/go-countries/actions) and
- use [Go version 1.22.x](https://go.dev/doc/go1.22). View the [configuration file](.github/workflows/run-tests.yml).
+## 🧪 Examples & Tests
+
+All unit tests and [examples](examples) run via [GitHub Actions](https://github.com/mrz1836/go-countries/actions) and use [Go version 1.22.x](https://go.dev/doc/go1.22). View the [configuration file](.github/workflows/run-tests.yml).
 
 Run all tests (including any integration tests)
+
 ```bash script
 make test
 ```
 
 <br/>
 
-## Benchmarks
+## ⚡ Benchmarks
+
 Run the Go [benchmarks](countries_test.go):
+
 ```bash script
 make bench
 ```
@@ -247,12 +263,12 @@ Performance benchmarks for the core functions in this library, executed on an Ap
 
 <br/>
 
-## Code Standards
+## 🛠️ Code Standards
 Read more about this Go project's [code standards](.github/CODE_STANDARDS.md).
 
 <br/>
 
-## AI Compliance
+## 🤖 AI Compliance
 This project documents expectations for AI assistants using a few dedicated files:
 
 - [AGENTS.md](.github/AGENTS.md) — canonical rules for coding style, workflows, and pull requests.
@@ -264,7 +280,7 @@ Edit `AGENTS.md` first when adjusting these policies, and keep the other files i
 
 <br/>
 
-## Usage
+## 💡 Usage
 - View the [examples](examples)
 - View the [benchmarks](countries_test.go)
 - View the [tests](countries_test.go)
@@ -272,20 +288,20 @@ Edit `AGENTS.md` first when adjusting these policies, and keep the other files i
 
 <br/>
 
-## Credits
+## 🙏 Credits
 Used: [ISO-3166-Countries-with-Regional-Codes](https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes)     
 Used: [List of Countries & Currencies](https://gist.github.com/tiagodealmeida/0b97ccf117252d742dddf098bc6cc58a)     
 
 <br/>
 
-## Maintainers
+## 👥 Maintainers
 | [<img src="https://github.com/mrz1836.png" height="50" alt="MrZ" />](https://github.com/mrz1836) |
 |:------------------------------------------------------------------------------------------------:|
 |                                [MrZ](https://github.com/mrz1836)                                 |
 
 <br/>
 
-## Contributing
+## 🤝 Contributing
 View the [contributing guidelines](.github/CONTRIBUTING.md) and please follow the [code of conduct](.github/CODE_OF_CONDUCT.md).
 
 ### How can I help?
@@ -299,6 +315,6 @@ or by making a [**bitcoin donation**](https://mrz1818.com/?tab=tips&utm_source=g
 
 <br/>
 
-## License
+## 📝 License
 
 [![License](https://img.shields.io/github/license/mrz1836/go-countries.svg?style=flat)](LICENSE)
