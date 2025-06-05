@@ -54,7 +54,7 @@ diff: ## Show the git diff
 
 .PHONY: help
 help: ## Show this help message
-	@egrep -h '^(.+)\:\ ##\ (.+)' ${MAKEFILE_LIST} | column -t -c 2 -s ':#'
+	@grep -Eh '^(.+)\:\ ##\ (.+)' ${MAKEFILE_LIST} | sort | column -t -c 2 -s ':#'
 
 .PHONY: install-releaser
 install-releaser: ## Install the GoReleaser application
