@@ -1,0 +1,36 @@
+name: Label PRs by Branch Prefix
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+
+jobs:
+  add-labels:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Add labels based on branch
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const branch = context.payload.pull_request.head.ref;
+            const labels = [];
+            if (/^feat\//i.test(branch)) labels.push('feature');
+            if (/^(bug)?fix\//i.test(branch)) labels.push('bug-P3');
+            if (/^docs\//i.test(branch)) labels.push('documentation');
+            if (/^chore\//i.test(branch)) labels.push('update');
+            if (/^test\//i.test(branch)) labels.push('test');
+            if (/^refactor\//i.test(branch)) labels.push('refactor');
+            if (/^hotfix\//i.test(branch)) labels.push('hot-fix');
+            if (/^proto(type)?\//i.test(branch)) labels.push('prototype');
+            if (/^idea\//i.test(branch)) labels.push('idea');
+            if (/^question\//i.test(branch)) labels.push('question');
+            if (labels.length > 0) {
+              await github.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.payload.pull_request.number,
+                labels,
+              });
+            }
+
