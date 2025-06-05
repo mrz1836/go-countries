@@ -54,7 +54,14 @@ diff: ## Show the git diff
 
 .PHONY: help
 help: ## Show this help message
-	@grep -Eh '^(.+)\:\ ##\ (.+)' ${MAKEFILE_LIST} | sort | column -t -c 2 -s ':#'
+	@grep -Eh '^(.+):\ ##\ (.+)' ${MAKEFILE_LIST} | sort | column -t -c 2 -s ':#'
+
+.PHONY: update-readme-make-commands
+update-readme-make-commands: ## Update README section with latest make help output
+	@echo "updating README make commands..."
+@TMP=$$(mktemp) && \
+	$(MAKE) --no-print-directory -s help | grep -v '^$$' > $$TMP && \
+	awk -v hf=$$TMP 'BEGIN{skip=0} /<!-- make-help-start -->/{print; print "```text"; while((getline line < hf)>0) print line; print "```"; skip=1; next} /<!-- make-help-end -->/{print; skip=0; next} !skip{print}' README.md > README.md.tmp && mv README.md.tmp README.md && rm $$TMP
 
 .PHONY: install-releaser
 install-releaser: ## Install the GoReleaser application
