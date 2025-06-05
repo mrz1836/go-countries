@@ -43,6 +43,10 @@ permissions:
 
 jobs:
   automerge:
+    if: >-
+      github.actor != 'dependabot[bot]' &&
+      github.actor != 'dependabot-preview[bot]' &&
+      github.actor != 'codecov[bot]'
     runs-on: ubuntu-latest
     steps:
       - name: Attempt auto-merge
