@@ -1,9 +1,11 @@
 # ------------------------------------------------------------------------------------
 #  Stale Check Workflow
 #
-#  Purpose   : Warn about (and optionally close) inactive issues and PRs.
-#              Runs every weekday at 08:32 UTC and can be triggered manually.
+#  Purpose: Warn about (and optionally close) inactive issues and PRs.
+#           Runs every weekday at 08:32 UTC and can be triggered manually.
+#
 #  Triggers  : Scheduled (Mon-Fri at 08:32 UTC) and manual dispatch.
+#
 #  Maintainer: @mrz1836
 # ------------------------------------------------------------------------------------
 

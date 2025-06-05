@@ -1,12 +1,13 @@
 # ------------------------------------------------------------------------------------
 #  Sync-Labels Workflow
 #
-#  Purpose   : Keeps GitHub labels in sync with the declarative manifest at
-#              `.github/labels.yml`.  Any push that modifies that file on the
-#              default branch will trigger a reconciliation.
+#  Purpose: Keeps GitHub labels in sync with the declarative manifest at
+#           `.github/labels.yml`.  Any push that modifies that file on the
+#           default branch will trigger a reconciliation.
 #
-#  Docs      : - Action   → https://github.com/micnncim/action-label-syncer
-#              - Exporter → https://github.com/micnncim/label-exporter
+#  Docs: - Action → https://github.com/micnncim/action-label-syncer
+#        - Exporter → https://github.com/micnncim/label-exporter
+#
 #  Maintainer: @mrz1836
 # ------------------------------------------------------------------------------------
 

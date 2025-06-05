@@ -2,7 +2,9 @@
 #  Run Go Tests Workflow
 #
 #  Purpose   : Run all Go tests and dependency checks on every push and pull request.
+#
 #  Triggers  : On push or pull request to any branch.
+#
 #  Maintainer: @mrz1836
 # ------------------------------------------------------------------------------------
 
