@@ -107,6 +107,24 @@ View the generated [documentation](https://pkg.go.dev/github.com/mrz1836/go-coun
 
 <br/>
 
+### Features
+
+- Comprehensive list of all recognized countries, provided as a Go slice of structs for easy access and manipulation
+- Direct access to raw country and currency JSON data in the [data package](data) for custom processing or validation
+- Zero `init()` overhead—just import and use the `countries` package without side effects
+- Fast, allocation-free lookups for all retrieval functions, ensuring optimal performance in production environments
+- [`GetAll()`](countries.go): Retrieve the entire slice of all known countries, including metadata such as names, codes, regions, capitals, and currencies
+- [`GetByName("Nigeria")`](countries.go): Lookup a country by its [official name](https://en.wikipedia.org/wiki/ISO_3166), supporting case-insensitive queries
+- [`GetByAlpha2("NG")`](countries.go): Find a country by its [ISO 3166-1 alpha-2 code](https://en.wikipedia.org/wiki/ISO_3166-2), e.g., "US", "GB", "NG"
+- [`GetByAlpha3("NGA")`](countries.go): Retrieve a country by its [ISO 3166-1 alpha-3 code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3), e.g., "USA", "GBR", "NGA"
+- [`GetByCountryCode("566")`](countries.go): Lookup by [ISO 3166 numeric country code](https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes), supporting string or integer input
+- [`GetByISO31662("ISO 3166-2:NG")`](countries.go): Retrieve a country by its [ISO 3166-2 subdivision code](https://en.wikipedia.org/wiki/ISO_3166-2)
+- Includes region, subregion, capital, and currency information for each country
+- Designed for extensibility—add or update country data via code generation from JSON sources
+- Well-documented, tested, and benchmarked for reliability and speed
+
+<br/>
+
 ### Code Generation
 
 If you need to update the country data or regenerate the Go code, you can use the `go generate` command.
@@ -130,18 +148,6 @@ This command executes the code generation logic defined in the `generate.go` fil
 The generated code is written to `countries_data.go` in the project directory.
 
 <br/>
-
-### Features
-
-- All known countries in a friendly Go slice of structs
-- All JSON is still available in the [data package](data)
-- No `init()` method required for using the `countries` package
-- `GetAll()` returns the entire slice of all known countries
-- `GetByName("Nigeria")` returns the country by its [proper name](https://en.wikipedia.org/wiki/ISO_3166)
-- `GetByAlpha2("NG")` returns the country by its [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2)
-- `GetByAlpha3("NGA")` returns the country by its [ISO 3166-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3)
-- `GetByCountryCode("566")` returns the country by its [ISO 3166 country code](https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes)
-- `GetByISO31662("ISO 3166-2:NG")` returns the country by its [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2)
 
 <details>
 <summary><strong><code>Library Deployment</code></strong></summary>
@@ -247,6 +253,8 @@ Run the Go [benchmarks](countries_test.go):
 ```bash script
 make bench
 ```
+
+<br/>
 
 Performance benchmarks for the core functions in this library, executed on an Apple M1 Max (ARM64):
 
