@@ -384,7 +384,7 @@ docs(README): improve installation instructions
 * Keep branch names concise yet descriptive.
 * PR titles should mirror the branch's purpose (see [✅ Pull Request Conventions](#-pull-request-conventions)).
 
-> Mergify and CI rely on these prefixes for auto‑labeling and workflow routing—stick to them.
+> CI rely on these prefixes for auto labeling and workflow routing—stick to them.
 
 ---
 
@@ -519,41 +519,6 @@ Current labels are located in `.github/labels.yml` and automatically synced into
 * Use **only one priority label** (`bug-P1`, `P2`, `P3`) per item.
 * Combine labels as needed (e.g., `feature` + `ui-ux` + `test`).
 * Don't forget to remove outdated labels (e.g., `work-in-progress` → after merge readiness).
-
----
-
-## 🤖 Mergify Automation
-
-This repository uses [Mergify](https://docs.mergify.com) to automate and streamline pull request workflows. Mergify enables intelligent merging, auto-labeling, and CI-based gatekeeping to ensure high-quality contributions with reduced manual overhead.
-
-### 🔧 Core Behaviors
-
-* **Automatic Merging for Dependabot PRs**
-  Minor version bumps from Dependabot are automatically reviewed and merged once all required checks pass.
-  Major version bumps require manual review and trigger an alert.
-
-* **Standard Approval-Based Merging**
-  Pull requests with:
-
-    * At least one approval
-    * No requested changes
-    * Passing required checks
-      are merged automatically unless marked as a draft or labeled `work-in-progress`.
-
-* **Auto-Labeling by Branch Prefix**
-  Labels such as `feature`, `bug-P3`, `test`, `idea`, and `hot-fix` are added automatically based on the branch name pattern (e.g., `feat/`, `fix/`, `hotfix/`, `test/`, etc.).
-
-* **Automated Housekeeping**
-
-    * Stale PRs (older than 21 days without activity) are closed with a `stale` label.
-    * Merged branches are deleted automatically.
-    * New contributors are welcomed with a friendly message.
-
-### 🏷️ Automation Notes
-
-* The `automerge` label allows for non-interactive merging when all conditions are satisfied.
-* The `work-in-progress` label or a `wip/` branch name disables auto-merge.
-* All required CI jobs must succeed before merging is permitted.
 
 ---
 

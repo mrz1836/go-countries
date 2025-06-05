@@ -20,9 +20,6 @@
         <a href="https://github.com/mrz1836/go-countries/actions">
           <img src="https://img.shields.io/github/actions/workflow/status/mrz1836/go-countries/run-tests.yml?branch=master&logo=github&style=flat" alt="Build status">
         </a><br/>
-		<a href=".github/mergify.yml">
-			<img src="https://img.shields.io/endpoint.svg?url=https://api.mergify.com/v1/badges/mrz1836/go-countries&style=flat&logo=monzo&logoColor=white" alt="Mergify">
-		</a><br/>
         <a href="https://github.com/mrz1836/go-countries/commits/master">
 		  <img src="https://img.shields.io/github/last-commit/mrz1836/go-countries?style=flat&logo=clockify&logoColor=white" alt="Last commit">
 		</a>
