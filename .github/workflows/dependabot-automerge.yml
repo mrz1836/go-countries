@@ -1,0 +1,67 @@
+# ------------------------------------------------------------------------------
+#  Dependabot Automerge Workflow
+#
+#  Purpose   : Automatically merge Dependabot minor version updates after all
+#              required checks pass. Major version updates will trigger an alert
+#              comment for manual review.
+#  Triggers  : Pull request events and completed check runs.
+#  Maintainer: @mrz1836
+# ------------------------------------------------------------------------------
+
+name: dependabot-auto-merge
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened, ready_for_review]
+  pull_request_review:
+    types: [submitted]
+  check_suite:
+    types: [completed]
+  status: {}
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  automerge:
+    if: github.actor == 'dependabot[bot]' || github.actor == 'dependabot-preview[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check version bump
+        id: bump
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const title = context.payload.pull_request.title;
+            const minor = /^Bump[^\s]+ from ([\d]+)\..+ to \1\./.test(title);
+            core.setOutput('is_minor', minor);
+      - name: Alert on major version bump
+        if: steps.bump.outputs.is_minor != 'true'
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            await github.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.pull_request.number,
+              body: '⚠️ @mrz1836: this is a major version bump and requires your attention'
+            });
+      - name: Auto approve minor update
+        if: steps.bump.outputs.is_minor == 'true'
+        uses: hmarr/auto-approve-action@v3
+        with:
+          review-message: Automatically approving dependabot pull request
+      - name: Automerge minor update
+        if: steps.bump.outputs.is_minor == 'true'
+        uses: pascalgn/automerge-action@v0.16.4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MERGE_LABELS: ""
+          MERGE_FILTER_AUTHOR: "dependabot[bot],dependabot-preview[bot]"
+          MERGE_METHOD: merge
+          MERGE_COMMIT_MESSAGE: pull-request-title
+          MERGE_RETRIES: "30"
+          MERGE_RETRY_SLEEP: "60000"
