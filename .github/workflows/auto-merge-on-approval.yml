@@ -92,6 +92,7 @@ jobs:
             const hasWipLabel = labels.includes('work-in-progress');
 
             // Wrap merge in try/catch for error handling
+            // Verbose output for unmet conditions
             if (
               approvals >= 1 &&
               requestedReviewers.length === 0 &&
@@ -113,5 +114,30 @@ jobs:
                 core.setFailed(`Failed to merge PR #${prNumber}: ${error.message}`);
               }
             } else {
-              console.log('Conditions not met for auto-merge.');
+              if (approvals < 1) {
+                console.log('Auto-merge not performed: Less than 1 approval.');
+              }
+              if (requestedReviewers.length > 0) {
+                console.log('Auto-merge not performed: There are still requested reviewers.');
+              }
+              if (changesRequested > 0) {
+                console.log('Auto-merge not performed: There are reviews with "Changes Requested".');
+              }
+              if (!checksPass) {
+                // Find which checks did not pass
+                const failedChecks = requiredChecks.filter(name => {
+                  const run = checkRuns.find(c => c.name === name);
+                  return !(run && run.conclusion === 'success');
+                });
+                console.log(`Auto-merge not performed: The following required checks did not pass: ${failedChecks.join(', ')}`);
+              }
+              if (titleHasWip) {
+                console.log('Auto-merge not performed: PR title contains "WIP".');
+              }
+              if (hasWipLabel) {
+                console.log('Auto-merge not performed: PR has the "work-in-progress" label.');
+              }
+              if (isDraft) {
+                console.log('Auto-merge not performed: PR is a draft.');
+              }
             }
