@@ -52,11 +52,21 @@ jobs:
           script: |
             let pr;
             try {
-              pr = context.payload.pull_request ?? (await github.rest.pulls.get({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                pull_number: context.issue.number,
-              })).data;
+              pr = context.payload.pull_request;
+              if (!pr) {
+                // Try to find PR by commit SHA for check_suite/status events
+                const sha = context.payload.check_suite?.head_sha || context.payload.sha;
+                if (sha) {
+                  const { data: prs } = await github.rest.pulls.list({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    head: `${context.repo.owner}:${sha}`,
+                    state: 'open',
+                  });
+                  pr = prs[0];
+                }
+              }
+              if (!pr) throw { status: 404 };
             } catch (err) {
               if (err.status === 404) {
                 core.info('PR not found (may be closed or deleted), skipping.');
