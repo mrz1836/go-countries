@@ -60,7 +60,7 @@ jobs:
             if (labels.length > 0) {
               try {
                 // Fetch existing labels on the PR
-                const { data: prLabels } = await github.issues.listLabelsOnIssue({
+                const { data: prLabels } = await github.rest.issues.listLabelsOnIssue({
                   owner: context.repo.owner,
                   repo: context.repo.repo,
                   issue_number: context.payload.pull_request.number,
@@ -69,7 +69,7 @@ jobs:
                 // Only add labels that are not already present
                 const toAdd = labels.filter(l => !existing.includes(l));
                 if (toAdd.length > 0) {
-                  await github.issues.addLabels({
+                  await github.rest.issues.addLabels({
                     owner: context.repo.owner,
                     repo: context.repo.repo,
                     issue_number: context.payload.pull_request.number,
@@ -91,7 +91,7 @@ jobs:
             try {
               const assignees = context.payload.pull_request.assignees;
               if (!assignees || assignees.length === 0) {
-                await github.issues.addAssignees({
+                await github.rest.issues.addAssignees({
                   owner: context.repo.owner,
                   repo: context.repo.repo,
                   issue_number: context.payload.pull_request.number,
@@ -113,7 +113,7 @@ jobs:
             const knownBots = ['dependabot[bot]', 'mergify[bot]', 'Copilot', DEFAULT_ASSIGNEE];
             if (!knownBots.includes(author) && context.payload.action === 'opened') {
               try {
-                await github.issues.createComment({
+                await github.rest.issues.createComment({
                   owner: context.repo.owner,
                   repo: context.repo.repo,
                   issue_number: context.payload.pull_request.number,
