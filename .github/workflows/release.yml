@@ -71,3 +71,9 @@ jobs:
           args: release --clean --verbose
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # ———————————————————————————————————————————————
+      # 5. Publish GoDocs
+      # ———————————————————————————————————————————————
+      - name: Publish GoDocs
+        run: make godocs
