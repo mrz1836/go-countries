@@ -342,10 +342,10 @@ Read more about this Go project's [code standards](.github/CODE_STANDARDS.md).
 ## 🤖 AI Compliance
 This project documents expectations for AI assistants using a few dedicated files:
 
-- [AGENTS.md](.github/AGENTS.md) — canonical rules for coding style, workflows, and pull requests.
-- [CLAUDE.md](.github/CLAUDE.md) — quick checklist for the Claude agent.
-- [.cursorrules](.cursorrules) — machine-readable subset of the policies for Cursor and similar tools.
-- [sweep.yaml](.github/sweep.yaml) — rules for Sweep AI, a tool for code review and pull request management.
+- [AGENTS.md](.github/AGENTS.md) — canonical rules for coding style, workflows, and pull requests used by [Codex](https://chatgpt.com/codex).
+- [CLAUDE.md](.github/CLAUDE.md) — quick checklist for the [Claude](https://www.anthropic.com/product) agent.
+- [.cursorrules](.cursorrules) — machine-readable subset of the policies for [Cursor](https://www.cursor.so/) and similar tools.
+- [sweep.yaml](.github/sweep.yaml) — rules for [Sweep](https://github.com/sweepai/sweep), a tool for code review and pull request management.
 
 Edit `AGENTS.md` first when adjusting these policies, and keep the other files in sync within the same pull request.
 
