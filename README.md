@@ -146,11 +146,11 @@ View the generated [documentation](https://pkg.go.dev/github.com/mrz1836/go-coun
 
 ### Functions
 - [`GetAll()`](countries.go): Retrieve the entire slice of all known countries, including metadata such as names, codes, regions, capitals, and currencies
-- [`GetByName("Nigeria")`](countries.go): Lookup a country by its [official name](https://en.wikipedia.org/wiki/ISO_3166), supporting case-insensitive queries
-- [`GetByAlpha2("NG")`](countries.go): Find a country by its [ISO 3166-1 alpha-2 code](https://en.wikipedia.org/wiki/ISO_3166-2), e.g., "US", "GB", "NG"
-- [`GetByAlpha3("NGA")`](countries.go): Retrieve a country by its [ISO 3166-1 alpha-3 code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3), e.g., "USA", "GBR", "NGA"
-- [`GetByCountryCode("566")`](countries.go): Lookup by [ISO 3166 numeric country code](https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes), supporting string or integer input
-- [`GetByISO31662("ISO 3166-2:NG")`](countries.go): Retrieve a country by its [ISO 3166-2 subdivision code](https://en.wikipedia.org/wiki/ISO_3166-2)
+- [`GetByName("United States of America")`](countries.go): Lookup a country by its [official name](https://en.wikipedia.org/wiki/ISO_3166), supporting case-insensitive queries
+- [`GetByAlpha2(countries.Alpha2US)`](countries.go): Find a country by its [ISO 3166-1 alpha-2 code](https://en.wikipedia.org/wiki/ISO_3166-2)
+- [`GetByAlpha3(countries.Alpha3USA)`](countries.go): Retrieve a country by its [ISO 3166-1 alpha-3 code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3)
+- [`GetByCountryCode("840")`](countries.go): Lookup by [ISO 3166 numeric country code](https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes), supporting string or integer input
+- [`GetByISO31662("ISO 3166-2:US")`](countries.go): Retrieve a country by its [ISO 3166-2 subdivision code](https://en.wikipedia.org/wiki/ISO_3166-2)
 
 <br/>
 
