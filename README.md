@@ -323,12 +323,12 @@ Performance benchmarks for the core functions in this library, executed on an Ap
 
 | Function           | Ops/sec (approx) | Time per op | Allocations | Bytes Allocated |
 |--------------------|------------------|-------------|-------------|-----------------|
-| `GetByName`        | 106,792          | 9,522 ns    | 236         | 3,360 B         |
-| `GetByAlpha2`      | 2,252,467        | 535 ns      | 0           | 0 B             |
-| `GetByAlpha3`      | 2,261,076        | 530 ns      | 0           | 0 B             |
-| `GetByCountryCode` | 2,283,768        | 525 ns      | 0           | 0 B             |
-| `GetByISO31662`    | 2,296,578        | 522 ns      | 0           | 0 B             |
-| `GetAll`           | 5,055,123        | 218 ns      | 1           | 2,048 B         |
+| [`GetByName`](countries.go#L66)        | 106,792          | 9,522 ns    | 236         | 3,360 B         |
+| [`GetByAlpha2`](countries.go#L98)      | 2,252,467        | 535 ns      | 0           | 0 B             |
+| [`GetByAlpha3`](countries.go#L130)      | 2,261,076        | 530 ns      | 0           | 0 B             |
+| [`GetByCountryCode`](countries.go#L161) | 2,283,768        | 525 ns      | 0           | 0 B             |
+| [`GetByISO31662`](countries.go#L192)    | 2,296,578        | 522 ns      | 0           | 0 B             |
+| [`GetAll`](countries.go#L221)           | 5,055,123        | 218 ns      | 1           | 2,048 B         |
 
 > These benchmarks reflect fast, allocation-free lookups for most retrieval functions, ensuring optimal performance in production environments.
 
