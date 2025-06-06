@@ -1,9 +1,8 @@
-// Package countries exposes common constants for ISO 3166 country codes.
-//
+package countries
+
 // This file provides predefined string constants for every alpha-2 and
 // alpha-3 code. Using these constants prevents typos and improves IDE
 // autocompletion when referencing specific countries.
-package countries
 
 // Predefined ISO 3166-1 alpha-2 codes.
 const (

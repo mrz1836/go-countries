@@ -14,11 +14,11 @@ func main() {
 	log.Printf("USA alpha-2: %s", usa.Alpha2)
 
 	// Lookup by alpha-2 code (Canada)
-	canada := countries.GetByAlpha2("CA")
+	canada := countries.GetByAlpha2(countries.Alpha2CA)
 	log.Printf("Canada name: %s", canada.Name)
 
 	// Lookup by alpha-3 code (Mexico)
-	mexico := countries.GetByAlpha3("MEX")
+	mexico := countries.GetByAlpha3(countries.Alpha3MEX)
 	log.Printf("Mexico capital: %s", mexico.Capital)
 
 	// Lookup by numeric country code (US)
