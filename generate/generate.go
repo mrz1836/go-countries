@@ -49,6 +49,12 @@ type Country struct {
 	SubRegionCode          string `json:"sub-region-code"`
 }
 
+// mapEntry is a helper struct to hold the key and index of a capital in the sorted list
+type mapEntry struct {
+	Key   string
+	Index int
+}
+
 // CountryList is a slice of Country pointers
 type CountryList []*Country
 
@@ -58,11 +64,6 @@ type CountryList []*Country
 // and then generates a Go source file (`countries_data.go`) containing the combined data as Go structs.
 // The generated file is formatted and ready for use in the main package.
 // This process ensures that the country data remains up to date and consistent with the source JSON.
-type mapEntry struct {
-	Key   string
-	Index int
-}
-
 func main() {
 
 	// Unmarshall the countries

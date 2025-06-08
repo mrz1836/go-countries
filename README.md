@@ -146,12 +146,12 @@ View the generated [documentation](https://pkg.go.dev/github.com/mrz1836/go-coun
 
 ### Functions
 - [`GetAll()`](countries.go): Retrieve the entire slice of all known countries, including metadata such as names, codes, regions, capitals, and currencies
-- [`GetByName("United States of America")`](countries.go): Lookup a country by its [official name](https://en.wikipedia.org/wiki/ISO_3166), supporting case-insensitive queries
 - [`GetByAlpha2(countries.Alpha2US)`](countries.go): Find a country by its [ISO 3166-1 alpha-2 code](https://en.wikipedia.org/wiki/ISO_3166-2)
 - [`GetByAlpha3(countries.Alpha3USA)`](countries.go): Retrieve a country by its [ISO 3166-1 alpha-3 code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3)
-- [`GetByCountryCode("840")`](countries.go): Lookup by [ISO 3166 numeric country code](https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes), supporting string or integer input
 - [`GetByCapital("Washington")`](countries.go): Find a country by its capital city in a case-insensitive search
+- [`GetByCountryCode("840")`](countries.go): Lookup by [ISO 3166 numeric country code](https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes), supporting string or integer input
 - [`GetByISO31662("ISO 3166-2:US")`](countries.go): Retrieve a country by its [ISO 3166-2 subdivision code](https://en.wikipedia.org/wiki/ISO_3166-2)
+- [`GetByName("United States of America")`](countries.go): Lookup a country by its [official name](https://en.wikipedia.org/wiki/ISO_3166), supporting case-insensitive queries
 
 <br/>
 
@@ -324,13 +324,13 @@ Performance benchmarks for the core functions in this library, executed on an Ap
 
 | Function                           | Ops/sec (approx) | Time per op | Allocations | Bytes Allocated |
 |------------------------------------|------------------|-------------|-------------|-----------------|
-| [`GetByName`](countries.go)        | 46,591,038       | 25.54 ns    | 0           | 0 B             |
+| [`GetAll`](countries.go)           | 4,987,554        | 230.1 ns    | 1           | 2,048 B         |
 | [`GetByAlpha2`](countries.go)      | 100,000,000      | 10.27 ns    | 0           | 0 B             |
 | [`GetByAlpha3`](countries.go)      | 81,199,038       | 14.79 ns    | 0           | 0 B             |
+| [`GetByCapital`](countries.go)     | 14,458,791       | 96.31 ns    | 1           | 16 B            |
 | [`GetByCountryCode`](countries.go) | 100,000,000      | 12.85 ns    | 0           | 0 B             |
-| [`GetByCapital`](countries.go)     | 14,458,791       | 96.31 ns    | 1    | 16 B            |
 | [`GetByISO31662`](countries.go)    | 54,605,229       | 21.81 ns    | 0           | 0 B             |
-| [`GetAll`](countries.go)           | 4,987,554        | 230.1 ns    | 1           | 2,048 B         |
+| [`GetByName`](countries.go)        | 46,591,038       | 25.54 ns    | 0           | 0 B             |
 
 > These benchmarks reflect fast, allocation-free lookups for most retrieval functions, ensuring optimal performance in production environments.
 
