@@ -25,20 +25,20 @@ type CountryList []*Country
 
 // Country is the single country in the list of countries (ISO-3166)
 type Country struct {
-	Alpha2                 string `json:"alpha-2"`
-	Alpha3                 string `json:"alpha-3"`
-	Capital                string `json:"capital"`
-	ContinentName          string `json:"continent_name"`
-	CountryCode            string `json:"country-code"`
-	CurrencyCode           string `json:"currency_code"`
-	IntermediateRegion     string `json:"intermediate-region"`
-	IntermediateRegionCode string `json:"intermediate-region-code"`
-	ISO31662               string `json:"iso_3166-2"`
-	Name                   string `json:"name"`
-	Region                 string `json:"region"`
-	RegionCode             string `json:"region-code"`
-	SubRegion              string `json:"sub-region"`
-	SubRegionCode          string `json:"sub-region-code"`
+	Alpha2                 string `json:"alpha-2"`                  // ISO 3166-1 alpha-2 code
+	Alpha3                 string `json:"alpha-3"`                  // ISO 3166-1 alpha-3 code
+	Capital                string `json:"capital"`                  // Capital city of the country
+	ContinentName          string `json:"continent_name"`           // The Name of the continent the country is located in
+	CountryCode            string `json:"country-code"`             // Numeric ISO 3166-1 code
+	CurrencyCode           string `json:"currency_code"`            // ISO 4217 currency code
+	ISO31662               string `json:"iso_3166-2"`               // ISO 3166-2 code for subdivisions
+	IntermediateRegion     string `json:"intermediate-region"`      // Name of the intermediate region (if applicable)
+	IntermediateRegionCode string `json:"intermediate-region-code"` // Code for the intermediate region (if applicable)
+	Name                   string `json:"name"`                     // Name of the country
+	Region                 string `json:"region"`                   // Name of the region the country is located in
+	RegionCode             string `json:"region-code"`              // Code for the region (e.g., continent code)
+	SubRegion              string `json:"sub-region"`               // The Name of the subregion the country is located in
+	SubRegionCode          string `json:"sub-region-code"`          // Code for the sub-region (e.g., continent sub-region code)
 }
 
 // GetByName retrieves a Country by its name in a case-insensitive search.
@@ -63,8 +63,7 @@ type Country struct {
 // - Lookup uses a prebuilt map for constant-time access
 // - The result references the internal Country struct without copying
 func GetByName(name string) *Country {
-	name = strings.ToLower(name)
-	return byName[name]
+	return byName[strings.ToLower(name)]
 }
 
 // GetByAlpha2 retrieves a Country by its alpha-2 code in a case-insensitive search.
@@ -89,8 +88,7 @@ func GetByName(name string) *Country {
 // - Lookup uses a map for constant-time retrieval
 // - Returned pointer references package-level data without copying
 func GetByAlpha2(alpha2 string) *Country {
-	alpha2 = strings.ToUpper(alpha2)
-	return byAlpha2[alpha2]
+	return byAlpha2[strings.ToUpper(alpha2)]
 }
 
 // GetByAlpha3 retrieves a Country using its alpha-3 code in a case-insensitive search.
@@ -115,8 +113,7 @@ func GetByAlpha2(alpha2 string) *Country {
 // - Lookup uses a map for constant-time retrieval
 // - Returned pointer references global data and should not be mutated
 func GetByAlpha3(alpha3 string) *Country {
-	alpha3 = strings.ToUpper(alpha3)
-	return byAlpha3[alpha3]
+	return byAlpha3[strings.ToUpper(alpha3)]
 }
 
 // GetByCountryCode looks up a Country by its numeric code using a case-sensitive comparison.
@@ -165,8 +162,7 @@ func GetByCountryCode(code string) *Country {
 // - Lookup uses a map for constant-time retrieval
 // - Returned pointer references global data and should be treated as read-only
 func GetByISO31662(iso string) *Country {
-	iso = strings.ToUpper(iso)
-	return byISO31662[iso]
+	return byISO31662[strings.ToUpper(iso)]
 }
 
 // GetAll provides a copy of every Country currently loaded.
@@ -189,6 +185,5 @@ func GetByISO31662(iso string) *Country {
 // - The Country pointers reference global data but the returned slice is a copy
 // - Modifying the slice does not alter the package-level slice
 func GetAll() CountryList {
-	clone := append(CountryList(nil), countries...)
-	return clone
+	return append(CountryList(nil), countries...)
 }
