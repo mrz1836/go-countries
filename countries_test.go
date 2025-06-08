@@ -44,6 +44,23 @@ func TestCountries_Loaded(t *testing.T) {
 	assert.Equal(t, "021", usa.SubRegionCode)
 }
 
+// TestLookupMaps_Populated ensures all lookup maps contain every country
+func TestLookupMaps_Populated(t *testing.T) {
+	require.NotNil(t, byName)
+	require.NotNil(t, byAlpha2)
+	require.NotNil(t, byAlpha3)
+	require.NotNil(t, byCode)
+	require.NotNil(t, byISO31662)
+
+	assert.Len(t, byName, 249)
+	assert.Len(t, byAlpha2, 249)
+	assert.Len(t, byAlpha3, 249)
+	assert.Len(t, byCode, 249)
+	assert.Len(t, byISO31662, 249)
+
+	require.Equal(t, GetByAlpha2(testCountryAlpha2), byAlpha2[testCountryAlpha2])
+}
+
 // TestGetByName_VariousFormats tests GetByName with different input cases
 func TestGetByName_VariousFormats(t *testing.T) {
 	tests := []struct {
@@ -87,7 +104,7 @@ func ExampleGetByName() {
 func ExampleGetByName_showAll() {
 	country := GetByName(testCountry)
 	fmt.Printf("%+v\n", country)
-	// Output:&{Alpha2:US Alpha3:USA Capital:Washington ContinentName:North America CountryCode:840 CurrencyCode:USD IntermediateRegion: IntermediateRegionCode: ISO31662:ISO 3166-2:US Name:United States of America Region:Americas RegionCode:019 SubRegion:Northern America SubRegionCode:021}
+	// Output:&{Alpha2:US Alpha3:USA Capital:Washington ContinentName:North America CountryCode:840 CurrencyCode:USD ISO31662:ISO 3166-2:US IntermediateRegion: IntermediateRegionCode: Name:United States of America Region:Americas RegionCode:019 SubRegion:Northern America SubRegionCode:021}
 }
 
 // BenchmarkGetByName benchmarks the method GetByName()
