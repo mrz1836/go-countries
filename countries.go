@@ -45,8 +45,7 @@ type Country struct {
 //
 // This function performs the following steps:
 // - Converts the input name to lowercase for normalization
-// - Iterates over the in-memory list of countries
-//   - Compares each country's lowercase name to the normalized input
+// - Performs a constant-time map lookup using the normalized name
 //
 // - Returns the matching Country pointer when found
 // - Returns nil if no matching country exists
@@ -61,24 +60,18 @@ type Country struct {
 // - None
 //
 // Notes:
-// - The search performs a linear scan over the loaded country list
+// - Lookup uses a prebuilt map for constant-time access
 // - The result references the internal Country struct without copying
 func GetByName(name string) *Country {
 	name = strings.ToLower(name)
-	for _, country := range countries {
-		if strings.ToLower(country.Name) == name {
-			return country
-		}
-	}
-	return nil
+	return byName[name]
 }
 
 // GetByAlpha2 retrieves a Country by its alpha-2 code in a case-insensitive search.
 //
 // This function performs the following steps:
 // - Normalizes the provided code to uppercase
-// - Scans the in-memory list of countries
-//   - Matches the country's alpha-2 field against the normalized code
+// - Performs a constant-time map lookup using the normalized code
 //
 // - Returns the Country pointer on success
 // - Returns nil if no match is located
@@ -93,24 +86,18 @@ func GetByName(name string) *Country {
 // - None
 //
 // Notes:
-// - Search is linear over the preloaded slice of countries
+// - Lookup uses a map for constant-time retrieval
 // - Returned pointer references package-level data without copying
 func GetByAlpha2(alpha2 string) *Country {
 	alpha2 = strings.ToUpper(alpha2)
-	for _, country := range countries {
-		if country.Alpha2 == alpha2 {
-			return country
-		}
-	}
-	return nil
+	return byAlpha2[alpha2]
 }
 
 // GetByAlpha3 retrieves a Country using its alpha-3 code in a case-insensitive search.
 //
 // This function performs the following steps:
 // - Converts the incoming code to uppercase
-// - Iterates through the loaded list of countries
-//   - Compares each country's alpha-3 code with the uppercase input
+// - Performs a constant-time map lookup using the uppercase code
 //
 // - Returns the Country pointer if found
 // - Returns nil when the code is not present
@@ -125,23 +112,17 @@ func GetByAlpha2(alpha2 string) *Country {
 // - None
 //
 // Notes:
-// - Performs a linear scan over the in-memory country slice
+// - Lookup uses a map for constant-time retrieval
 // - Returned pointer references global data and should not be mutated
 func GetByAlpha3(alpha3 string) *Country {
 	alpha3 = strings.ToUpper(alpha3)
-	for _, country := range countries {
-		if country.Alpha3 == alpha3 {
-			return country
-		}
-	}
-	return nil
+	return byAlpha3[alpha3]
 }
 
 // GetByCountryCode looks up a Country by its numeric code using a case-sensitive comparison.
 //
 // This function performs the following steps:
-// - Iterates over the loaded list of countries
-//   - Compares each country's numeric code with the input value
+// - Performs a constant-time map lookup using the numeric code
 //
 // - Returns the Country pointer when a match is found
 // - Returns nil if the code does not exist in the list
@@ -156,23 +137,17 @@ func GetByAlpha3(alpha3 string) *Country {
 // - None
 //
 // Notes:
-// - The search uses a linear scan over the package's country slice
+// - Lookup uses a map for constant-time retrieval
 // - The returned Country pointer references package data directly
 func GetByCountryCode(code string) *Country {
-	for _, country := range countries {
-		if country.CountryCode == code {
-			return country
-		}
-	}
-	return nil
+	return byCode[code]
 }
 
 // GetByISO31662 locates a Country by its ISO 3166-2 code using a case-insensitive match.
 //
 // This function performs the following steps:
 // - Converts the provided code to uppercase for uniform comparison
-// - Scans the internal list of countries
-//   - Compares each country's ISO31662 field with the normalized code
+// - Performs a constant-time map lookup using the normalized code
 //
 // - Returns the Country pointer when a match exists
 // - Returns nil if no matching code is found
@@ -187,16 +162,11 @@ func GetByCountryCode(code string) *Country {
 // - None
 //
 // Notes:
-// - Search iterates sequentially over the slice of countries
+// - Lookup uses a map for constant-time retrieval
 // - Returned pointer references global data and should be treated as read-only
 func GetByISO31662(iso string) *Country {
 	iso = strings.ToUpper(iso)
-	for _, country := range countries {
-		if country.ISO31662 == iso {
-			return country
-		}
-	}
-	return nil
+	return byISO31662[iso]
 }
 
 // GetAll provides a copy of every Country currently loaded.
