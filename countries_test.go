@@ -104,7 +104,7 @@ func ExampleGetByName() {
 func ExampleGetByName_showAll() {
 	country := GetByName(testCountry)
 	fmt.Printf("%+v\n", country)
-	// Output:&{Alpha2:US Alpha3:USA Capital:Washington ContinentName:North America CountryCode:840 CurrencyCode:USD IntermediateRegion: IntermediateRegionCode: ISO31662:ISO 3166-2:US Name:United States of America Region:Americas RegionCode:019 SubRegion:Northern America SubRegionCode:021}
+	// Output:&{Alpha2:US Alpha3:USA Capital:Washington ContinentName:North America CountryCode:840 CurrencyCode:USD ISO31662:ISO 3166-2:US IntermediateRegion: IntermediateRegionCode: Name:United States of America Region:Americas RegionCode:019 SubRegion:Northern America SubRegionCode:021}
 }
 
 // BenchmarkGetByName benchmarks the method GetByName()
