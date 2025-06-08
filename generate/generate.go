@@ -10,6 +10,7 @@ import (
 	"go/format"
 	"log"
 	"os"
+	"sort"
 	"strings"
 	"text/template"
 	"time"
@@ -57,6 +58,11 @@ type CountryList []*Country
 // and then generates a Go source file (`countries_data.go`) containing the combined data as Go structs.
 // The generated file is formatted and ready for use in the main package.
 // This process ensures that the country data remains up to date and consistent with the source JSON.
+type mapEntry struct {
+	Key   string
+	Index int
+}
+
 func main() {
 
 	// Unmarshall the countries
@@ -72,6 +78,9 @@ func main() {
 	}
 
 	// Loop and combine the data
+	capitalSeen := make(map[string]struct{})
+	var capitalEntries []mapEntry
+
 	for index, country := range c {
 
 		// Loop alternate data
@@ -82,7 +91,19 @@ func main() {
 				c[index].CurrencyCode = altCountry.CurrencyCode
 			}
 		}
+
+		if country.Capital != "" {
+			key := strings.ToLower(country.Capital)
+			if _, ok := capitalSeen[key]; !ok {
+				capitalSeen[key] = struct{}{}
+				capitalEntries = append(capitalEntries, mapEntry{Key: key, Index: index})
+			}
+		}
 	}
+
+	sort.Slice(capitalEntries, func(i, j int) bool {
+		return capitalEntries[i].Key < capitalEntries[j].Key
+	})
 
 	// Repo URL
 	const url = "https://github.com/mrz1836/go-countries"
@@ -105,10 +126,12 @@ func main() {
 		Timestamp time.Time
 		URL       string
 		Countries CountryList
+		Capitals  []mapEntry
 	}{
 		Timestamp: time.Now(),
 		URL:       url,
 		Countries: c,
+		Capitals:  capitalEntries,
 	}); err != nil {
 		log.Fatalf("package template execution failed: %v", err)
 	}
@@ -177,6 +200,12 @@ var (
         byCode = map[string]*Country{
         {{- range $index, $c := .Countries }}
                 {{ printf "%q" $c.CountryCode }}: countries[{{ $index }}],
+        {{- end }}
+        }
+
+        byCapital = map[string]*Country{
+        {{- range $_, $pair := .Capitals }}
+                {{ printf "%q" $pair.Key }}: countries[{{ $pair.Index }}],
         {{- end }}
         }
 

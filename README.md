@@ -150,6 +150,7 @@ View the generated [documentation](https://pkg.go.dev/github.com/mrz1836/go-coun
 - [`GetByAlpha2(countries.Alpha2US)`](countries.go): Find a country by its [ISO 3166-1 alpha-2 code](https://en.wikipedia.org/wiki/ISO_3166-2)
 - [`GetByAlpha3(countries.Alpha3USA)`](countries.go): Retrieve a country by its [ISO 3166-1 alpha-3 code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3)
 - [`GetByCountryCode("840")`](countries.go): Lookup by [ISO 3166 numeric country code](https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes), supporting string or integer input
+- [`GetByCapital("Washington")`](countries.go): Find a country by its capital city in a case-insensitive search
 - [`GetByISO31662("ISO 3166-2:US")`](countries.go): Retrieve a country by its [ISO 3166-2 subdivision code](https://en.wikipedia.org/wiki/ISO_3166-2)
 
 <br/>
@@ -327,6 +328,7 @@ Performance benchmarks for the core functions in this library, executed on an Ap
 | [`GetByAlpha2`](countries.go)      | 100,000,000      | 10.27 ns    | 0           | 0 B             |
 | [`GetByAlpha3`](countries.go)      | 81,199,038       | 14.79 ns    | 0           | 0 B             |
 | [`GetByCountryCode`](countries.go) | 100,000,000      | 12.85 ns    | 0           | 0 B             |
+| [`GetByCapital`](countries.go)     | 14,458,791       | 96.31 ns    | 1    | 16 B            |
 | [`GetByISO31662`](countries.go)    | 54,605,229       | 21.81 ns    | 0           | 0 B             |
 | [`GetAll`](countries.go)           | 4,987,554        | 230.1 ns    | 1           | 2,048 B         |
 
