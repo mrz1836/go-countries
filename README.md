@@ -170,7 +170,7 @@ To generate the Go code for the country data, follow these steps:
 2. **Run the `go generate` command**:
 
    ```bash
-   go generate ./generate/...
+   go generate -x ./generate/...
    ```
 
 This command executes the code generation logic defined in the `generate.go` file located in the `/generate/` directory.
@@ -323,12 +323,12 @@ Performance benchmarks for the core functions in this library, executed on an Ap
 
 | Function                           | Ops/sec (approx) | Time per op | Allocations | Bytes Allocated |
 |------------------------------------|------------------|-------------|-------------|-----------------|
-| [`GetByName`](countries.go)        | 106,792          | 9,522 ns    | 236         | 3,360 B         |
-| [`GetByAlpha2`](countries.go)      | 2,252,467        | 535 ns      | 0           | 0 B             |
-| [`GetByAlpha3`](countries.go)      | 2,261,076        | 530 ns      | 0           | 0 B             |
-| [`GetByCountryCode`](countries.go) | 2,283,768        | 525 ns      | 0           | 0 B             |
-| [`GetByISO31662`](countries.go)    | 2,296,578        | 522 ns      | 0           | 0 B             |
-| [`GetAll`](countries.go)           | 5,055,123        | 218 ns      | 1           | 2,048 B         |
+| [`GetByName`](countries.go)        | 46,591,038       | 25.54 ns    | 0           | 0 B             |
+| [`GetByAlpha2`](countries.go)      | 100,000,000      | 10.27 ns    | 0           | 0 B             |
+| [`GetByAlpha3`](countries.go)      | 81,199,038       | 14.79 ns    | 0           | 0 B             |
+| [`GetByCountryCode`](countries.go) | 100,000,000      | 12.85 ns    | 0           | 0 B             |
+| [`GetByISO31662`](countries.go)    | 54,605,229       | 21.81 ns    | 0           | 0 B             |
+| [`GetAll`](countries.go)           | 4,987,554        | 230.1 ns    | 1           | 2,048 B         |
 
 > These benchmarks reflect fast, allocation-free lookups for most retrieval functions, ensuring optimal performance in production environments.
 
