@@ -58,7 +58,7 @@ func TestLookupMaps_Populated(t *testing.T) {
 	assert.Len(t, byCode, 249)
 	assert.Len(t, byISO31662, 249)
 
-	require.Equal(t, GetByAlpha2(testCountryAlpha2), byName[testCountry])
+	require.Equal(t, GetByAlpha2(testCountryAlpha2), byAlpha2[testCountryAlpha2])
 }
 
 // TestGetByName_VariousFormats tests GetByName with different input cases
