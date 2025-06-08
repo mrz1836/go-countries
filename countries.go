@@ -140,6 +140,31 @@ func GetByCountryCode(code string) *Country {
 	return byCode[code]
 }
 
+// GetByCapital retrieves a Country by its capital city in a case-insensitive search.
+//
+// This function performs the following steps:
+// - Converts the provided capital name to lowercase
+// - Performs a constant-time map lookup using the normalized name
+//
+// - Returns the Country pointer when a match exists
+// - Returns nil if the capital is not found
+//
+// Parameters:
+// - capital: the capital city used for the lookup
+//
+// Returns:
+// - Pointer to the Country struct, or nil when no match is found
+//
+// Side Effects:
+// - None
+//
+// Notes:
+// - Lookup uses a prebuilt map for constant-time retrieval
+// - Returned pointer references package data directly
+func GetByCapital(capital string) *Country {
+	return byCapital[strings.ToLower(capital)]
+}
+
 // GetByISO31662 locates a Country by its ISO 3166-2 code using a case-insensitive match.
 //
 // This function performs the following steps:

@@ -2,6 +2,7 @@ package countries
 
 import (
 	"fmt"
+	"strings"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -9,11 +10,12 @@ import (
 )
 
 const (
-	testCountry       = "united states of america"
-	testCountryAlpha2 = "US"
-	testCountryAlpha3 = "USA"
-	testCountryCode   = "840"
-	testCountryISO    = "ISO 3166-2:US"
+	testCountry        = "united states of america"
+	testCountryAlpha2  = "US"
+	testCountryAlpha3  = "USA"
+	testCountryCode    = "840"
+	testCountryISO     = "ISO 3166-2:US"
+	testCountryCapital = "Washington"
 )
 
 // TestCountries_Loaded tests that the country data is preloaded
@@ -51,12 +53,14 @@ func TestLookupMaps_Populated(t *testing.T) {
 	require.NotNil(t, byAlpha3)
 	require.NotNil(t, byCode)
 	require.NotNil(t, byISO31662)
+	require.NotNil(t, byCapital)
 
 	assert.Len(t, byName, 249)
 	assert.Len(t, byAlpha2, 249)
 	assert.Len(t, byAlpha3, 249)
 	assert.Len(t, byCode, 249)
 	assert.Len(t, byISO31662, 249)
+	assert.GreaterOrEqual(t, len(byCapital), 240)
 
 	require.Equal(t, GetByAlpha2(testCountryAlpha2), byAlpha2[testCountryAlpha2])
 }
@@ -248,6 +252,50 @@ func ExampleGetByCountryCode() {
 func BenchmarkGetByCountryCode(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		_ = GetByCountryCode(testCountryCode)
+	}
+}
+
+// TestGetByCapital tests the GetByCapital function.
+func TestGetByCapital_VariousFormats(t *testing.T) {
+	tests := []struct {
+		name      string
+		input     string
+		expected  string
+		expectNil bool
+	}{
+		{name: "Valid case", input: testCountryCapital, expected: testCountryCapital},
+		{name: "Lowercase", input: strings.ToLower(testCountryCapital), expected: testCountryCapital},
+		{name: "Invalid", input: "NoCity", expectNil: true},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			country := GetByCapital(tt.input)
+			if tt.expectNil {
+				require.Nil(t, country)
+				return
+			}
+
+			require.NotNil(t, country)
+			assert.Equal(t, tt.expected, country.Capital)
+		})
+	}
+}
+
+// ExampleGetByCapital is an example of GetByCapital()
+func ExampleGetByCapital() {
+	country := GetByCapital(testCountryCapital)
+	fmt.Printf(
+		"country: %s capital: %s",
+		country.Name, country.Capital,
+	)
+	// Output:country: United States of America capital: Washington
+}
+
+// BenchmarkGetByCapital benchmarks the method GetByCapital()
+func BenchmarkGetByCapital(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		_ = GetByCapital(testCountryCapital)
 	}
 }
 
