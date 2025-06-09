@@ -324,13 +324,13 @@ Performance benchmarks for the core functions in this library, executed on an Ap
 
 | Function                           | Ops/sec (approx) | Time per op | Allocations | Bytes Allocated |
 |------------------------------------|------------------|-------------|-------------|-----------------|
-| [`GetAll`](countries.go)           | 4,987,554        | 230.1 ns    | 1           | 2,048 B         |
-| [`GetByAlpha2`](countries.go)      | 100,000,000      | 10.27 ns    | 0           | 0 B             |
-| [`GetByAlpha3`](countries.go)      | 81,199,038       | 14.79 ns    | 0           | 0 B             |
-| [`GetByCapital`](countries.go)     | 14,458,791       | 96.31 ns    | 1           | 16 B            |
-| [`GetByCountryCode`](countries.go) | 100,000,000      | 12.85 ns    | 0           | 0 B             |
-| [`GetByISO31662`](countries.go)    | 54,605,229       | 21.81 ns    | 0           | 0 B             |
-| [`GetByName`](countries.go)        | 46,591,038       | 25.54 ns    | 0           | 0 B             |
+| [`GetAll`](countries.go)           | 5,263,413        | 225.4 ns    | 1           | 2,048 B         |
+| [`GetByAlpha2`](countries.go)      | 100,000,000      | 10.36 ns    | 0           | 0 B             |
+| [`GetByAlpha3`](countries.go)      | 100,000,000      | 10.97 ns    | 0           | 0 B             |
+| [`GetByCapital`](countries.go)     | 33,426,183       | 35.19 ns    | 1           | 16 B            |
+| [`GetByCountryCode`](countries.go) | 100,467,049      | 11.10 ns    | 0           | 0 B             |
+| [`GetByISO31662`](countries.go)    | 59,682,316       | 20.16 ns    | 0           | 0 B             |
+| [`GetByName`](countries.go)        | 46,466,527       | 25.66 ns    | 0           | 0 B             |
 
 > These benchmarks reflect fast, allocation-free lookups for most retrieval functions, ensuring optimal performance in production environments.
 
