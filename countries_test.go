@@ -902,3 +902,27 @@ func TestAlphaCodes_Constants(t *testing.T) {
 	assert.Equal(t, Alpha3ZMB, "ZMB")
 	assert.Equal(t, Alpha3ZWE, "ZWE")
 }
+
+func TestCountryCapitals_Correctness(t *testing.T) {
+	tests := []struct {
+		name        string
+		countryName string
+		expected    string
+	}{
+		{name: "Afghanistan", countryName: "Afghanistan", expected: "Kabul"},
+		{name: "Australia", countryName: "Australia", expected: "Canberra"},
+		{name: "Brazil", countryName: "Brazil", expected: "Brasília"},
+		{name: "Canada", countryName: "Canada", expected: "Ottawa"},
+		{name: "France", countryName: "France", expected: "Paris"},
+		{name: "Japan", countryName: "Japan", expected: "Tokyo"},
+		{name: "United Kingdom", countryName: "United Kingdom of Great Britain and Northern Ireland", expected: "London"},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			country := GetByName(tt.countryName)
+			require.NotNil(t, country)
+			assert.Equal(t, tt.expected, country.Capital)
+		})
+	}
+}
