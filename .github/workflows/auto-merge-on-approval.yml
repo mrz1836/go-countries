@@ -80,15 +80,15 @@ jobs:
                       // ------------------------------------------------------------------
                       // Skip PRs authored by bots (Dependabot / Codecov / etc.)
                       // ------------------------------------------------------------------
-                      const botLogins = [
-                        'dependabot[bot]',
-                        'dependabot-preview[bot]',
-                        'codecov[bot]',
-                      ];
-                      if (botLogins.includes(pr.user.login)) {
-                        core.info(`Skipping auto‑merge for bot‑authored PR (#${pr.number})`);
-                        return;
-                      }
+                      //const botLogins = [
+                      //  'dependabot[bot]',
+                      //  'dependabot-preview[bot]',
+                      //  'codecov[bot]',
+                      //];
+                      //if (botLogins.includes(pr.user.login)) {
+                      //  core.info(`Skipping auto‑merge for bot‑authored PR (#${pr.number})`);
+                      //  return;
+                      //}
 
                       // ------------------------------------------------------------------
                       // Gather PR metadata
