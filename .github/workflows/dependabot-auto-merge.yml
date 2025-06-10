@@ -69,7 +69,7 @@ jobs:
       # --- Auto approve minor/patch version bump PRs ---
       - name: Auto approve minor update
         if: steps.bump.outputs.is_minor == 'true'
-        uses: hmarr/auto-approve-action@v3
+        uses: hmarr/auto-approve-action@v4
         with:
           review-message: Automatically approving dependabot pull request
 
