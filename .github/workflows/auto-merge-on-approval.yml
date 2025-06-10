@@ -58,15 +58,17 @@ jobs:
                       // ------------------------------------------------------------------
                       // Locate the pull request (handles pull_request, check_suite, status)
                       // ------------------------------------------------------------------
+                      const owner = context.payload.repository.owner.login;
+                      const repo = context.payload.repository.name;
                       let pr = context.payload.pull_request;
                       if (!pr) {
                         // check_suite/status → find PR by HEAD SHA
                         const sha = context.payload.check_suite?.head_sha || context.payload.sha;
                         if (sha) {
                           const { data: prs } = await github.rest.pulls.list({
-                            owner: context.repo.owner,
-                            repo:  context.repo.repo,
-                            head:  `${context.repo.owner}:${sha}`,
+                            owner,
+                            repo,
+                            head:  `${owner}:${sha}`,
                             state: 'open',
                           });
                           pr = prs[0];
@@ -100,7 +102,8 @@ jobs:
 
                       // Reviews
                       const { data: reviews } = await github.rest.pulls.listReviews({
-                        ...github.context.repo,
+                        owner,
+                        repo,
                         pull_number: prNumber,
                       });
                       const approvals        = reviews.filter(r => r.state === 'APPROVED').length;
@@ -118,7 +121,8 @@ jobs:
                       ];
                       const sha = pr.head.sha;
                       const { data: checks } = await github.rest.checks.listForRef({
-                        ...github.context.repo,
+                        owner,
+                        repo,
                         ref: sha,
                       });
                       const checkRuns = checks.check_runs || [];
@@ -145,7 +149,8 @@ jobs:
                       ) {
                         try {
                           await github.rest.pulls.merge({
-                            ...github.context.repo,
+                            owner,
+                            repo,
                             pull_number: prNumber,
                             merge_method: 'merge',
                           });
