@@ -53,8 +53,7 @@ jobs:
               with:
                   github-token: ${{ secrets.GITHUB_TOKEN }}
                   script: |
-                      const core    = require('@actions/core');
-                      const github  = require('@actions/github');
+                      // core and github are already available in github-script
 
                       // ------------------------------------------------------------------
                       // Locate the pull request (handles pull_request, check_suite, status)
