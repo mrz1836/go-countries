@@ -58,15 +58,15 @@ jobs:
                       // ------------------------------------------------------------------
                       // Locate the pull request (handles pull_request, check_suite, status)
                       // ------------------------------------------------------------------
-                      let pr = github.context.payload.pull_request;
+                      let pr = context.payload.pull_request;
                       if (!pr) {
                         // check_suite/status → find PR by HEAD SHA
-                        const sha = github.context.payload.check_suite?.head_sha || github.context.payload.sha;
+                        const sha = context.payload.check_suite?.head_sha || context.payload.sha;
                         if (sha) {
                           const { data: prs } = await github.rest.pulls.list({
-                            owner: github.context.repo.owner,
-                            repo:  github.context.repo.repo,
-                            head:  `${github.context.repo.owner}:${sha}`,
+                            owner: context.repo.owner,
+                            repo:  context.repo.repo,
+                            head:  `${context.repo.owner}:${sha}`,
                             state: 'open',
                           });
                           pr = prs[0];
