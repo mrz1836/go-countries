@@ -1,9 +1,7 @@
-Fixes #
-
 ## What Changed
 - 
 
-## Why It Was Needed
+## Why It Was Necessary
 - 
 
 ## Testing Performed
