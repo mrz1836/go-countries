@@ -104,6 +104,16 @@ We use the `testify` suite for unit tests. All tests must follow these conventio
 * **Do not use** `t.Parallel()` unless explicitly testing concurrent behavior
 * Avoid flaky, timing-sensitive, or non-deterministic tests
 
+### 🔍 Fuzz Tests (Optional)
+
+Fuzz tests help uncover unexpected edge cases by generating random inputs. While not required, they are encouraged for **small, self-contained functions**.
+
+Best practices:
+* Keep fuzz targets short and deterministic
+* Seed the corpus with meaningful values
+* Run fuzzers with `go test -fuzz=. -run=^$` when exploring edge cases
+* Limit iterations for local runs to maintain speed
+
 Run tests locally with:
 
 ```bash
