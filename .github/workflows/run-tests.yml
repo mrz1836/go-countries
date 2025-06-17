@@ -122,6 +122,7 @@ jobs:
       # 7. Scan for vulnerabilities with govulncheck
       # ————————————————————————————————————————————————————————————————
       - name: Run govulncheck
+        if: matrix.go-version == '1.24.x' # There is a current issue with govulncheck on 1.22.x and 1.23.x
         run: make govulncheck
 
       # ————————————————————————————————————————————————————————————————
