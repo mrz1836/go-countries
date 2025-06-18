@@ -1,20 +1,53 @@
-# Support Guidelines
+# 🛟 Support Guide
 
-This document explains how to get help with **go-countries**.
+Need help with **go-countries**? You're in the right place. Here’s how to get support, report issues, and stay aligned with project guidelines.
 
-## Questions and Discussion
-- Search existing [discussions](https://github.com/mrz1836/go-countries/discussions) for similar topics.
-- If you cannot find an answer, start a new discussion.
+---
 
-## Reporting Issues
-- Look through the [issue tracker](https://github.com/mrz1836/go-countries/issues) for existing bugs.
-- Open a new issue if your problem has not been reported and provide steps to reproduce.
+## 💬 Questions & Discussion
 
-## Security Vulnerabilities
-- For potential security issues, do **not** open a public issue.
-- Follow the steps in our [security policy](SECURITY.md) instead.
+Before asking, check the existing threads:
 
-## Direct Contact
-For private inquiries, reach the maintainers at [go-countries@mrz1818.com](mailto:go-countries@mrz1818.com).
+* 🔍 Search [Discussions](https://github.com/mrz1836/go-countries/discussions)
+* 🆕 Can’t find what you need? Start a new topic and ask away!
 
-We appreciate your interest and will do our best to help you.
+---
+
+## 🐞 Reporting Issues
+
+Found a bug?
+
+1. Check the [issue tracker](https://github.com/mrz1836/go-countries/issues) to avoid duplicates.
+2. If it’s new, open an issue with:
+
+	* Clear steps to reproduce
+	* Expected vs. actual behavior
+	* Relevant code or inputs
+
+More detail = faster fixes ✅
+
+---
+
+## 🔐 Security Vulnerabilities
+
+Security first:
+
+* **Do not** report vulnerabilities in public issues.
+* Follow our [Security Policy](SECURITY.md) for confidential disclosure.
+
+---
+
+## 🧭 Project Standards
+
+Everything from commit rules to contributor expectations is in [AGENTS.md](./AGENTS.md). If you’re contributing or troubleshooting, **read it first**.
+
+---
+
+## 📬 Private Contact
+
+For sensitive or non-public concerns, reach out to:
+📧 [go-countries@mrz1818.com](mailto:go-countries@mrz1818.com)
+
+---
+
+Thanks for your interest and support — we’re here to help, and we appreciate your contributions. 🚀
