@@ -2,7 +2,11 @@
 
 Security is a priority. We maintain a proactive stance to identify and fix vulnerabilities in **go-countries**.
 
+<br/>
+
 ---
+
+<br/>
 
 ## 🛠️ Supported & Maintained Versions
 
@@ -10,7 +14,11 @@ Security is a priority. We maintain a proactive stance to identify and fix vulne
 |---------|----------------------|
 | 1.x.x   | ✅ Supported & Active |
 
+<br/>
+
 ---
+
+<br/>
 
 ## 📨 Reporting a Vulnerability
 
@@ -27,7 +35,11 @@ Include the following:
 
 We welcome responsible disclosures from researchers, vendors, users, and curious tinkerers alike.
 
+<br/>
+
 ---
+
+<br/>
 
 ## 📅 What to Expect
 
@@ -37,7 +49,11 @@ We welcome responsible disclosures from researchers, vendors, users, and curious
 
 Prefer encrypted comms? Let us know in your initial email—we’ll reply with our PGP public key. All official security responses are signed with it.
 
+<br/>
+
 ---
+
+<br/>
 
 ## 🧪 Security Tooling
 
@@ -52,3 +68,13 @@ make govulncheck
 ```
 
 This will check your local build for known issues in Go modules.
+
+<br/>
+
+---
+
+<br/>
+
+## 🛡️ Security Standards
+
+We follow the [OpenSSF](https://openssf.org) best practices to ensure this repository remains compliant with industry‑standard open source security guidelines

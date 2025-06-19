@@ -10,7 +10,11 @@ It is designed to help AI assistants (e.g., Codex, Claude, Cursor, Sweep AI) and
 
 Additional `AGENTS.md` files **may exist in subdirectories** to provide more contextual or specialized guidance. These local agent files are allowed to **extend or override** the root rules to fit the needs of specific packages, services, or engineering domains—while still respecting the spirit of consistency and quality defined here.
 
+<br/>
+
 ---
+
+<br/>
 
 ## 🔍 Project Overview
 
@@ -21,6 +25,8 @@ Additional `AGENTS.md` files **may exist in subdirectories** to provide more con
 * Examples and tests accompany the source code, demonstrating usage and maintain correctness.
 
 ---
+
+<br/>
 
 ## 📁 Directory Structure
 | Directory   | Description                                                         |
@@ -33,6 +39,8 @@ Additional `AGENTS.md` files **may exist in subdirectories** to provide more con
 | `.` (root)  | Source files, tests, and generated code for the `countries` package |
 
 ---
+
+<br/>
 
 ### 📚 Related Governance Documents
 
@@ -47,7 +55,11 @@ For more detailed guidance and supporting documentation, refer to the following 
 * `SECURITY.md` — Vulnerability reporting and security process
 * `SUPPORT.md` — How to get help or request new features
 
+<br/>
+
 ---
+
+<br/>
 
 ## 🛠 Makefile Overview
 
@@ -65,11 +77,17 @@ building binaries, and updating dependencies. Targets such as `lint`, `test`,
 
 Use `make help` to view the full list of supported commands.
 
+<br/>
+
 ---
+
+<br/>
 
 ## 🧪 Development, Testing & Coverage Standards
 
 All contributors—human or AI—must follow these standards to ensure high-quality, maintainable, and idiomatic Go code throughout the project.
+
+<br/><br/>
 
 ### 🛠 Formatting & Linting
 
@@ -88,6 +106,8 @@ Editors should honor `.editorconfig` for indentation and whitespace rules, and
 Git respects `.gitattributes` to enforce consistent line endings across
 platforms.
 
+<br/><br/>
+
 ### 🧪 Testing Standards
 
 We use the `testify` suite for unit tests. All tests must follow these conventions:
@@ -95,14 +115,24 @@ We use the `testify` suite for unit tests. All tests must follow these conventio
 * Name tests using the pattern: `TestFunctionName_ScenarioDescription`
 * Use `testify/assert` for general assertions
 * Use `testify/require` for:
-    * All error or nil checks
-    * Any test where failure should halt execution
-    * Any test where a pointer or complex structure is required to be used after the check
+	* All error or nil checks
+	* Any test where failure should halt execution
+	* Any test where a pointer or complex structure is required to be used after the check
 * Use `require.InDelta` or `require.InEpsilon` for floating-point comparisons
 * Prefer **table-driven tests** for clarity and reusability
 * Use subtests (`t.Run`) to isolate and describe scenarios
-* **Do not use** `t.Parallel()` unless explicitly testing concurrent behavior
+* **Optionally use** `t.Parallel()` , but try and avoid it unless testing for concurrency issues
 * Avoid flaky, timing-sensitive, or non-deterministic tests
+
+Run tests locally with:
+
+```bash
+go test ./...
+```
+
+> All tests must pass in CI prior to merge.
+
+<br/><br/>
 
 ### 🔍 Fuzz Tests (Optional)
 
@@ -114,25 +144,27 @@ Best practices:
 * Run fuzzers with `go test -fuzz=. -run=^$` when exploring edge cases
 * Limit iterations for local runs to maintain speed
 
-Run tests locally with:
-
-```bash
-go test ./...
-```
-
-> All tests must pass in CI prior to merge.
+<br/><br/>
 
 ### 📈 Code Coverage
 
 * Code coverage thresholds and rules are defined in `codecov.yml`
 * Aim to provide meaningful test coverage for all new logic and edge cases
-* Avoid meaningless coverage (e.g., testing getters/setters or boilerplate)
+* Cover every public function with at least one test
+* Aim for at least 80% coverage across the codebase
+* Use `go test -coverprofile=coverage.out ./...` to generate coverage reports
+
+<br/>
 
 ---
+
+<br/>
 
 ## ✍️ Naming Conventions
 
 Follow Go naming idioms and the standards outlined in [Effective Go](https://go.dev/doc/effective_go):
+
+<br/><br/>
 
 ### Packages
 
@@ -166,11 +198,17 @@ Follow Go naming idioms and the standards outlined in [Effective Go](https://go.
 * Single-method: use `-er` suffix (e.g., `Reader`, `Closer`)
 * Multi-method: use role-based names (e.g., `FileSystem`, `StateManager`)
 
+<br/>
+
 ---
+
+<br/>
 
 ## 📘 Commenting Standards
 
 Great engineers write great comments. You're not here to state the obvious—you're here to document decisions, highlight edge cases, and make sure the next dev (or AI) doesn't repeat your mistakes.
+
+<br/><br/>
 
 ### 🧠 Guiding Principles
 
@@ -190,7 +228,7 @@ Great engineers write great comments. You're not here to state the obvious—you
 
   > Treat them like UX copy. Make them clear, concise, and professional. You're writing for peers, not compilers.
 
----
+<br/><br/>
 
 ### 🔤 Function Comments (Exported)
 
@@ -199,12 +237,11 @@ Every exported function **must** include a Go-style comment that:
 * Starts with the function name
 * States its purpose clearly
 * Documents:
-  * **Steps**: Include if the function performs a non-obvious sequence of operations.
-  * **Parameters**: Always describe all parameters when present.
-  * **Return values**: Document return types and their meaning if not trivially understood.
-  * **Side effects**: Note any I/O, database writes, external calls, or mutations that aren't local to the function.
-  * **Notes**: Include any assumptions, constraints, or important context that the caller should know.
-
+	* **Steps**: Include if the function performs a non-obvious sequence of operations.
+	* **Parameters**: Always describe all parameters when present.
+	* **Return values**: Document return types and their meaning if not trivially understood.
+	* **Side effects**: Note any I/O, database writes, external calls, or mutations that aren't local to the function.
+	* **Notes**: Include any assumptions, constraints, or important context that the caller should know.
 
 Here is a template for function comments that is recommended to use:
 
@@ -234,16 +271,16 @@ Here is a template for function comments that is recommended to use:
 // - [Mention if this function is part of a larger workflow or job system]
 ```
 
----
+<br/><br/>
 
 ### 📦 Package-Level Comments
 
 * Each package **must** include a package-level comment in a file named after the package (e.g., `auth.go` for package `auth`).
 * If no logical file fits, add a `doc.go` with the comment block.
 * Use it to explain:
-    * The package purpose
-    * High-level API boundaries
-    * Expected use-cases and design notes
+	* The package purpose
+	* High-level API boundaries
+	* Expected use-cases and design notes
 
 Here is a template for package comments that is recommended to use:
 
@@ -272,7 +309,7 @@ Here is a template for package comments that is recommended to use:
 package PackageName
 ```
 
----
+<br/><br/>
 
 ### 🧱 Inline Comments
 
@@ -283,9 +320,10 @@ Use inline comments **strategically**, not excessively.
 * Avoid obvious noise:
 
 🚫 `i++ // increment i`
+
 ✅ `// Skip empty rows to avoid panic on CSV parse`
 
----
+<br/><br/>
 
 ### ⚙️ Comment Style
 
@@ -293,11 +331,11 @@ Use inline comments **strategically**, not excessively.
 * Keep your tone **precise, confident, and modern**—you're not writing a novel, but you're also not writing legacy COBOL.
 * Avoid filler like "simple function" or "just does X".
 * Don't leave TODOs unless:
-    * They are immediately actionable
-    * (or) they reference an issue
-    * They include a timestamp or owner
+	* They are immediately actionable
+	* (or) they reference an issue
+	* They include a timestamp or owner
 
----
+<br/><br/>
 
 ### 🧬 AI Agent Directives
 
@@ -308,7 +346,7 @@ If you're an AI contributing code:
 * Avoid hallucinating context—if you're unsure, omit or tag with `// AI: review this logic`
 * Flag areas of uncertainty or external dependency (e.g., "// AI: relies on external config structure")
 
----
+<br/><br/>
 
 ### 🔥 Comment Hygiene
 
@@ -316,7 +354,11 @@ If you're an AI contributing code:
 * Keep comments synced with refactoring.
 * Use `//nolint:<linter> // message` only with clear, justified context and explanation.
 
+<br/>
+
 ---
+
+<br/>
 
 ## 📝 Modifying Markdown Documents
 
@@ -332,27 +374,35 @@ Markdown files (e.g., `README.md`, `AGENTS.md`, `CONTRIBUTING.md`) are first-cla
 
 > Markdown updates should be treated with the same care as code—clean, purposeful, and reviewed.
 
+<br/>
+
 ---
+
+<br/>
 
 ## 🚨 Error Handling (Go)
 
 * Always check errors
-
-```go
-if err != nil {
-  return err
-}
-```
-
+* Use `if err != nil { return err }` for early returns
+* Use `errors.Is()` or `errors.As()` for error type checks
+* Use `fmt.Errorf` for wrapping errors with context
 * Prefer `errors.New()` over `fmt.Errorf`
 * Use custom error types sparingly
 * Avoid returning ambiguous errors; provide context
+* Use `errors.Unwrap()` to access underlying errors when needed
+* Use `errors.Join()` to combine multiple errors when appropriate
+
+<br/>
 
 ---
+
+<br/>
 
 ## 🔀 Commit & Branch Naming Conventions
 
 Clear history ⇒ easy maintenance. Follow these rules for every commit and branch.
+
+<br/><br/>
 
 ### 📌 Commit Message Format
 
@@ -363,32 +413,34 @@ Clear history ⇒ easy maintenance. Follow these rules for every commit and bran
 ```
 
 * **`<type>`** — `feat`, `fix`, `docs`, `test`, `refactor`, `chore`, `build`, `ci`
-* **`<scope>`** — Affected subsystem or package (e.g., `api`, `countries`, `deps`). Omit if global.
+* **`<scope>`** — Affected subsystem or package (e.g., `api`, `deps`). Omit if global.
 * **Short description** — ≤ 50 chars, imperative mood ("add pagination", "fix panic")
 * **Body** (optional) — What & why, links to issues (`Closes #123`), and breaking‑change note (`BREAKING CHANGE:`)
 
 **Examples**
 
 ```
-feat(countries): add Alpha-3 lookup by numeric code
+feat(package): add new method Thing()
 fix(generator): handle malformed JSON input gracefully
 docs(README): improve installation instructions
 ```
 
 > Commits that only tweak whitespace, comments, or docs inside a PR may be squashed; otherwise preserve granular commits.
 
+<br/><br/>
+
 ### 🌱 Branch Naming
 
 | Purpose            | Prefix      | Example                            |
 |--------------------|-------------|------------------------------------|
-| Feature            | `feat/`     | `feat/pagination-api`              |
-| Bug Fix            | `fix/`      | `fix/country-code-off-by-one`      |
-| Documentation      | `docs/`     | `docs/agents-commenting-standards` |
-| Refactor / Cleanup | `refactor/` | `refactor/remove-dead-code`        |
-| Tests              | `test/`     | `test/generator-edge-cases`        |
+| Bug Fix            | `fix/`      | `fix/code-off-by-one`              |
 | Chore / Meta       | `chore/`    | `chore/upgrade-go-1.23`            |
+| Documentation      | `docs/`     | `docs/agents-commenting-standards` |
+| Feature            | `feat/`     | `feat/pagination-api`              |
 | Hotfix (prod)      | `hotfix/`   | `hotfix/rollback-broken-deploy`    |
 | Prototype / Spike  | `proto/`    | `proto/iso3166-expansion`          |
+| Refactor / Cleanup | `refactor/` | `refactor/remove-dead-code`        |
+| Tests              | `test/`     | `test/generator-edge-cases`        |
 
 * Use **kebab‑case** after the prefix.
 * Keep branch names concise yet descriptive.
@@ -396,11 +448,17 @@ docs(README): improve installation instructions
 
 > CI rely on these prefixes for auto labeling and workflow routing—stick to them.
 
+<br/>
+
 ---
+
+<br/>
 
 ## ✅ Pull Request Conventions
 
 Pull Requests—whether authored by humans or AI agents—must follow a consistent structure to ensure clarity, accountability, and ease of review.
+
+<br/><br/>
 
 ### 🔖 Title Format
 
@@ -416,7 +474,7 @@ Examples:
 
 > Use the imperative mood ("Add", "Fix", "Update") to match the style of commit messages and changelogs.
 
----
+<br/><br/>
 
 ### 📝 Pull Request Description
 
@@ -426,7 +484,7 @@ Every PR must include the following **four** sections in the description:
 
 > A clear, bullet‑pointed or paragraph‑level summary of the technical changes.
 
-#### 2. **Why It Was Needed**
+#### 2. **Why It Was Necessary**
 
 > Context or motivation behind the change. Reference related issues, discussions, or bugs if applicable.
 
@@ -447,7 +505,7 @@ Every PR must include the following **four** sections in the description:
 > * Performance implications
 > * Changes in developer experience (e.g., local dev setup, CI time)
 
----
+<br/><br/>
 
 ### 💡 Additional PR Guidelines
 
@@ -457,7 +515,11 @@ Every PR must include the following **four** sections in the description:
 * Releases are deployed using **goreleaser**.
 * Rules for the release build are located in `.goreleaser.yml` and executed via `.github/workflows/release.yml`.
 
+<br/>
+
 ---
+
+<br/>
 
 ## 🚀 Release Workflow & Versioning
 
@@ -470,13 +532,17 @@ We follow **Semantic Versioning (✧ SemVer)**:
 | **MINOR** | Back‑compatible feature / enhancement | `1.2.0 → 1.3.0` |
 | **PATCH** | Back‑compatible bug fix / docs        | `1.2.3 → 1.2.4` |
 
+<br/><br/>
+
 ### 📦 Tooling
 
 * Releases are driven by **[goreleaser]** and configured in `.goreleaser.yml`.
-* Install locally with Homebrew (Mac):  
+* Install locally with Homebrew (Mac):
 ```bash
   brew install goreleaser
 ````
+
+<br/><br/>
 
 ### 🔄 Workflow
 
@@ -491,13 +557,19 @@ We follow **Semantic Versioning (✧ SemVer)**:
 
 [goreleaser]: https://github.com/goreleaser/goreleaser
 
+<br/>
+
 ---
+
+<br/>
 
 ## 🏷️ Labeling Conventions (GitHub)
 
 Labels serve as shared vocabulary for categorizing issues, pull requests, and discussions. Proper labeling improves triage, prioritization, automation, and clarity across the engineering lifecycle.
 
 Current labels are located in `.github/labels.yml` and automatically synced into GitHub upon updating the `master` branch.
+
+<br/><br/>
 
 ### 🎨 Standard Labels & Usage
 
@@ -521,7 +593,7 @@ Current labels are located in `.github/labels.yml` and automatically synced into
 | `work-in-progress` | `#fbca04` | Not ready to merge, actively under development             | Blocks `automerge`, signals in-progress discussion or implementation        |
 | `stale`            | `#c2e0c6` | Inactive, obsolete, or no longer relevant                  | Used for automated cleanup or manual archiving of old PRs/issues            |
 
----
+<br/><br/>
 
 ### 🧠 Labeling Best Practices
 
@@ -530,7 +602,11 @@ Current labels are located in `.github/labels.yml` and automatically synced into
 * Combine labels as needed (e.g., `feature` + `ui-ux` + `test`).
 * Don't forget to remove outdated labels (e.g., `work-in-progress` → after merge readiness).
 
+<br/>
+
 ---
+
+<br/>
 
 ## 🧩 CI & Validation
 
@@ -539,16 +615,23 @@ CI automatically runs on every PR to verify:
 * Formatting (`go fmt` and `goimports`)
 * Linting (`golangci-lint run`)
 * Tests (`go test ./...`)
-* Fuzz tests (if applicable) (`go test -fuzz=. -run=^$`)
+* Fuzz tests (if applicable) (`make run-fuzz-tests`)
 * This codebase uses GitHub Actions; test workflows reside in `.github/workflows/run-tests.yml`
+* Pin each external GitHub Action to a **full commit SHA** (e.g., `actions/checkout@2f3b4a2e0e471e13e2ea2bc2a350e888c9cf9b75`) as recommended by GitHub's [security hardening guidance](https://docs.github.com/en/actions/security-guides/security-hardening-for-github-actions#using-pinned-actions). Dependabot will track and update these pinned versions automatically.
 
 Failing PRs will be blocked. AI agents should iterate until CI passes.
 
+<br/>
+
 ---
+
+<br/>
 
 ## 🔐 Dependency Management
 
 Dependency hygiene is critical for security, reproducibility, and developer experience. Follow these practices to ensure our module stays stable, up to date, and secure.
+
+<br/><br/>
 
 ### 📦 Module Management
 
@@ -568,6 +651,8 @@ Dependency hygiene is critical for security, reproducibility, and developer expe
 
 > Avoid unnecessary upgrades near release windows—review major version bumps carefully for breaking changes.
 
+<br/><br/>
+
 ### 🛡️ Security Scanning
 
 * Use [govulncheck](https://pkg.go.dev/golang.org/x/vuln/cmd/govulncheck) to identify known vulnerabilities:
@@ -575,7 +660,7 @@ Dependency hygiene is critical for security, reproducibility, and developer expe
   govulncheck ./...
 ```
 
-* Run via make command: 
+* Run via make command:
 ```bash
   make govulncheck
 ```
@@ -583,6 +668,10 @@ Dependency hygiene is critical for security, reproducibility, and developer expe
 * Address critical advisories before merging changes into `master`
 
 * Document any intentionally ignored vulnerabilities with clear justification and issue tracking
+
+* We follow the [OpenSSF](https://openssf.org) best practices to ensure this repository remains compliant with industry‑standard open source security guidelines
+
+<br/><br/>
 
 ### 📁 Version Control
 
@@ -592,7 +681,11 @@ Dependency hygiene is critical for security, reproducibility, and developer expe
 
 > Changes to dependencies should be explained in the PR description and ideally linked to the reason (e.g., bug fix, security advisory, feature requirement).
 
+<br/>
+
 ---
+
+<br/>
 
 ## 🛡️Security Considerations & Vulnerability Reporting
 
@@ -601,25 +694,28 @@ Security is a first-class requirement. If you discover a vulnerability—no matt
 * **Do not** open a public issue or pull request.
 * Follow the instructions in [`SECURITY.md`](SECURITY.md).
 * Include:
-  * A clear, reproducible description of the issue
-  * Proof‑of‑concept code or steps (if possible)
-  * Any known mitigations or workarounds
+	* A clear, reproducible description of the issue
+	* Proof‑of‑concept code or steps (if possible)
+	* Any known mitigations or workarounds
 * You will receive an acknowledgment within **72 hours** and status updates until the issue is resolved.
 
 > For general hardening guidance (e.g., `govulncheck`, dependency pinning), see the [🔐Dependency Management](#-dependency-management) section.
 
+<br/>
+
 ---
+
+<br/>
 
 ## 🕓 Change Log (AGENTS.md)
 
-This section tracks notable updates to `AGENTS.md`, including the date, author, and purpose of each revision. 
+This section tracks notable updates to `AGENTS.md`, including the date, author, and purpose of each revision.
 All contributors are expected to append entries here when making meaningful changes to agent behavior, conventions, or policies.
+
 
 | Date       | Author   | Summary of Changes                                                             |
 |------------|----------|--------------------------------------------------------------------------------|
 | 2025-06-03 | @mrz1836 | Major rewrite: clarified commenting standards and merged scope/purpose         |
 | 2025-06-03 | @mrz1836 | Combined testing and development sections; improved formatting & test guidance |
 | 2025-06-03 | @mrz1836 | Enhanced dependency management practices and security scanning advice          |
-| 2025-06-04 | @mrz1836 | Documented citation and configuration files for contributors                   |
-
 > For minor edits (typos, formatting), this log update is optional. For all behavioral or structural changes, log entries are **required**.
