@@ -903,6 +903,7 @@ func TestAlphaCodes_Constants(t *testing.T) {
 	assert.Equal(t, Alpha3ZWE, "ZWE")
 }
 
+// TestCountryCapitals_Correctness checks the correctness of country capitals.
 func TestCountryCapitals_Correctness(t *testing.T) {
 	tests := []struct {
 		name        string
