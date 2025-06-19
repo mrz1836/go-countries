@@ -20,6 +20,9 @@
         <a href="https://github.com/mrz1836/go-countries/actions">
           <img src="https://img.shields.io/github/actions/workflow/status/mrz1836/go-countries/run-tests.yml?branch=master&logo=github&style=flat" alt="Build status">
         </a><br/>
+		<a href="https://github.com/mrz1836/go-countries/actions">
+          <img src="https://github.com/mrz1836/go-countries/actions/workflows/codeql-analysis.yml/badge.svg?style=flat" alt="CodeQL">
+        </a><br/>
         <a href="https://github.com/mrz1836/go-countries/commits/master">
 		  <img src="https://img.shields.io/github/last-commit/mrz1836/go-countries?style=flat&logo=clockify&logoColor=white" alt="Last commit">
 		</a>
@@ -31,12 +34,12 @@
 		<a href="https://codecov.io/gh/mrz1836/go-countries">
           <img src="https://codecov.io/gh/mrz1836/go-countries/branch/master/graph/badge.svg?style=flat" alt="Code coverage">
         </a><br/>
-        <a href="https://github.com/mrz1836/go-countries/actions">
-          <img src="https://github.com/mrz1836/go-countries/actions/workflows/codeql-analysis.yml/badge.svg?style=flat" alt="CodeQL">
-        </a><br/>
         <a href=".github/SECURITY.md">
           <img src="https://img.shields.io/badge/security-policy-blue?style=flat&logo=springsecurity&logoColor=white" alt="Security policy">
         </a><br/>
+		<a href="https://www.bestpractices.dev/projects/10767">
+		  <img src="https://www.bestpractices.dev/projects/10767/badge" alt="Best Practices">
+		</a><br/>
         <a href=".github/dependabot.yml">
           <img src="https://img.shields.io/badge/dependencies-automatic-blue?logo=dependabot&style=flat" alt="Dependabot">
         </a>
