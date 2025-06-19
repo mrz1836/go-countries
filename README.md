@@ -34,15 +34,15 @@
 		<a href="https://codecov.io/gh/mrz1836/go-countries">
           <img src="https://codecov.io/gh/mrz1836/go-countries/branch/master/graph/badge.svg?style=flat" alt="Code coverage">
         </a><br/>
+		<a href="https://scorecard.dev/viewer/?uri=github.com/mrz1836/go-countries">
+          <img src="https://api.scorecard.dev/projects/github.com/mrz1836/go-countries/badge?logo=springsecurity&logoColor=white" alt="Security policy">
+        </a><br/>
         <a href=".github/SECURITY.md">
           <img src="https://img.shields.io/badge/security-policy-blue?style=flat&logo=springsecurity&logoColor=white" alt="Security policy">
         </a><br/>
 		<a href="https://www.bestpractices.dev/projects/10767">
 		  <img src="https://www.bestpractices.dev/projects/10767/badge" alt="Best Practices">
 		</a><br/>
-        <a href=".github/dependabot.yml">
-          <img src="https://img.shields.io/badge/dependencies-automatic-blue?logo=dependabot&style=flat" alt="Dependabot">
-        </a>
       </td>
       <td valign="top" align="left">
         <a href="https://golang.org/">
@@ -56,6 +56,9 @@
         </a><br/>
         <a href="Makefile">
           <img src="https://img.shields.io/badge/Makefile-supported-brightgreen?style=flat&logo=probot&logoColor=white" alt="Makefile Supported">
+        </a><br/>
+		<a href=".github/dependabot.yml">
+          <img src="https://img.shields.io/badge/dependencies-automatic-blue?logo=dependabot&style=flat" alt="Dependabot">
         </a>
       </td>
       <td valign="top" align="left">
