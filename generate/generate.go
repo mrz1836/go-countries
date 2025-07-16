@@ -65,7 +65,6 @@ type CountryList []*Country
 // The generated file is formatted and ready for use in the main package.
 // This process ensures that the country data remains up to date and consistent with the source JSON.
 func main() {
-
 	// Unmarshall the countries
 	var c CountryList
 	if err := json.Unmarshal([]byte(data.ISO3166JSONData), &c); err != nil {

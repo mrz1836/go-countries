@@ -8,8 +8,8 @@ Need help with **go-countries**? You're in the right place. Here’s how to get 
 
 Before asking, check the existing threads:
 
-* 🔍 Search [Discussions](https://github.com/mrz1836/go-countries/discussions)
-* 🆕 Can’t find what you need? Start a new topic and ask away!
+* 🔍 Search [Issues](https://github.com/mrz1836/go-countries/issues) or [Pull Requests](https://github.com/mrz1836/go-countries/pulls?q=is%3Apr+is%3Aopen+is%3Aclosed)
+* 🆕 Can’t find what you need? Start a [new issue](https://github.com/mrz1836/go-countries/issues/new?template=question.yml).
 
 <br/>
 
@@ -50,4 +50,4 @@ For sensitive or non-public concerns, reach out to:
 
 <br/>
 
-Thanks for your interest and support — we’re here to help, and we appreciate your contributions. 🚀
+Thanks for your interest and support - we're here to help, and we appreciate your contributions. 🚀

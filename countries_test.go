@@ -20,7 +20,6 @@ const (
 
 // TestCountries_Loaded tests that the country data is preloaded
 func TestCountries_Loaded(t *testing.T) {
-
 	// Make sure all countries are there
 	require.NotNil(t, countries)
 	assert.Len(t, countries, 249)
