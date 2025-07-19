@@ -1,14 +1,14 @@
 # ------------------------------------------------------------------------------------
-#  Test Suite (Reusable Workflow) (GoFortress)
+#  Benchmark Suite (Reusable Workflow) (GoFortress)
 #
-#  Purpose: Run the main Go test suite across multiple Go versions and operating
-#  systems, including unit tests, race detection, coverage, and fuzz tests.
+#  Purpose: Run Go benchmarks across multiple Go versions and operating systems,
+#  collecting performance metrics for analysis and comparison.
 #
 #  Maintainer: @mrz1836
 #
 # ------------------------------------------------------------------------------------
 
-name: GoFortress (Go Test Suite)
+name: GoFortress (Benchmark Suite)
 
 on:
   workflow_call:
@@ -17,8 +17,8 @@ on:
         description: "JSON string of environment variables"
         required: true
         type: string
-      test-matrix:
-        description: "Test matrix JSON"
+      benchmark-matrix:
+        description: "Benchmark matrix JSON"
         required: true
         type: string
       primary-runner:
@@ -33,39 +33,24 @@ on:
         description: "Secondary Go version"
         required: true
         type: string
-      code-coverage-enabled:
-        description: "Whether code coverage is enabled"
-        required: true
-        type: string
-      race-detection-enabled:
-        description: "Whether race detection is enabled"
-        required: true
-        type: string
-      fuzz-testing-enabled:
-        description: "Whether fuzz testing is enabled"
-        required: true
-        type: string
     secrets:
       github-token:
         description: "GitHub token for API access"
         required: true
-      codecov-token:
-        description: "Codecov token for coverage uploads"
-        required: false
 
 permissions:
   contents: read
 
 jobs:
   # ----------------------------------------------------------------------------------
-  # Testing Matrix for Go (Parallel)
+  # Benchmark Matrix for Go (Parallel)
   # ----------------------------------------------------------------------------------
-  test-go:
-    name: 🧪 Test (${{ matrix.name }})
-    timeout-minutes: 30 # Prevent hung tests
+  benchmark-go:
+    name: 🏃 Benchmark (${{ matrix.name }})
+    timeout-minutes: 30 # Prevent hung benchmarks
     strategy:
-      fail-fast: true
-      matrix: ${{ fromJson(inputs.test-matrix) }}
+      fail-fast: false # Continue running other benchmarks if one fails
+      matrix: ${{ fromJson(inputs.benchmark-matrix) }}
     runs-on: ${{ matrix.os }}
 
     steps:
@@ -92,7 +77,6 @@ jobs:
           echo "🔧 Setting up Go cache paths..."
           echo "GOCACHE=$HOME/.cache/go-build"        >> $GITHUB_ENV
           echo "GOMODCACHE=$HOME/go/pkg/mod"          >> $GITHUB_ENV
-          echo "GOLANGCI_LINT_CACHE=$HOME/.cache/golangci-lint" >> $GITHUB_ENV
 
       # ————————————————————————————————————————————————————————————————
       # Restore Go module and build caches
@@ -107,7 +91,7 @@ jobs:
             ${{ matrix.os }}-gomod-
 
       # ————————————————————————————————————————————————————————————————
-      # Restore the build cache and test cache
+      # Restore the build cache
       # ————————————————————————————————————————————————————————————————
       - name: 💾 Restore Go build cache
         id: restore-gobuild
@@ -157,7 +141,6 @@ jobs:
       # ————————————————————————————————————————————————————————————————
       # Determine Go Toolchain Mode and set up Go
       # ————————————————————————————————————————————————————————————————
-      # Issue with installing 1.23 and then it auto-upgrading to 1.24
       - name: 🧮 Determine Go Toolchain Mode
         id: toolchain-mode
         shell: bash
@@ -175,135 +158,148 @@ jobs:
           fi
 
       - name: 🏗️ Set up Go
-        id: setup-go-test
+        id: setup-go-bench
         uses: actions/setup-go@d35c59abb061a4a6fb18e82ac0862c26744d6ab5 # v5.5.0
         with:
           go-version: ${{ matrix.go-version }}
           cache: false # we handle caches ourselves
 
       # ————————————————————————————————————————————————————————————————
-      # Start test timer
+      # Start benchmark timer
       # ————————————————————————————————————————————————————————————————
-      - name: ⏱️ Start test timer
-        id: test-timer
+      - name: ⏱️ Start benchmark timer
+        id: bench-timer
         run: |
-          echo "test-start=$(date +%s)" >> $GITHUB_OUTPUT
+          echo "bench-start=$(date +%s)" >> $GITHUB_OUTPUT
 
       # ————————————————————————————————————————————————————————————————
-      # Run tests and coverage
+      # Run benchmarks and capture output
       # ————————————————————————————————————————————————————————————————
-      - name: 🧪 Run tests
+      - name: 🏃 Run benchmarks
+        id: run-benchmarks
         run: |
-          # Safely assign values to shell vars
-          RACE="${{ inputs.race-detection-enabled }}"
-          COVER="${{ inputs.code-coverage-enabled }}"
+          echo "🏃 Running benchmarks..."
 
-          echo "🔍 Race Detection Enabled: $RACE"
-          echo "🔍 Code Coverage Enabled: $COVER"
+          # Create output file for raw benchmark results
+          BENCH_OUTPUT_FILE="benchmark-results-${{ matrix.os }}-${{ matrix.go-version }}.txt"
 
-          if [[ "$RACE" == "true" && "$COVER" == "true" ]]; then
-            echo "🏁 Running tests with race detection and coverage analysis..."
-            make test-cover-race VERBOSE=${{ env.ENABLE_VERBOSE_TEST_OUTPUT }}
-          elif [[ "$RACE" != "true" && "$COVER" == "true" ]]; then
-            echo "🏁 Running tests with coverage analysis..."
-            make test-cover VERBOSE=${{ env.ENABLE_VERBOSE_TEST_OUTPUT }}
-          elif [[ "$RACE" == "true" && "$COVER" != "true" ]]; then
-            echo "🏁 Running tests with race detection..."
-            make test-race VERBOSE=${{ env.ENABLE_VERBOSE_TEST_OUTPUT }}
+          # Run benchmarks and capture output
+          if make bench > "$BENCH_OUTPUT_FILE" 2>&1; then
+            echo "✅ Benchmarks completed successfully"
+            BENCH_STATUS="success"
           else
-            echo "🏁 Running tests without coverage or race detection..."
-            make test VERBOSE=${{ env.ENABLE_VERBOSE_TEST_OUTPUT }}
+            echo "❌ Benchmarks failed"
+            BENCH_STATUS="failure"
           fi
 
-          echo "✅ Tests completed successfully"
+          # Display benchmark output
+          echo "📊 Benchmark Results:"
+          cat "$BENCH_OUTPUT_FILE"
+
+          # Save status for later
+          echo "bench_status=$BENCH_STATUS" >> $GITHUB_OUTPUT
 
       # ————————————————————————————————————————————————————————————————
-      # Fuzz tests (only on Linux)
+      # Parse benchmark results and create statistics
       # ————————————————————————————————————————————————————————————————
-      - name: 🎯 Run fuzz tests
-        if: matrix.run-fuzz
-        run: |
-          echo "🎯 Running fuzz tests..."
-          make test-fuzz VERBOSE=${{ env.ENABLE_VERBOSE_TEST_OUTPUT }}
-          echo "✅ Fuzz tests completed successfully"
-
-      # ————————————————————————————————————————————————————————————————
-      # All test results are always captured
-      # ————————————————————————————————————————————————————————————————
-      - name: 📊 Calculate test statistics
-        id: test-summary
+      - name: 📊 Parse benchmark statistics
+        id: bench-summary
         if: always()
         run: |
-          TEST_END=$(date +%s)
-          TEST_DURATION=$((TEST_END - ${{ steps.test-timer.outputs.test-start }}))
-          TEST_COUNT=0
-          EXAMPLE_COUNT=0
-          BENCHMARK_COUNT=0
+          BENCH_END=$(date +%s)
+          BENCH_DURATION=$((BENCH_END - ${{ steps.bench-timer.outputs.bench-start }}))
 
-          # Count tests if possible
-          TEST_COUNT=$(find . -type f -name '*_test.go' \
-            -not -path './vendor/*' \
-            -not -path './third_party/*' \
-            -not -path './testdata/*' \
-            -exec grep -hE '^\s*func (\([^)]+\) )?Test[A-Z0-9_]' {} + | wc -l)
-
-          # Count examples if possible
-          EXAMPLE_COUNT=$(find . -type f -name '*_test.go' \
-            -not -path './vendor/*' \
-            -not -path './third_party/*' \
-            -exec grep -h '^func Example' {} + | wc -l)
-
-          # Count benchmarks if possible
+          # Count benchmarks
           BENCHMARK_COUNT=$(find . -type f -name '*_test.go' \
             -not -path './vendor/*' \
             -not -path './third_party/*' \
             -exec grep -h '^func Benchmark' {} + | wc -l)
 
-          STATS_FILE="test-stats-${{ matrix.os }}-${{ matrix.go-version }}.json"
+          # Parse benchmark results
+          BENCH_OUTPUT_FILE="benchmark-results-${{ matrix.os }}-${{ matrix.go-version }}.txt"
+          STATS_FILE="benchmark-stats-${{ matrix.os }}-${{ matrix.go-version }}.json"
 
-          # Capture the output of "make loc" and store the markdown summary
-          LOC_OUTPUT_JSON=$(make loc | jq -Rsa .)
+          # Create a pretty summary of benchmark results
+          BENCH_SUMMARY=""
+          if [ -f "$BENCH_OUTPUT_FILE" ]; then
+            # Step 1: Extract benchmark result lines using a more specific pattern
+            # Expected format: BenchmarkName-N  iterations  ns/op  [B/op]  [allocs/op]
+            # Example: BenchmarkMyFunc-8  1000000  1234.5 ns/op  56 B/op  2 allocs/op
+            
+            # Primary pattern: Match benchmark name with dash-number, iterations, and ns/op
+            BENCH_LINES=$(grep -E '^Benchmark[A-Za-z0-9_-]+-[0-9]+\s+[0-9]+\s+[0-9.]+ ns/op' "$BENCH_OUTPUT_FILE" || true)
+            
+            if [ -n "$BENCH_LINES" ]; then
+              BENCH_SUMMARY=$(echo "$BENCH_LINES" | while read -r line; do
+                # Step 2: Parse each component of the benchmark line
+                
+                # Extract benchmark name (remove the -N suffix where N is the GOMAXPROCS)
+                BENCH_NAME=$(echo "$line" | awk '{print $1}' | sed 's/-[0-9]*$//')
+                
+                # Extract iteration count (second field)
+                ITERATIONS=$(echo "$line" | awk '{print $2}')
+                
+                # Extract nanoseconds per operation (third field)
+                NS_PER_OP=$(echo "$line" | awk '{print $3}')
+                
+                # Step 3: Extract optional memory metrics using targeted grep
+                # Look for "X B/op" pattern (bytes per operation)
+                B_PER_OP=$(echo "$line" | grep -oE '[0-9.]+ B/op' | awk '{print $1}' || echo "N/A")
+                
+                # Look for "X allocs/op" pattern (allocations per operation)  
+                ALLOCS_PER_OP=$(echo "$line" | grep -oE '[0-9.]+ allocs/op' | awk '{print $1}' || echo "N/A")
+                
+                # Step 4: Format the summary line
+                echo "- **$BENCH_NAME**: $NS_PER_OP ns/op, $B_PER_OP B/op, $ALLOCS_PER_OP allocs/op ($ITERATIONS iterations)"
+              done)
+            fi
+          fi
 
-          cat > "$STATS_FILE" << EOF
-          {
-            "name": "${{ matrix.name }}",
-            "os": "${{ matrix.os }}",
-            "go_version": "${{ matrix.go-version }}",
-            "duration_seconds": $TEST_DURATION,
-            "test_count": $TEST_COUNT,
-            "example_count": $EXAMPLE_COUNT,
-            "benchmark_count": $BENCHMARK_COUNT,
-            "status": "${{ job.status }}",
-            "race_enabled": ${{ inputs.race-detection-enabled }},
-            "coverage_enabled": ${{ inputs.code-coverage-enabled }},
-            "fuzz_run": ${{ matrix.run-fuzz && 'true' || 'false' }},
-            "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
-            "loc_summary": $LOC_OUTPUT_JSON
-          }
-          EOF
+          # Escape the summary for JSON
+          BENCH_SUMMARY_JSON=$(echo "$BENCH_SUMMARY" | jq -Rsa .)
 
-          echo "📊 Test statistics:"
+          # Create statistics file using jq to safely construct JSON
+          jq -n \
+            --arg name "${{ matrix.name }}" \
+            --arg os "${{ matrix.os }}" \
+            --arg go_version "${{ matrix.go-version }}" \
+            --argjson duration_seconds "$BENCH_DURATION" \
+            --argjson benchmark_count "$BENCHMARK_COUNT" \
+            --arg status "${{ steps.run-benchmarks.outputs.bench_status }}" \
+            --arg timestamp "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+            --argjson benchmark_summary "$BENCH_SUMMARY_JSON" \
+            '{
+              "name": $name,
+              "os": $os,
+              "go_version": $go_version,
+              "duration_seconds": $duration_seconds,
+              "benchmark_count": $benchmark_count,
+              "status": $status,
+              "timestamp": $timestamp,
+              "benchmark_summary": $benchmark_summary
+            }' > "$STATS_FILE"
+
+          echo "📊 Benchmark statistics:"
           jq . "$STATS_FILE"
 
       # ————————————————————————————————————————————————————————————————
-      # Upload test statistics
+      # Upload benchmark statistics
       # ————————————————————————————————————————————————————————————————
-      - name: 📤 Upload test statistics
+      - name: 📤 Upload benchmark statistics
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
-          name: test-stats-${{ matrix.os }}-${{ matrix.go-version }}
-          path: test-stats-*.json
+          name: benchmark-stats-${{ matrix.os }}-${{ matrix.go-version }}
+          path: benchmark-stats-*.json
           retention-days: 1
 
       # ————————————————————————————————————————————————————————————————
-      # Upload coverage only for race-cover tests
+      # Upload raw benchmark results
       # ————————————————————————————————————————————————————————————————
-      - name: 📈 Upload coverage
-        if: inputs.code-coverage-enabled == 'true'
-        uses: codecov/codecov-action@18283e04ce6e62d37312384ff67231eb8fd56d24 # v5.4.3
+      - name: 📤 Upload benchmark results
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
-          fail_ci_if_error: true
-          flags: unittests
-          token: ${{ secrets.codecov-token }}
-          verbose: true
+          name: benchmark-results-${{ matrix.os }}-${{ matrix.go-version }}
+          path: benchmark-results-*.txt
+          retention-days: 7 # Keep raw results longer for analysis
