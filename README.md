@@ -418,8 +418,8 @@ Edit `AGENTS.md` first when adjusting these policies, and keep the other files i
 <br/>
 
 ## 🙏 Credits
-Used: [ISO-3166-Countries-with-Regional-Codes](https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes)     
-Used: [List of Countries & Currencies](https://gist.github.com/tiagodealmeida/0b97ccf117252d742dddf098bc6cc58a)     
+Used: [ISO-3166-Countries-with-Regional-Codes](https://github.com/lukes/ISO-3166-Countries-with-Regional-Codes)
+Used: [List of Countries & Currencies](https://gist.github.com/tiagodealmeida/0b97ccf117252d742dddf098bc6cc58a)
 
 <br/>
 
@@ -434,9 +434,9 @@ Used: [List of Countries & Currencies](https://gist.github.com/tiagodealmeida/0b
 View the [contributing guidelines](.github/CONTRIBUTING.md) and please follow the [code of conduct](.github/CODE_OF_CONDUCT.md).
 
 ### How can I help?
-All kinds of contributions are welcome :raised_hands:! 
-The most basic way to show your support is to star :star2: the project, or to raise issues :speech_balloon:. 
-You can also support this project by [becoming a sponsor on GitHub](https://github.com/sponsors/mrz1836) :clap: 
+All kinds of contributions are welcome :raised_hands:!
+The most basic way to show your support is to star :star2: the project, or to raise issues :speech_balloon:.
+You can also support this project by [becoming a sponsor on GitHub](https://github.com/sponsors/mrz1836) :clap:
 or by making a [**bitcoin donation**](https://mrz1818.com/?tab=tips&utm_source=github&utm_medium=sponsor-link&utm_campaign=go-countries&utm_term=go-countries&utm_content=go-countries) to ensure this journey continues indefinitely! :rocket:
 
 
