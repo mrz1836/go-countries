@@ -54,8 +54,8 @@
         <a href=".github/AGENTS.md">
           <img src="https://img.shields.io/badge/AGENTS.md-found-40b814?style=flat&logo=openai" alt="AGENTS.md rules">
         </a><br/>
-        <a href="Makefile">
-          <img src="https://img.shields.io/badge/Makefile-supported-brightgreen?style=flat&logo=probot&logoColor=white" alt="Makefile Supported">
+        <a href="https://github.com/mrz1836/mage-x">
+          <img src="https://img.shields.io/badge/Mage-supported-brightgreen?style=flat&logo=go&logoColor=white" alt="MAGE-X Supported">
         </a><br/>
 		<a href=".github/dependabot.yml">
           <img src="https://img.shields.io/badge/dependencies-automatic-blue?logo=dependabot&style=flat" alt="Dependabot">
@@ -193,6 +193,19 @@ The generated code is written to `countries_data.go` in the project directory.
 ### Additional Documentation & Repository Management
 
 <details>
+<summary><strong><code>Development Setup (Getting Started)</code></strong></summary>
+<br/>
+
+Install [MAGE-X](https://github.com/mrz1836/mage-x) build tool for development:
+
+```bash
+# Install MAGE-X for development and building
+go install github.com/mrz1836/mage-x/cmd/magex@latest
+magex update:install
+```
+</details>
+
+<details>
 <summary><strong><code>Library Deployment</code></strong></summary>
 <br/>
 
@@ -204,25 +217,25 @@ brew install goreleaser
 
 The release process is defined in the [.goreleaser.yml](.goreleaser.yml) configuration file.
 
-To generate a snapshot (non-versioned) release for testing purposes, run:
-
-```bash
-make release-snap
-```
-
-Before tagging a new version, update the release metadata in the `CITATION.cff` file:
-
-```bash
-make citation version=0.2.1
-```
-
 Then create and push a new Git tag using:
 
 ```bash
-make tag version=x.y.z
+magex version:bump bump=patch push
 ```
 
 This process ensures consistent, repeatable releases with properly versioned artifacts and citation metadata.
+
+</details>
+
+<details>
+<summary><strong><code>Build Commands</code></strong></summary>
+<br/>
+
+View all build commands
+
+```bash script
+magex help
+```
 
 </details>
 
@@ -297,17 +310,21 @@ vet                   ## Run go vet only on your module packages
 
 ### 🎛️ The Workflow Control Center
 
-All GitHub Actions workflows in this repository are powered by a single configuration file: [**.env.shared**](.github/.env.shared) – your one-stop shop for tweaking CI/CD behavior without touching a single YAML file! 🎯
+All GitHub Actions workflows in this repository are powered by configuration files: [**.env.base**](.github/.env.base) (default configuration) and optionally **.env.custom** (project-specific overrides) – your one-stop shop for tweaking CI/CD behavior without touching a single YAML file! 🎯
+
+**Configuration Files:**
+- **[.env.base](.github/.env.base)** – Default configuration that works for most Go projects
+- **[.env.custom](.github/.env.custom)** – Optional project-specific overrides
 
 This magical file controls everything from:
 - **🚀 Go version matrix** (test on multiple versions or just one)
 - **🏃 Runner selection** (Ubuntu or macOS, your wallet decides)
-- **🔬 Feature toggles** (coverage, fuzzing, linting, race detection)
+- **🔬 Feature toggles** (coverage, fuzzing, linting, race detection, benchmarks)
 - **🛡️ Security tool versions** (gitleaks, nancy, govulncheck)
 - **🤖 Auto-merge behaviors** (how aggressive should the bots be?)
 - **🏷️ PR management rules** (size labels, auto-assignment, welcome messages)
 
-> **Pro tip:** Want to disable code coverage? Just flip `ENABLE_CODE_COVERAGE=false` in [.env.shared](.github/.env.shared) and push. No YAML archaeology required!
+> **Pro tip:** Want to disable code coverage? Just add `ENABLE_CODE_COVERAGE=false` to your .env.custom to override the default in .env.base and push. No YAML archaeology required!
 
 <br/>
 
@@ -321,8 +338,6 @@ This magical file controls everything from:
 | [scorecard.yml](.github/workflows/scorecard.yml)                                   | Runs [OpenSSF](https://openssf.org/) Scorecard to assess supply chain security.                                        |
 | [stale.yml](.github/workflows/stale-check.yml)                                     | Warns about (and optionally closes) inactive issues and PRs on a schedule or manual trigger.                           |
 | [sync-labels.yml](.github/workflows/sync-labels.yml)                               | Keeps GitHub labels in sync with the declarative manifest at [`.github/labels.yml`](./.github/labels.yml).             |
-| [update-python-dependencies.yml](.github/workflows/update-python-dependencies.yml) | Updates Python dependencies for pre-commit hooks in the repository.                                                    |
-| [update-pre-commit-hooks.yml](.github/workflows/update-pre-commit-hooks.yml)       | Automatically update versions for [pre-commit](https://pre-commit.com/) hooks                                          |
 
 </details>
 
@@ -333,10 +348,10 @@ This magical file controls everything from:
 To update all dependencies (Go modules, linters, and related tools), run:
 
 ```bash
-make update
+magex deps:update
 ```
 
-This command ensures all dependencies are brought up to date in a single step, including Go modules and any tools managed by the Makefile. It is the recommended way to keep your development environment and CI in sync with the latest versions.
+This command ensures all dependencies are brought up to date in a single step, including Go modules and any managed tools. It is the recommended way to keep your development environment and CI in sync with the latest versions.
 
 </details>
 
@@ -344,17 +359,17 @@ This command ensures all dependencies are brought up to date in a single step, i
 
 ## 🧪 Examples & Tests
 
-All unit tests and [examples](examples) run via [GitHub Actions](https://github.com/mrz1836/go-template/actions) and use [Go version 1.24.x](https://go.dev/doc/go1.24). View the [configuration file](.github/workflows/fortress.yml).
+All unit tests and [examples](examples) run via [GitHub Actions](https://github.com/mrz1836/go-template/actions) and use [Go version 1.22.x](https://go.dev/doc/go1.22). View the [configuration file](.github/workflows/fortress.yml).
 
 Run all tests (fast):
 
 ```bash script
-make test
+magex test
 ```
 
 Run all tests with race detector (slower):
 ```bash script
-make test-race
+magex test:race
 ```
 
 <br/>
@@ -364,7 +379,7 @@ make test-race
 Run the Go [benchmarks](countries_test.go):
 
 ```bash script
-make bench
+magex bench
 ```
 
 <br/>
