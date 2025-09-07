@@ -10,7 +10,7 @@ body:
     attributes:
       label: Describe the bug
       description: Provide a clear and concise summary of the problem or unexpected behavior.
-      placeholder: Calling countries.GetCountryByAlpha2("US") returns an unexpected result or error...
+      placeholder: The custom function strips the plus sign from numbers...
     validations:
       required: true
 
@@ -20,9 +20,8 @@ body:
       label: Steps to reproduce
       description: Provide minimal steps or code snippets to reproduce the issue.
       placeholder: |
-        1. Import the package: import "github.com/mrz1836/go-countries"
-        2. Call countries.GetCountryByAlpha2("US")
-        3. Observe the returned Country struct or error
+        1. Call package.Func("input")
+        2. Observe that the result is "input" (missing 'symbol')
     validations:
       required: true
 
@@ -31,7 +30,7 @@ body:
     attributes:
       label: Expected behavior
       description: Describe what you expected to happen instead.
-      placeholder: I expected the result to be a Country struct for the United States with correct fields populated.
+      placeholder: I expected the result to be "symbol+input" since the plus sign is allowed.
     validations:
       required: true
 
@@ -41,7 +40,7 @@ body:
       label: Environment details
       description: Provide version information and your Go setup to help debug.
       placeholder: |
-        - Go version: go1.22.2
+        - Go version: go1.24.3
         - OS: macOS 14.5 (arm64)
         - Library version/commit: v1.3.4 or commit 88aef9c
     validations:
