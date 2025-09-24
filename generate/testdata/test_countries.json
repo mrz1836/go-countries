@@ -1,0 +1,41 @@
+[
+    {
+        "alpha-2": "US",
+        "alpha-3": "USA",
+        "country-code": "840",
+        "intermediate-region": "",
+        "intermediate-region-code": "",
+        "iso_3166-2": "ISO 3166-2:US",
+        "name": "United States of America",
+        "region": "Americas",
+        "region-code": "019",
+        "sub-region": "Northern America",
+        "sub-region-code": "021"
+    },
+    {
+        "alpha-2": "CA",
+        "alpha-3": "CAN",
+        "country-code": "124",
+        "intermediate-region": "",
+        "intermediate-region-code": "",
+        "iso_3166-2": "ISO 3166-2:CA",
+        "name": "Canada",
+        "region": "Americas",
+        "region-code": "019",
+        "sub-region": "Northern America",
+        "sub-region-code": "021"
+    },
+    {
+        "alpha-2": "DE",
+        "alpha-3": "DEU",
+        "country-code": "276",
+        "intermediate-region": "",
+        "intermediate-region-code": "",
+        "iso_3166-2": "ISO 3166-2:DE",
+        "name": "Germany",
+        "region": "Europe",
+        "region-code": "150",
+        "sub-region": "Western Europe",
+        "sub-region-code": "155"
+    }
+]

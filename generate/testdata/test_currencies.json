@@ -1,0 +1,26 @@
+[
+    {
+        "capital": "Washington",
+        "continentName": "North America",
+        "countryCode": "US",
+        "countryName": "United States of America",
+        "currencyCode": "USD",
+        "population": "331002651"
+    },
+    {
+        "capital": "Ottawa",
+        "continentName": "North America",
+        "countryCode": "CA",
+        "countryName": "Canada",
+        "currencyCode": "CAD",
+        "population": "37742154"
+    },
+    {
+        "capital": "Berlin",
+        "continentName": "Europe",
+        "countryCode": "DE",
+        "countryName": "Germany",
+        "currencyCode": "EUR",
+        "population": "83783942"
+    }
+]
