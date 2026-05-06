@@ -3,6 +3,7 @@ package main
 import (
 	"errors"
 	"os"
+	"path/filepath"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -261,11 +262,7 @@ func TestEmbeddedDataLoader_Integration(t *testing.T) {
 
 func TestOSFileWriter_Integration(t *testing.T) {
 	writer := &OSFileWriter{}
-	testPath := "/tmp/test_generator_file.txt"
-
-	defer func() {
-		_ = os.Remove(testPath) // ignore remove error in test cleanup
-	}()
+	testPath := filepath.Join(t.TempDir(), "test_generator_file.txt")
 
 	file, err := writer.Create(testPath)
 	require.NoError(t, err)
@@ -281,7 +278,7 @@ func TestOSFileWriter_Integration(t *testing.T) {
 	err = file.Close()
 	require.NoError(t, err)
 
-	content, err := os.ReadFile(testPath)
+	content, err := os.ReadFile(testPath) //nolint:gosec // path is from t.TempDir(), not user input
 	require.NoError(t, err)
 	assert.Equal(t, testData, content)
 }
